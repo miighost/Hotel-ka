@@ -27,14 +27,6 @@ class RoomBooking(models.Model):
 
     pos_order_line_ids = fields.One2many('hotel.pos.line', 'booking_id', string='POS Orders')
     amount_total_pos = fields.Monetary(string="Total POS Amount", compute='_compute_amount_total_pos', store=False)
-    room_name = fields.Char(string="Room Number", compute='_compute_room_name')
-
-    @api.depends('room_line_ids.room_id.name')
-    def _compute_room_name(self):
-        """Compute room numbers associated with this booking."""
-        for rec in self:
-            rooms = rec.room_line_ids.mapped('room_id.name')
-            rec.room_name = ", ".join(rooms) if rooms else rec.name
 
 
     @api.depends('pos_order_line_ids')
