@@ -316,10 +316,11 @@
         <field name="model">room.booking</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
-                <field name="partner_id"/>
-                <field name="date_order"/>
-                <field name="state"/>
+                <field name="name" string="Folio Number"/>
+                <field name="room_name" string="Room No"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="date_order" string="Order Date"/>
+                <field name="state" string="Status"/>
             </list>
         </field>
     </record>
