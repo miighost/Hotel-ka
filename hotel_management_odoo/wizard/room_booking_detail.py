@@ -95,16 +95,22 @@ class RoomBookingWizard(models.TransientModel):
                 .browse(rec["id"])
                 .room_line_ids.room_id.mapped("name")
             )
-            rec["partner_id"] = rec["partner_id"][1]
-            for room in rooms:
-                if self.room_id:
-                    if self.room_id.name == room:
+            rec["partner_id"] = rec["partner_id"][1] if isinstance(rec["partner_id"], (list, tuple)) else (rec["partner_id"] or "-")
+            if rooms:
+                for room in rooms:
+                    if self.room_id:
+                        if self.room_id.name == room:
+                            rec_copy = rec.copy()
+                            rec_copy["room"] = room
+                            room_list.append(rec_copy)
+                    else:
                         rec_copy = rec.copy()
-                        rec_copy["room"] = room  # Ensure this key is added
+                        rec_copy["room"] = room
                         room_list.append(rec_copy)
-                else:
+            else:
+                if not self.room_id:
                     rec_copy = rec.copy()
-                    rec_copy["room"] = room  # Ensure this key is added
+                    rec_copy["room"] = "-"
                     room_list.append(rec_copy)
 
         return room_list
