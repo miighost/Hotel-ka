@@ -56,13 +56,13 @@
         'wizard/room_booking_detail_views.xml',
         'wizard/sale_order_detail_views.xml',
         'wizard/compute_bill_views.xml',
-        'views/reporting_views.xml',
         'report/room_booking_reports.xml',
         'report/sale_order_reports.xml',
         'report/combined_bill_report.xml',
         'report/in_house_guest_report.xml',
         'report/room_status_report.xml',
         'report/room_details_report.xml',
+        'views/reporting_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
