@@ -4,3 +4,4 @@ from . import room_status_report
 from . import room_details_report
 from . import room_booking_reports
 from . import sale_order_reports
+from . import statement_account_report

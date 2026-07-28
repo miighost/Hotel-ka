@@ -5,6 +5,12 @@
               name="Reporting"
               sequence="30"
               parent="hotel_management_menu_root"/>
+    <!--    Statement of Account Report Menu-->
+    <menuitem id="statement_account_report_menu"
+              name="Statement of Account"
+              action="statement_account_wizard_action"
+              parent="hotel_reporting_menu"
+              sequence="5"/>
     <!--    In House Guest List Report Menu-->
     <menuitem id="in_house_guest_report_menu"
               name="In House Guest List"
