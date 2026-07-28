@@ -60,6 +60,9 @@
         'report/room_booking_reports.xml',
         'report/sale_order_reports.xml',
         'report/combined_bill_report.xml',
+        'report/in_house_guest_report.xml',
+        'report/room_status_report.xml',
+        'report/room_details_report.xml',
     ],
     'assets': {
         'web.assets_backend': [

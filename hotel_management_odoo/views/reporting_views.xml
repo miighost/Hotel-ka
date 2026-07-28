@@ -5,6 +5,24 @@
               name="Reporting"
               sequence="30"
               parent="hotel_management_menu_root"/>
+    <!--    In House Guest List Report Menu-->
+    <menuitem id="in_house_guest_report_menu"
+              name="In House Guest List"
+              action="action_report_in_house_guest"
+              parent="hotel_reporting_menu"
+              sequence="10"/>
+    <!--    Room Status Report Menu-->
+    <menuitem id="room_status_report_menu"
+              name="Room Status Report"
+              action="action_report_room_status"
+              parent="hotel_reporting_menu"
+              sequence="15"/>
+    <!--    Room Details Report Menu-->
+    <menuitem id="room_details_report_menu"
+              name="Room Details"
+              action="action_report_room_details"
+              parent="hotel_reporting_menu"
+              sequence="18"/>
     <!--    Room Booking Report Menu-->
     <menuitem id="room_booking_detail_menu"
               name="Room Booking"
@@ -16,5 +34,5 @@
               name="Sale Order"
               action="sale_order_detail_action"
               parent="hotel_reporting_menu"
-              sequence="20"/>
+              sequence="30"/>
 </odoo>
