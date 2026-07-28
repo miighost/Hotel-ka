@@ -55,9 +55,30 @@ patch(ProductScreen.prototype, {
             const order = this.pos.getOrder();
             order?.setBooking(selectedBooking);
             if (selectedBooking.partner_id) {
-                const partner = this.pos.models["res.partner"].get(selectedBooking.partner_id[0]);
+                const partnerId = selectedBooking.partner_id[0];
+                let partner = this.pos.models["res.partner"]?.get(partnerId);
+                if (!partner) {
+                    try {
+                        const [fetchedPartner] = await this.orm.read(
+                            "res.partner",
+                            [partnerId],
+                            ["id", "name", "email", "phone", "street", "city", "vat"]
+                        );
+                        if (fetchedPartner) {
+                            partner = this.pos.models["res.partner"]?.create(fetchedPartner) || fetchedPartner;
+                        }
+                    } catch (e) {
+                        console.warn("Could not fetch partner from ORM:", e);
+                    }
+                }
                 if (partner) {
-                    order.setPartner(partner);
+                    if (typeof order.setPartner === "function") {
+                        order.setPartner(partner);
+                    } else if (typeof order.set_partner === "function") {
+                        order.set_partner(partner);
+                    } else {
+                        order.partner_id = partner;
+                    }
                 }
             }
         }

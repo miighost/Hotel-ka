@@ -410,6 +410,22 @@ class RoomBooking(models.Model):
                 for event in self.event_line_ids:
                     event.unlink()
 
+    @api.onchange('checkin_date', 'checkout_date')
+    def _onchange_header_dates(self):
+        """Update room line checkin/checkout dates when header dates are changed."""
+        if self.checkin_date and self.checkout_date:
+            if self.checkout_date < self.checkin_date:
+                raise ValidationError(("Checkout date must be greater than or equal to checkin date."))
+            diff = self.checkout_date - self.checkin_date
+            qty = diff.days
+            if diff.total_seconds() > 0:
+                qty += 1
+            self.duration = qty
+            for line in self.room_line_ids:
+                line.checkin_date = self.checkin_date
+                line.checkout_date = self.checkout_date
+                line._onchange_checkin_date()
+
     @api.onchange('food_order_line_ids', 'room_line_ids',
                   'service_line_ids', 'vehicle_line_ids', 'event_line_ids')
     def _onchange_room_line_ids(self):

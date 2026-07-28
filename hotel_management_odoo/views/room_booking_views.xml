@@ -58,8 +58,6 @@
                         <field name="is_checkin" invisible="1"/>
                         <field name="company_id" invisible="1"/>
                         <field name="has_pos_orders" invisible="1"/>
-                        <field name="checkin_date" invisible="1"/>
-                        <field name="checkout_date" invisible="1"/>
                         <field name="duration" readonly="1" invisible="1"/>
                         <field name="duration_visible" invisible="1"/>
                         <field name="invoice_button_visible" invisible="1"/>
@@ -75,6 +73,8 @@
                                    options="{'always_reload': True}"/>
                         </group>
                         <group>
+                            <field name="checkin_date"/>
+                            <field name="checkout_date"/>
                             <field name="date_order"/>
                             <field name="pricelist_id"/>
                             <field name="need_service"
@@ -95,7 +95,6 @@
                                 <list editable="bottom">
                                     <field name="room_id" string="Room"
                                            required="1"
-                                           domain="[('is_room_avail','=',True)]"
                                            options="{'no_open': True, 'no_create': True}"/>
                                     <field name="checkin_date"/>
                                     <field name="booking_line_visible"

@@ -45,7 +45,6 @@ class RoomBookingLine(models.Model):
                                          " Otherwise sets to current Date",
                                     required=True)
     room_id = fields.Many2one('hotel.room', string="Room",
-                              domain=[('status', '=', 'available')],
                               help="Indicates the Room",
                               required=True)
     uom_qty = fields.Float(string="Duration",
@@ -138,4 +137,27 @@ class RoomBookingLine(models.Model):
                 'currency_id': self.currency_id or self.env.company.currency_id,
             },
         )
+
+    @api.constrains('room_id', 'checkin_date', 'checkout_date', 'state')
+    def _check_room_booking_overlap(self):
+        """Prevent double booking the same room for overlapping date ranges."""
+        for line in self:
+            if not line.room_id or not line.checkin_date or not line.checkout_date:
+                continue
+            if line.booking_id and line.booking_id.state in ['cancel']:
+                continue
+            domain = [
+                ('id', '!=', line.id),
+                ('room_id', '=', line.room_id.id),
+                ('booking_id.state', 'in', ['reserved', 'check_in']),
+                ('checkin_date', '<', line.checkout_date),
+                ('checkout_date', '>', line.checkin_date),
+            ]
+            overlapping = self.search(domain, limit=1)
+            if overlapping:
+                raise ValidationError(
+                    f"Room '{line.room_id.name}' is already booked for the date range "
+                    f"{overlapping.checkin_date.strftime('%d/%m/%Y')} to {overlapping.checkout_date.strftime('%d/%m/%Y')} "
+                    f"(Booking Ref: {overlapping.booking_id.name}). Please select a different room or date range."
+                )
 
