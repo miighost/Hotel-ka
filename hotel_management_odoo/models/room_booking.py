@@ -91,6 +91,7 @@ class RoomBooking(models.Model):
         ('fb', 'Full Board (FB)'),
         ('ro', 'Room Only (RO)')
     ], string="Meal Plan", default="bb", required=True, tracking=True, help="Select the meal plan for this booking")
+    description = fields.Text(string="Remarks", help="Additional remarks or notes for the booking")
     invoice_button_visible = fields.Boolean(string='Invoice Button Display',
                                             help="Invoice button will be "
                                                  "visible if this button is "
