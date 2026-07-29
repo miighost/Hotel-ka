@@ -70,13 +70,13 @@ class HotelRoom(models.Model):
                               related='floor_id.user_id',
                               help="Automatically selects the manager",
                               tracking=True)
-    room_type = fields.Selection([('single', 'Single'),
-                                  ('double', 'Double'),
-                                  ('dormitory', 'Dormitory')],
+    room_type = fields.Selection([('deluxe_suite', 'DELUXE SUITE'),
+                                  ('deluxe_single', 'DELUXE SINGLE'),
+                                  ('standard_room', 'STANDARD ROOM')],
                                  required=True, string="Room Type",
                                  help="Automatically selects the Room Type",
                                  tracking=True,
-                                 default="single")
+                                 default="standard_room")
     num_person = fields.Integer(string='Number Of Persons',
                                 required=True,
                                 help="Automatically chooses the No. of Persons",
@@ -96,9 +96,9 @@ class HotelRoom(models.Model):
         """Based on selected room type, number of person will be updated.
 
         @param self: object pointer"""
-        if self.room_type == "single":
+        if self.room_type == "deluxe_single":
             self.num_person = 1
-        elif self.room_type == "double":
+        elif self.room_type == "standard_room":
             self.num_person = 2
-        else:
+        elif self.room_type == "deluxe_suite":
             self.num_person = 4

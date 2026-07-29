@@ -84,6 +84,12 @@ class RoomBooking(models.Model):
                               help="Number of days which will automatically "
                                    "count from the check-in and check-out "
                                    "date.", )
+    plan = fields.Selection([
+        ('bb', 'Bed & Breakfast (BB)'),
+        ('hb', 'Half Board (HB)'),
+        ('fb', 'Full Board (FB)'),
+        ('ro', 'Room Only (RO)')
+    ], string="Meal Plan", default="bb", required=True, tracking=True, help="Select the meal plan for this booking")
     invoice_button_visible = fields.Boolean(string='Invoice Button Display',
                                             help="Invoice button will be "
                                                  "visible if this button is "

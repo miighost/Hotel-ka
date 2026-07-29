@@ -57,6 +57,7 @@
         'wizard/sale_order_detail_views.xml',
         'wizard/compute_bill_views.xml',
         'wizard/statement_account_wizard_views.xml',
+        'wizard/change_room_type_wizard_views.xml',
         'report/room_booking_reports.xml',
         'report/sale_order_reports.xml',
         'report/combined_bill_report.xml',

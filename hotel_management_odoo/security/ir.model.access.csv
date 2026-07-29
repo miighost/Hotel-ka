@@ -21,3 +21,4 @@ access_cleaning_request_cleaning_team_group_head,access.cleaning.request.cleanin
 access_cleaning_request_cleaning_team_group_user,access.cleaning.request.cleaning_team_group_user,model_cleaning_request,hotel_management_odoo.cleaning_team_group_user,1,1,1,1
 access_compute_bill_user,access.compute.bill.user,model_compute_bill,base.group_user,1,1,1,1
 access_statement_account_wizard_user,access.statement.account.wizard.user,model_statement_account_wizard,base.group_user,1,1,1,1
+access_change_room_type_wizard_user,access.change.room.type.wizard.user,model_change_room_type_wizard,base.group_user,1,1,1,1

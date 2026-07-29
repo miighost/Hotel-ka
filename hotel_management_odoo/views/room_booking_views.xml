@@ -77,6 +77,7 @@
                             <field name="checkout_date"/>
                             <field name="date_order"/>
                             <field name="pricelist_id"/>
+                            <field name="plan"/>
                             <field name="need_service"
                                    invisible=" state not in ['check_in']"/>
                             <field name="need_fleet"

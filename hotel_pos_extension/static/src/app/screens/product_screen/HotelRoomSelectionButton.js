@@ -24,13 +24,20 @@ patch(ProductScreen.prototype, {
     async onClickAddRoom() {
         const bookings = await this.orm.searchRead("room.booking",
             [["state", "=", "check_in"]],
-            ["id", "name", "partner_id", "room_line_ids"]
+            ["id", "name", "partner_id", "room_line_ids", "plan"]
         );
 
         if (bookings.length === 0) {
             this.env.services.notification.add(_t("No active hotel bookings found."), { type: 'warning' });
             return;
         }
+
+        const planLabels = {
+            bb: "Bed & Breakfast (BB)",
+            hb: "Half Board",
+            fb: "Full Board",
+            ro: "Room Only"
+        };
 
         const bookingIds = bookings.map(b => b.id);
         const roomLines = await this.orm.searchRead("room.booking.line",
@@ -44,6 +51,9 @@ patch(ProductScreen.prototype, {
                 .map(l => (Array.isArray(l.room_id) ? l.room_id[1] : ""))
                 .filter(Boolean);
             booking.room_name = roomNames.length > 0 ? roomNames.join(", ") : booking.name;
+            const planText = planLabels[booking.plan] || booking.plan || "";
+            booking.plan_display = planText;
+            booking.name_with_plan = planText ? `${booking.name} - ${planText}` : booking.name;
         }
 
         const selectedBooking = await makeAwaitable(this.dialog, HotelRoomPopup, {
