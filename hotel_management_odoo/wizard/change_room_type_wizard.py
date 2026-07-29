@@ -12,7 +12,7 @@ class ChangeRoomTypeWizard(models.TransientModel):
         ('deluxe_suite', 'DELUXE SUITE'),
         ('deluxe_single', 'DELUXE SINGLE'),
         ('standard_room', 'STANDARD ROOM')
-    ], string="New Room Type", required=True, default="standard_room")
+    ], string="New Room Type", required=True, default="deluxe_single")
 
     def action_apply_room_type(self):
         """Apply selected room type to all active selected rooms."""

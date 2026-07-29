@@ -72,11 +72,14 @@ class HotelRoom(models.Model):
                               tracking=True)
     room_type = fields.Selection([('deluxe_suite', 'DELUXE SUITE'),
                                   ('deluxe_single', 'DELUXE SINGLE'),
-                                  ('standard_room', 'STANDARD ROOM')],
+                                  ('standard_room', 'STANDARD ROOM'),
+                                  ('single', 'DELUXE SINGLE'),
+                                  ('double', 'STANDARD ROOM'),
+                                  ('dormitory', 'DELUXE SUITE')],
                                  required=True, string="Room Type",
-                                 help="Automatically selects the Room Type",
+                                 help="Select the Room Type",
                                  tracking=True,
-                                 default="standard_room")
+                                 default="deluxe_single")
     num_person = fields.Integer(string='Number Of Persons',
                                 required=True,
                                 help="Automatically chooses the No. of Persons",
@@ -96,9 +99,9 @@ class HotelRoom(models.Model):
         """Based on selected room type, number of person will be updated.
 
         @param self: object pointer"""
-        if self.room_type == "deluxe_single":
+        if self.room_type in ["deluxe_single", "single"]:
             self.num_person = 1
-        elif self.room_type == "standard_room":
+        elif self.room_type in ["standard_room", "double"]:
             self.num_person = 2
-        elif self.room_type == "deluxe_suite":
+        else:
             self.num_person = 4

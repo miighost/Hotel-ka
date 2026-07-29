@@ -62,7 +62,7 @@ patch(ProductScreen.prototype, {
             booking.room_name = roomNames.length > 0 ? roomNames.join(", ") : booking.name;
             const planText = planLabels[booking.plan] || booking.plan || "";
             booking.plan_display = planText;
-            booking.name_with_plan = planText ? `${booking.name} - ${planText}` : booking.name;
+            booking.name_with_plan = planText ? `${booking.name} ${planText}` : booking.name;
         }
 
         const selectedBooking = await makeAwaitable(this.dialog, HotelRoomPopup, {
