@@ -65,6 +65,7 @@
         'report/room_status_report.xml',
         'report/room_details_report.xml',
         'report/statement_account_report.xml',
+        'report/reservation_acknowledgement_report.xml',
         'views/reporting_views.xml',
     ],
     'assets': {

@@ -525,6 +525,11 @@ class RoomBooking(models.Model):
             }
         }
 
+    def action_print_reservation_acknowledgement(self):
+        """Print Reservation Acknowledgement PDF report."""
+        self.ensure_one()
+        return self.env.ref('hotel_management_odoo.action_report_reservation_acknowledgement').report_action(self)
+
     def action_cancel(self):
         """
         @param self: object pointer
