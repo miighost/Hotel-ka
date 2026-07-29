@@ -148,7 +148,7 @@
                         </div>
 
                         <!-- Remarks if present -->
-                        <t t-if="getattr(o, 'description', False)">
+                        <t t-if="o.description">
                             <div style="margin-bottom: 15px; padding: 8px; border: 1px dashed #aaa; background-color: #fff8dc;">
                                 <strong>Remarks:</strong> <t t-esc="o.description"/>
                             </div>
