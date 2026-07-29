@@ -22,10 +22,19 @@ patch(ProductScreen.prototype, {
     },
 
     async onClickAddRoom() {
-        const bookings = await this.orm.searchRead("room.booking",
-            [["state", "=", "check_in"]],
-            ["id", "name", "partner_id", "room_line_ids", "plan"]
-        );
+        let bookings = [];
+        try {
+            bookings = await this.orm.searchRead("room.booking",
+                [["state", "=", "check_in"]],
+                ["id", "name", "partner_id", "room_line_ids", "plan"]
+            );
+        } catch (err) {
+            console.warn("Could not fetch plan field, falling back without plan:", err);
+            bookings = await this.orm.searchRead("room.booking",
+                [["state", "=", "check_in"]],
+                ["id", "name", "partner_id", "room_line_ids"]
+            );
+        }
 
         if (bookings.length === 0) {
             this.env.services.notification.add(_t("No active hotel bookings found."), { type: 'warning' });
