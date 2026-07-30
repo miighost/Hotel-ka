@@ -348,7 +348,7 @@
                 <filter string="Checked In" name="state_checkin" domain="[('state', '=', 'check_in')]"/>
                 <filter string="Checked Out" name="state_checkout" domain="[('state', '=', 'check_out')]"/>
                 <separator/>
-                <filter string="Check In Today" name="checkin_today" domain="[('checkin_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('checkin_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter string="Check In Today" name="checkin_today" domain="[('checkin_date', '&gt;=', context_today())]"/>
 
                 <group expand="0" string="Group By">
                     <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
