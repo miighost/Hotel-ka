@@ -30,6 +30,7 @@ class RoomBooking(models.Model):
     _name = "room.booking"
     _description = "Hotel Room Reservation"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _order = "checkin_date desc, date_order desc, id desc"
 
     name = fields.Char(string="Folio Number", readonly=True, index=True,
                        default="New", help="Name of Folio")

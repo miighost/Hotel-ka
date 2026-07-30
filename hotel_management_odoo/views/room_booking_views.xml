@@ -318,13 +318,45 @@
         <field name="name">room.booking.view.tree</field>
         <field name="model">room.booking</field>
         <field name="arch" type="xml">
-            <list>
+            <list default_order="checkin_date desc, date_order desc, id desc">
                 <field name="name" string="Folio Number"/>
                 <field name="room_name" string="Room No"/>
                 <field name="partner_id" string="Customer"/>
+                <field name="plan" string="Meal Plan"/>
+                <field name="checkin_date" string="Check In"/>
+                <field name="checkout_date" string="Check Out"/>
                 <field name="date_order" string="Order Date"/>
                 <field name="state" string="Status"/>
             </list>
+        </field>
+    </record>
+    <!--     Room Booking Search view -->
+    <record id="room_booking_view_search" model="ir.ui.view">
+        <field name="name">room.booking.view.search</field>
+        <field name="model">room.booking</field>
+        <field name="arch" type="xml">
+            <search string="Search Room Bookings">
+                <field name="name" string="Folio Number"/>
+                <field name="room_number" string="Room No"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="plan" string="Meal Plan"/>
+                <field name="checkin_date" string="Check In Date"/>
+                <field name="checkout_date" string="Check Out Date"/>
+
+                <filter string="Draft" name="state_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Reserved" name="state_reserved" domain="[('state', '=', 'reserved')]"/>
+                <filter string="Checked In" name="state_checkin" domain="[('state', '=', 'check_in')]"/>
+                <filter string="Checked Out" name="state_checkout" domain="[('state', '=', 'check_out')]"/>
+                <separator/>
+                <filter string="Check In Today" name="checkin_today" domain="[('checkin_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('checkin_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Customer" name="group_customer" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Meal Plan" name="group_plan" context="{'group_by': 'plan'}"/>
+                    <filter string="Check In Date" name="group_checkin" context="{'group_by': 'checkin_date:day'}"/>
+                </group>
+            </search>
         </field>
     </record>
     <!--     Room Booking Menu action -->

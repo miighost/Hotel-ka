@@ -10,14 +10,16 @@ class ReportInHouseGuest(models.AbstractModel):
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        """Fetch all currently checked-in room bookings when printed from Reporting menu or selection."""
+        """Fetch all currently checked-in room bookings ordered from newest to oldest."""
         if docids:
             docs = self.env['room.booking'].browse(docids)
         else:
-            docs = self.env['room.booking'].search([('state', '=', 'check_in')])
+            docs = self.env['room.booking'].search([('state', '=', 'check_in')], order='checkin_date desc, date_order desc, id desc')
 
         if not docs:
-            docs = self.env['room.booking'].search([('state', '=', 'check_in')])
+            docs = self.env['room.booking'].search([('state', '=', 'check_in')], order='checkin_date desc, date_order desc, id desc')
+        else:
+            docs = docs.sorted(key=lambda r: (r.checkin_date or r.date_order, r.id), reverse=True)
 
         return {
             'doc_ids': docs.ids,

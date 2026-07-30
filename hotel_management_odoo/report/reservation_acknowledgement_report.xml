@@ -87,7 +87,7 @@
                                         </tr>
                                         <tr>
                                             <td style="font-weight: 600; color: #444;">To Date</td>
-                                            <td style="font-weight: 600;">:</td>
+                                            <td style="width: 12px; font-weight: 600;">:</td>
                                             <td style="font-weight: 700; color: #000;"><t t-esc="o.checkout_date and o.checkout_date.strftime('%d-%B-%Y') or '-'"/></td>
                                         </tr>
                                         <tr>
@@ -115,36 +115,108 @@
                                             <td style="font-weight: 600;">:</td>
                                             <td style="font-weight: 700; color: #000;"><t t-esc="plan_labels.get(o.plan, o.plan or 'BB')"/></td>
                                         </tr>
+                                        <tr>
+                                            <td style="font-weight: 600; color: #444;">Total Amount</td>
+                                            <td style="font-weight: 600;">:</td>
+                                            <td style="font-weight: 700; color: #000; font-size: 14px;"><t t-esc="'%.2f' % o.amount_total"/></td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Room Details Table -->
+                        <!-- Folio Details Table (Room, Food, Service, Fleet, Event) -->
                         <div style="margin-bottom: 20px;">
                             <table class="table table-bordered table-sm" style="width: 100%; border: 1px solid #555; border-collapse: collapse;">
                                 <thead>
                                     <tr style="background-color: #e9ecef; text-align: center; font-weight: bold; color: #111;">
-                                        <th style="border: 1px solid #555; padding: 8px; text-align: left;">Room Type</th>
-                                        <th style="border: 1px solid #555; padding: 8px; width: 22%; text-align: center;">No of Rooms</th>
-                                        <th style="border: 1px solid #555; padding: 8px; width: 25%; text-align: right;">Room Rate</th>
+                                        <th style="border: 1px solid #555; padding: 8px; text-align: left; width: 20%;">Category</th>
+                                        <th style="border: 1px solid #555; padding: 8px; text-align: left;">Item Description</th>
+                                        <th style="border: 1px solid #555; padding: 8px; width: 14%; text-align: center;">Qty / Duration</th>
+                                        <th style="border: 1px solid #555; padding: 8px; width: 18%; text-align: right;">Unit Rate</th>
+                                        <th style="border: 1px solid #555; padding: 8px; width: 20%; text-align: right;">Total Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- 1. Room Lines -->
                                     <t t-foreach="o.room_line_ids" t-as="r">
                                         <t t-set="rt_dict" t-value="dict(r.room_id._fields['room_type'].selection) if r.room_id and r.room_id.room_type else {}"/>
                                         <tr>
+                                            <td style="border: 1px solid #555; padding: 8px; text-align: left; font-weight: 600;">Room Charge</td>
                                             <td style="border: 1px solid #555; padding: 8px; text-align: left;">
                                                 <strong style="color: #000;"><t t-esc="rt_dict.get(r.room_id.room_type, r.room_id.name if r.room_id else 'STANDARD ROOM')"/></strong>
                                                 <t t-if="r.room_id and r.room_id.name"> (Room <t t-esc="r.room_id.name"/>)</t>
                                             </td>
-                                            <td style="border: 1px solid #555; padding: 8px; text-align: center;">1</td>
-                                            <td style="border: 1px solid #555; padding: 8px; text-align: right; font-weight: bold;">
+                                            <td style="border: 1px solid #555; padding: 8px; text-align: center;"><t t-esc="r.uom_qty or 1"/> Day(s)</td>
+                                            <td style="border: 1px solid #555; padding: 8px; text-align: right;">
                                                 <t t-esc="'%.2f' % r.price_unit"/>
+                                            </td>
+                                            <td style="border: 1px solid #555; padding: 8px; text-align: right; font-weight: bold;">
+                                                <t t-esc="'%.2f' % r.price_subtotal"/>
                                             </td>
                                         </tr>
                                     </t>
+
+                                    <!-- 2. Food Lines -->
+                                    <t t-if="o.food_order_line_ids">
+                                        <t t-foreach="o.food_order_line_ids" t-as="f">
+                                            <tr>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left; font-weight: 600;">Food &amp; Beverage</td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left;"><t t-esc="f.food_id.name or 'Food Order'"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: center;"><t t-esc="f.uom_qty"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right;"><t t-esc="'%.2f' % f.price_unit"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right; font-weight: bold;"><t t-esc="'%.2f' % f.price_subtotal"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+
+                                    <!-- 3. Service Lines -->
+                                    <t t-if="o.service_line_ids">
+                                        <t t-foreach="o.service_line_ids" t-as="s">
+                                            <tr>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left; font-weight: 600;">Hotel Service</td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left;"><t t-esc="s.service_id.name or 'Service'"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: center;"><t t-esc="s.uom_qty"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right;"><t t-esc="'%.2f' % s.price_unit"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right; font-weight: bold;"><t t-esc="'%.2f' % s.price_subtotal"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+
+                                    <!-- 4. Vehicle Lines -->
+                                    <t t-if="o.vehicle_line_ids">
+                                        <t t-foreach="o.vehicle_line_ids" t-as="v">
+                                            <tr>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left; font-weight: 600;">Transportation</td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left;"><t t-esc="v.fleet_id.name or 'Vehicle Transfer'"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: center;"><t t-esc="v.uom_qty"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right;"><t t-esc="'%.2f' % v.price_unit"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right; font-weight: bold;"><t t-esc="'%.2f' % v.price_subtotal"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+
+                                    <!-- 5. Event Lines -->
+                                    <t t-if="o.event_line_ids">
+                                        <t t-foreach="o.event_line_ids" t-as="e">
+                                            <tr>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left; font-weight: 600;">Event &amp; Hall</td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: left;"><t t-esc="e.event_id.name or 'Event Booking'"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: center;"><t t-esc="e.uom_qty"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right;"><t t-esc="'%.2f' % e.price_unit"/></td>
+                                                <td style="border: 1px solid #555; padding: 8px; text-align: right; font-weight: bold;"><t t-esc="'%.2f' % e.price_subtotal"/></td>
+                                            </tr>
+                                        </t>
+                                    </t>
                                 </tbody>
+                                <tfoot>
+                                    <tr style="background-color: #f1f3f5; font-weight: bold;">
+                                        <td colspan="4" style="border: 1px solid #555; padding: 8px; text-align: right;">Total Booking Amount:</td>
+                                        <td style="border: 1px solid #555; padding: 8px; text-align: right; font-size: 14px; color: #000;">
+                                            <t t-esc="'%.2f' % o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
 
