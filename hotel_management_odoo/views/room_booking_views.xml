@@ -337,7 +337,7 @@
         <field name="arch" type="xml">
             <search string="Search Room Bookings">
                 <field name="name" string="Folio Number"/>
-                <field name="room_number" string="Room No"/>
+                <field name="room_line_ids" string="Room No" filter_domain="[('room_line_ids.room_id.name', 'ilike', self)]"/>
                 <field name="partner_id" string="Customer"/>
                 <field name="plan" string="Meal Plan"/>
                 <field name="checkin_date" string="Check In Date"/>

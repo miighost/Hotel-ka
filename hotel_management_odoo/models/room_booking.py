@@ -34,8 +34,8 @@ class RoomBooking(models.Model):
 
     name = fields.Char(string="Folio Number", readonly=True, index=True,
                        default="New", help="Name of Folio")
-    room_name = fields.Char(string="Room No", compute="_compute_room_name")
-    room_number = fields.Char(string="Room Number", related="room_name")
+    room_name = fields.Char(string="Room No", compute="_compute_room_name", store=True)
+    room_number = fields.Char(string="Room Number", related="room_name", store=True)
     company_id = fields.Many2one('res.company', string="Company",
                                  help="Choose the Company",
                                  required=True, index=True,
