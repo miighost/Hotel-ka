@@ -36,6 +36,8 @@ class HotelRoom(models.Model):
 
     name = fields.Char(string='Name', help="Name of the Room", index='trigram',
                        required=True, translate=True)
+    active = fields.Boolean(default=True, string="Active",
+                            help="If unchecked, it will allow you to hide the room without removing it.")
     status = fields.Selection([("available", "Available"),
                                ("reserved", "Reserved"),
                                ("occupied", "Occupied")],
