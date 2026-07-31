@@ -19,7 +19,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-from odoo import api, fields, models, tools
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 
 
@@ -107,3 +107,14 @@ class HotelRoom(models.Model):
             self.num_person = 2
         else:
             self.num_person = 4
+
+    def unlink(self):
+        """Friendly validation error when attempting to delete a room with booking history."""
+        for room in self:
+            booking_lines = self.env['room.booking.line'].search([('room_id', '=', room.id)], limit=1)
+            if booking_lines:
+                raise ValidationError(_(
+                    "Room '%s' cannot be permanently deleted because it has reservation booking history.\n\n"
+                    "Please Archive the room instead (Click Actions ⚙️ -> Archive)."
+                ) % room.name)
+        return super().unlink()
