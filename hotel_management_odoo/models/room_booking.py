@@ -440,6 +440,21 @@ class RoomBooking(models.Model):
                 line.checkout_date = self.checkout_date
                 line._onchange_checkin_date()
 
+    def write(self, vals):
+        res = super().write(vals)
+        if 'checkin_date' in vals or 'checkout_date' in vals:
+            for rec in self:
+                if rec.checkin_date and rec.checkout_date:
+                    for line in rec.room_line_ids:
+                        line.write({
+                            'checkin_date': rec.checkin_date,
+                            'checkout_date': rec.checkout_date,
+                        })
+                        line._onchange_checkin_date()
+                        line._compute_price_subtotal()
+                    rec._compute_amount_untaxed()
+        return res
+
     @api.onchange('food_order_line_ids', 'room_line_ids',
                   'service_line_ids', 'vehicle_line_ids', 'event_line_ids')
     def _onchange_room_line_ids(self):

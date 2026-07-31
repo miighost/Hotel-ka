@@ -61,8 +61,15 @@ class RoomBookingLine(models.Model):
 
     @api.onchange('room_id')
     def _onchange_room_id(self):
-        if self.room_id:
+        if self.room_id and not self.price_unit:
             self.price_unit = self.room_id.list_price
+        if self.booking_id:
+            if self.booking_id.checkin_date:
+                self.checkin_date = self.booking_id.checkin_date
+            if self.booking_id.checkout_date:
+                self.checkout_date = self.booking_id.checkout_date
+            if self.checkin_date and self.checkout_date:
+                self._onchange_checkin_date()
     tax_ids = fields.Many2many('account.tax',
                                'hotel_room_order_line_taxes_rel',
                                'room_id', 'tax_id',
@@ -129,10 +136,24 @@ class RoomBookingLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if 'room_id' in vals and 'price_unit' not in vals:
+            if 'booking_id' in vals and vals['booking_id']:
+                booking = self.env['room.booking'].browse(vals['booking_id'])
+                if 'checkin_date' not in vals or not vals['checkin_date']:
+                    vals['checkin_date'] = booking.checkin_date
+                if 'checkout_date' not in vals or not vals['checkout_date']:
+                    vals['checkout_date'] = booking.checkout_date
+            if 'room_id' in vals and ('price_unit' not in vals or not vals['price_unit']):
                 room = self.env['hotel.room'].browse(vals['room_id'])
                 vals['price_unit'] = room.list_price
-        return super().create(vals_list)
+        lines = super().create(vals_list)
+        for line in lines:
+            if line.checkin_date and line.checkout_date:
+                diffdate = line.checkout_date - line.checkin_date
+                qty = diffdate.days
+                if diffdate.total_seconds() > 0:
+                    qty += 1
+                line.uom_qty = qty
+        return lines
 
     def _prepare_base_line_for_taxes_computation(self):
         """ Convert the current record to a dictionary in order to use the generic taxes computation method
