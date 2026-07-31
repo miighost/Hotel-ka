@@ -330,31 +330,7 @@
             </list>
         </field>
     </record>
-    <!--     Room Booking Search view -->
-    <record id="room_booking_view_search" model="ir.ui.view">
-        <field name="name">room.booking.view.search</field>
-        <field name="model">room.booking</field>
-        <field name="arch" type="xml">
-            <search string="Search Room Bookings">
-                <field name="name" string="Folio Number"/>
-                <field name="partner_id" string="Customer"/>
-                <field name="plan" string="Meal Plan"/>
-                <field name="checkin_date" string="Check In Date"/>
-                <field name="checkout_date" string="Check Out Date"/>
 
-                <filter string="Draft" name="state_draft" domain="[('state', '=', 'draft')]"/>
-                <filter string="Reserved" name="state_reserved" domain="[('state', '=', 'reserved')]"/>
-                <filter string="Checked In" name="state_checkin" domain="[('state', '=', 'check_in')]"/>
-                <filter string="Checked Out" name="state_checkout" domain="[('state', '=', 'check_out')]"/>
-
-                <group expand="0" string="Group By">
-                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
-                    <filter string="Customer" name="group_customer" context="{'group_by': 'partner_id'}"/>
-                    <filter string="Meal Plan" name="group_plan" context="{'group_by': 'plan'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
     <!--     Room Booking Menu action -->
     <record id="room_booking_action" model="ir.actions.act_window">
         <field name="name">Room Booking</field>
