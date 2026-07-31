@@ -144,17 +144,21 @@ class StatementAccountWizard(models.TransientModel):
                 })
 
             # 6. POS Orders
-            for pos_link in booking.pos_order_line_ids:
-                pos = pos_link.pos_order_id
-                dt = pos.date_order or booking.checkin_date
-                raw_lines.append({
-                    "date_sort": dt,
-                    "date": dt.strftime("%d/%m/%Y") if dt else "-",
-                    "description": f"RESTAURANT CHARGE ({pos.pos_reference or pos.name})",
-                    "room_no": booking.room_name or "-",
-                    "debit": pos.amount_total,
-                    "credit": 0.0,
-                })
+            pos_lines = getattr(booking, 'pos_order_line_ids', False)
+            if pos_lines:
+                for pos_link in pos_lines:
+                    pos = getattr(pos_link, 'pos_order_id', False)
+                    if not pos:
+                        continue
+                    dt = pos.date_order or booking.checkin_date
+                    raw_lines.append({
+                        "date_sort": dt,
+                        "date": dt.strftime("%d/%m/%Y") if dt else "-",
+                        "description": f"RESTAURANT CHARGE ({pos.pos_reference or pos.name})",
+                        "room_no": booking.room_name or "-",
+                        "debit": pos.amount_total,
+                        "credit": 0.0,
+                    })
 
             # 7. Payments / Invoices
             if booking.hotel_invoice_id:
