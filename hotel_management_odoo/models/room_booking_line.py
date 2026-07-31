@@ -49,15 +49,20 @@ class RoomBookingLine(models.Model):
                               required=True)
     uom_qty = fields.Float(string="Duration",
                            help="The quantity converted into the UoM used by "
-                                "the product", readonly=True)
+                                "the product")
     uom_id = fields.Many2one('uom.uom',
                              default=_set_default_uom_id,
                              string="Unit of Measure",
                              help="This will set the unit of measure used",
                              readonly=True)
-    price_unit = fields.Float(related='room_id.list_price', string='Rent',
+    price_unit = fields.Float(string='Rent',
                               digits='Product Price',
                               help="The rent price of the selected room.")
+
+    @api.onchange('room_id')
+    def _onchange_room_id(self):
+        if self.room_id:
+            self.price_unit = self.room_id.list_price
     tax_ids = fields.Many2many('account.tax',
                                'hotel_room_order_line_taxes_rel',
                                'room_id', 'tax_id',
@@ -121,6 +126,14 @@ class RoomBookingLine(models.Model):
                 line.tax_ids.invalidate_recordset(
                     ['invoice_repartition_line_ids'])
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if 'room_id' in vals and 'price_unit' not in vals:
+                room = self.env['hotel.room'].browse(vals['room_id'])
+                vals['price_unit'] = room.list_price
+        return super().create(vals_list)
+
     def _prepare_base_line_for_taxes_computation(self):
         """ Convert the current record to a dictionary in order to use the generic taxes computation method
         defined on account.tax.
@@ -132,6 +145,7 @@ class RoomBookingLine(models.Model):
             self,
             **{
                 'tax_ids': self.tax_ids,
+                'price_unit': self.price_unit,
                 'quantity': self.uom_qty,
                 'partner_id': self.booking_id.partner_id,
                 'currency_id': self.currency_id or self.env.company.currency_id,

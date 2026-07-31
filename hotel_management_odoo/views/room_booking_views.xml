@@ -325,9 +325,22 @@
                 <field name="plan" string="Meal Plan"/>
                 <field name="checkin_date" string="Check In"/>
                 <field name="checkout_date" string="Check Out"/>
-                <field name="date_order" string="Order Date"/>
-                <field name="state" string="Status"/>
+                <field name="amount_total" string="Total Amount" sum="Total"/>
+                <field name="state" string="Status" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'reserved'" decoration-success="state in ('check_in', 'done')" decoration-danger="state == 'cancel'"/>
             </list>
+        </field>
+    </record>
+    <!--     Room Booking Search view -->
+    <record id="room_booking_view_search" model="ir.ui.view">
+        <field name="name">room.booking.view.search</field>
+        <field name="model">room.booking</field>
+        <field name="arch" type="xml">
+            <search string="Search Room Bookings">
+                <field name="name" string="Folio Number"/>
+                <field name="room_name" string="Room No"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="plan" string="Meal Plan"/>
+            </search>
         </field>
     </record>
 

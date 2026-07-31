@@ -34,7 +34,7 @@ class RoomBooking(models.Model):
 
     name = fields.Char(string="Folio Number", readonly=True, index=True,
                        default="New", help="Name of Folio")
-    room_name = fields.Char(string="Room No", compute="_compute_room_name")
+    room_name = fields.Char(string="Room No", compute="_compute_room_name", search="_search_room_name")
     room_number = fields.Char(string="Room Number", related="room_name")
     company_id = fields.Many2one('res.company', string="Company",
                                  help="Choose the Company",
@@ -47,6 +47,10 @@ class RoomBooking(models.Model):
         for rec in self:
             rooms = [line.room_id.name for line in rec.room_line_ids if line.room_id and line.room_id.name]
             rec.room_name = ", ".join(rooms) if rooms else ""
+
+    def _search_room_name(self, operator, value):
+        """Allow searching by Room Number in search bar."""
+        return [('room_line_ids.room_id.name', operator, value)]
     partner_id = fields.Many2one('res.partner', string="Customer",
                                  help="Customers of hotel",
                                  required=True, index=True, tracking=1,
@@ -289,7 +293,8 @@ class RoomBooking(models.Model):
             order = order.with_company(order.company_id)
             order.pricelist_id = order.partner_id.property_product_pricelist
 
-    @api.depends('room_line_ids.price_subtotal', 'room_line_ids.price_tax',
+    @api.depends('room_line_ids.price_unit', 'room_line_ids.uom_qty',
+                 'room_line_ids.price_subtotal', 'room_line_ids.price_tax',
                  'room_line_ids.price_total',
                  'food_order_line_ids.price_subtotal',
                  'food_order_line_ids.price_tax',
