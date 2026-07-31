@@ -15,24 +15,26 @@
     <template id="report_in_house_guest">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
-                <div class="page">
+                <div class="page" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color: #222; padding-top: 10px;">
                     <div class="row mt16 mb16">
                         <div class="col-12 text-center">
-                            <h2 style="font-weight: bold; color: #111;">In-House Guest List</h2>
+                            <h2 style="font-weight: bold; text-transform: uppercase; color: #111; border-bottom: 2px solid #333; display: inline-block; padding-bottom: 4px;">
+                                In-House Guest List
+                            </h2>
                         </div>
                     </div>
-                    <table class="table table-sm table-bordered mt16" style="width: 100%; font-size: 13px;">
+                    <table class="table table-sm table-bordered mt16" style="width: 100%; border: 1px solid #555; border-collapse: collapse; font-size: 12px;">
                         <thead>
-                            <tr style="background-color: #f2f2f2; text-align: center;">
-                                <th style="border: 1px solid #000; padding: 6px;">SN</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Guest Name</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Room No</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Check in</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Dep Date</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Pricelist</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Nationality</th>
-                                <th style="border: 1px solid #000; padding: 6px;">City Ledger</th>
-                                <th style="border: 1px solid #000; padding: 6px;" class="text-right">Room rate</th>
+                            <tr style="background-color: #e9ecef; text-align: center; font-weight: bold; color: #111;">
+                                <th style="border: 1px solid #555; padding: 6px; width: 5%;">SN</th>
+                                <th style="border: 1px solid #555; padding: 6px;">Guest Name</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 10%;">Room No</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 14%;">Check In</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 14%;">Dep Date</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 16%;">Meal Plan</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 12%;">Nationality</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 12%;">City Ledger</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 12%; text-align: right;">Room Rate</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,17 +42,17 @@
                             <t t-foreach="docs" t-as="o">
                                 <t t-set="i" t-value="i+1"/>
                                 <tr>
-                                    <td class="text-center" style="border: 1px solid #000; padding: 6px;"><t t-esc="i"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-field="o.partner_id.name"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-esc="o.room_name or ', '.join(o.room_line_ids.mapped('room_id.name')) or '-'"/></td>
-                                    <td class="text-center" style="border: 1px solid #000; padding: 6px;"><span t-field="o.checkin_date" t-options='{"widget": "date"}'/></td>
-                                    <td class="text-center" style="border: 1px solid #000; padding: 6px;"><span t-field="o.checkout_date" t-options='{"widget": "date"}'/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-field="o.pricelist_id.name"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-esc="o.partner_id.country_id.name or '-'"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-esc="o.partner_id.parent_id.name or '-'"/></td>
-                                    <td class="text-right" style="border: 1px solid #000; padding: 6px;">
-                                        <t t-set="room_rate" t-value="sum(o.room_line_ids.mapped('price_total'))"/>
-                                        <span t-esc="room_rate" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <td class="text-center" style="border: 1px solid #555; padding: 6px;"><t t-esc="i"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px;"><strong style="color: #000;"><t t-esc="o.partner_id.name"/></strong></td>
+                                    <td style="border: 1px solid #555; padding: 6px; text-align: center;"><t t-esc="o.room_name or ', '.join(o.room_line_ids.mapped('room_id.name')) or '-'"/></td>
+                                    <td class="text-center" style="border: 1px solid #555; padding: 6px;"><t t-esc="o.checkin_date and o.checkin_date.strftime('%d-%B-%Y') or '-'"/></td>
+                                    <td class="text-center" style="border: 1px solid #555; padding: 6px;"><t t-esc="o.checkout_date and o.checkout_date.strftime('%d-%B-%Y') or '-'"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px; font-weight: 600;"><t t-esc="plan_labels.get(o.plan, o.plan or '-')"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px;"><t t-esc="o.partner_id.country_id.name or '-'"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px;"><t t-esc="o.partner_id.parent_id.name or '-'"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px; text-align: right; font-weight: bold;">
+                                        <t t-set="room_rate" t-value="sum(o.room_line_ids.mapped('price_unit')) if o.room_line_ids else 0.0"/>
+                                        <t t-esc="'%.2f' % room_rate"/>
                                     </td>
                                 </tr>
                             </t>

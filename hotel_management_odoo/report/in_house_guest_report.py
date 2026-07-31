@@ -21,8 +21,16 @@ class ReportInHouseGuest(models.AbstractModel):
         else:
             docs = docs.sorted(key=lambda r: (r.checkin_date or r.date_order, r.id), reverse=True)
 
+        plan_labels = {
+            'bb': 'Bed & Breakfast (BB)',
+            'hb': 'Half Board (HB)',
+            'fb': 'Full Board (FB)',
+            'ro': 'Room Only (RO)',
+        }
+
         return {
             'doc_ids': docs.ids,
             'doc_model': 'room.booking',
             'docs': docs,
+            'plan_labels': plan_labels,
         }

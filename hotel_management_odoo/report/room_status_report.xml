@@ -15,43 +15,45 @@
     <template id="report_room_status">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
-                <div class="page">
+                <div class="page" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color: #222; padding-top: 10px;">
                     <div class="row mt16 mb16">
                         <div class="col-12 text-center">
-                            <h2 style="font-weight: bold; color: #111;">Room Status Report</h2>
+                            <h2 style="font-weight: bold; text-transform: uppercase; color: #111; border-bottom: 2px solid #333; display: inline-block; padding-bottom: 4px;">
+                                Room Status Report
+                            </h2>
                         </div>
                     </div>
-                    <table class="table table-sm table-bordered mt16" style="width: 100%; font-size: 13px;">
+                    <table class="table table-sm table-bordered mt16" style="width: 100%; border: 1px solid #555; border-collapse: collapse; font-size: 12px;">
                         <thead>
-                            <tr style="background-color: #f2f2f2; text-align: center;">
-                                <th style="border: 1px solid #000; padding: 6px;">SN</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Guest Name</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Room No</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Date &amp; Time</th>
-                                <th style="border: 1px solid #000; padding: 6px;" class="text-right">Amount</th>
-                                <th style="border: 1px solid #000; padding: 6px;" class="text-right">Balance</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Booking No</th>
-                                <th style="border: 1px solid #000; padding: 6px;">Nationality</th>
+                            <tr style="background-color: #e9ecef; text-align: center; font-weight: bold; color: #111;">
+                                <th style="border: 1px solid #555; padding: 6px; width: 5%;">SN</th>
+                                <th style="border: 1px solid #555; padding: 6px;">Guest Name</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 10%;">Room No</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 16%;">Check In Date</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 14%; text-align: right;">Nightly Rate</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 15%; text-align: right;">Today's Balance</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 12%;">Booking No</th>
+                                <th style="border: 1px solid #555; padding: 6px; width: 12%;">Nationality</th>
                             </tr>
                         </thead>
                         <tbody>
                             <t t-set="i" t-value="0"/>
-                            <t t-foreach="docs" t-as="o">
+                            <t t-foreach="booking_data" t-as="b">
                                 <t t-set="i" t-value="i+1"/>
+                                <t t-set="o" t-value="b['booking']"/>
                                 <tr>
-                                    <td class="text-center" style="border: 1px solid #000; padding: 6px;"><t t-esc="i"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-field="o.partner_id.name"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-esc="o.room_name or ', '.join(o.room_line_ids.mapped('room_id.name')) or '-'"/></td>
-                                    <td class="text-center" style="border: 1px solid #000; padding: 6px;"><span t-field="o.date_order" t-options='{"widget": "datetime"}'/></td>
-                                    <td class="text-right" style="border: 1px solid #000; padding: 6px;">
-                                        <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <td class="text-center" style="border: 1px solid #555; padding: 6px;"><t t-esc="i"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px;"><strong style="color: #000;"><t t-esc="o.partner_id.name"/></strong></td>
+                                    <td style="border: 1px solid #555; padding: 6px; text-align: center;"><t t-esc="o.room_name or ', '.join(o.room_line_ids.mapped('room_id.name')) or '-'"/></td>
+                                    <td class="text-center" style="border: 1px solid #555; padding: 6px;"><t t-esc="o.checkin_date and o.checkin_date.strftime('%d-%B-%Y') or '-'"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px; text-align: right;">
+                                        <t t-esc="'%.2f' % b['nightly_rate']"/>
                                     </td>
-                                    <td class="text-right" style="border: 1px solid #000; padding: 6px;">
-                                        <t t-set="bal" t-value="o.hotel_invoice_id.amount_residual if o.hotel_invoice_id else o.amount_total"/>
-                                        <span t-esc="bal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <td style="border: 1px solid #555; padding: 6px; text-align: right; font-weight: bold; color: #000;">
+                                        <t t-esc="'%.2f' % b['todays_balance']"/>
                                     </td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-field="o.name"/></td>
-                                    <td style="border: 1px solid #000; padding: 6px;"><span t-esc="o.partner_id.country_id.name or '-'"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px; text-align: center;"><t t-esc="o.name"/></td>
+                                    <td style="border: 1px solid #555; padding: 6px;"><t t-esc="o.partner_id.country_id.name or '-'"/></td>
                                 </tr>
                             </t>
                         </tbody>
