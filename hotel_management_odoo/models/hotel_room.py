@@ -90,8 +90,19 @@ class HotelRoom(models.Model):
             UPDATE hotel_room SET room_type = 'deluxe_single' WHERE room_type = 'single';
             UPDATE hotel_room SET room_type = 'standard_room' WHERE room_type = 'double';
             UPDATE hotel_room SET room_type = 'deluxe_suite' WHERE room_type = 'dormitory';
+            ALTER TABLE room_booking_line DROP CONSTRAINT IF EXISTS room_booking_line_room_id_fkey;
+            ALTER TABLE room_booking_line ADD CONSTRAINT room_booking_line_room_id_fkey 
+                FOREIGN KEY (room_id) REFERENCES hotel_room(id) ON DELETE CASCADE;
         """)
         return res
+
+    def unlink(self):
+        """Unlink related booking lines before unlinking room to prevent foreign key constraint failures."""
+        for room in self:
+            booking_lines = self.env['room.booking.line'].search([('room_id', '=', room.id)])
+            if booking_lines:
+                booking_lines.unlink()
+        return super().unlink()
     num_person = fields.Integer(string='Number Of Persons',
                                 required=True,
                                 help="Automatically chooses the No. of Persons",
