@@ -39,8 +39,8 @@
                                 <t t-set="rooms_list" t-value="grouped_rooms[type_group]"/>
 
                                 <!-- SINGLE ROW ROOM TYPE SECTION -->
-                                <tr style="background-color: #343a40; color: #ffffff; font-weight: bold;">
-                                    <td colspan="4" style="border: 1px solid #555; padding: 6px 10px; font-size: 13px; text-align: left;">
+                                <tr>
+                                    <td colspan="4" style="border: 1px solid #555; background-color: #dbe2ef; color: #000000; padding: 6px 10px; font-size: 13px; font-weight: bold; text-align: left;">
                                         <t t-esc="type_name"/> (Total: <t t-esc="len(rooms_list)"/> Rooms)
                                     </td>
                                 </tr>
