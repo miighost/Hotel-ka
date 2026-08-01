@@ -133,6 +133,15 @@ class RoomBookingLine(models.Model):
                 line.tax_ids.invalidate_recordset(
                     ['invoice_repartition_line_ids'])
 
+    def _auto_init(self):
+        res = super()._auto_init()
+        self.env.cr.execute("""
+            ALTER TABLE room_booking_line DROP CONSTRAINT IF EXISTS room_booking_line_room_id_fkey;
+            ALTER TABLE room_booking_line ADD CONSTRAINT room_booking_line_room_id_fkey 
+                FOREIGN KEY (room_id) REFERENCES hotel_room(id) ON DELETE CASCADE;
+        """)
+        return res
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
