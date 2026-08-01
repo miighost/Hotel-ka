@@ -8,6 +8,7 @@
             <list>
                 <field name="name"/>
                 <field name="room_type"/>
+                <field name="num_bed" string="# Of Bed"/>
                 <field name="floor_id"/>
                 <field name="list_price"/>
                 <field name="status"/>
@@ -54,6 +55,7 @@
                                     <field name="list_price" widget="monetary"
                                            string="Rent"/>
                                     <field name="num_person"/>
+                                    <field name="num_bed" string="# Of Bed"/>
                                     <field name="uom_id" invisible="1"/>
                                 </group>
                             </group>

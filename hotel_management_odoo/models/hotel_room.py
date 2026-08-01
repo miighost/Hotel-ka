@@ -75,17 +75,28 @@ class HotelRoom(models.Model):
     room_type = fields.Selection([('deluxe_suite', 'DELUXE SUITE'),
                                   ('deluxe_single', 'DELUXE SINGLE'),
                                   ('standard_room', 'STANDARD ROOM'),
-                                  ('single', 'DELUXE SINGLE'),
-                                  ('double', 'STANDARD ROOM'),
-                                  ('dormitory', 'DELUXE SUITE')],
+                                  ('studio_room', 'STUDIO ROOM'),
+                                  ('twin_room', 'TWIN ROOM')],
                                  required=True, string="Room Type",
                                  help="Select the Room Type",
                                  tracking=True,
                                  default="deluxe_single")
+
+    def _auto_init(self):
+        res = super()._auto_init()
+        self.env.cr.execute("""
+            UPDATE hotel_room SET room_type = 'deluxe_single' WHERE room_type = 'single';
+            UPDATE hotel_room SET room_type = 'standard_room' WHERE room_type = 'double';
+            UPDATE hotel_room SET room_type = 'deluxe_suite' WHERE room_type = 'dormitory';
+        """)
+        return res
     num_person = fields.Integer(string='Number Of Persons',
                                 required=True,
                                 help="Automatically chooses the No. of Persons",
                                 tracking=True)
+    num_bed = fields.Integer(string='# Of Bed', default=1,
+                             help="Number of beds in this room (manually editable)",
+                             tracking=True)
     description = fields.Html(string='Description', help="Add description",
                               translate=True)
 
@@ -98,12 +109,21 @@ class HotelRoom(models.Model):
 
     @api.onchange("room_type")
     def _onchange_room_type(self):
-        """Based on selected room type, number of person will be updated.
+        """Based on selected room type, number of person and beds will be updated.
 
         @param self: object pointer"""
         if self.room_type in ["deluxe_single", "single"]:
             self.num_person = 1
+            self.num_bed = 1
         elif self.room_type in ["standard_room", "double"]:
             self.num_person = 2
+            self.num_bed = 1
+        elif self.room_type == "studio_room":
+            self.num_person = 2
+            self.num_bed = 1
+        elif self.room_type == "twin_room":
+            self.num_person = 2
+            self.num_bed = 2
         else:
             self.num_person = 4
+            self.num_bed = 1
