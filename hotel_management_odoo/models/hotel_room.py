@@ -46,6 +46,8 @@ class HotelRoom(models.Model):
                               tracking=True)
     is_room_avail = fields.Boolean(default=True, string="Available",
                                    help="Check if the room is available")
+    is_room = fields.Boolean(default=True, string="Is Room",
+                             help="Check if this is a room")
     list_price = fields.Float(string='Rent', digits='Product Price',
                               help="The rent of the room.")
     uom_id = fields.Many2one('uom.uom', string='Unit of Measure',
