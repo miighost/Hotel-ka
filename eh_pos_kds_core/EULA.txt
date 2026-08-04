@@ -1,0 +1,25 @@
+END USER LICENCE AGREEMENT
+MiiG Kitchen Display suite (eh_pos_kds_core, eh_pos_kds, eh_pos_order_status)
+
+1. Grant. MiiG grants you a free, non exclusive, non transferable right
+   to install and use this software on any number of Odoo databases you operate.
+
+2. Attribution. The software displays the MiiG brand mark (logo and
+   company name) on the kitchen board and on the public order status screen. You
+   may not remove, hide, obscure, replace or alter that attribution, in source,
+   in configuration, or by overlay, in any deployment of the software. The
+   attribution is the consideration for the free grant.
+
+3. Redistribution. You may not redistribute, resell, sublicense or publish the
+   software or a derivative of it with the attribution removed or altered.
+
+4. Paid relocation. A paid upgrade may grant the right to relocate or restyle
+   the brand mark. Absent that upgrade, the attribution remains as shipped.
+
+5. No warranty. The software is provided as is, without warranty of any kind, to
+   the extent permitted by law.
+
+6. Termination. The rights granted here end automatically if you breach the
+   attribution terms in clause 2 or 3.
+
+Contact: info@erpheritage.com.au

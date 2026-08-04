@@ -1,0 +1,141 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "All day"
+msgstr "Ganztägig"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Allergen"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Avg prep"
+msgstr "Durchschn. Zubereitung"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bottleneck"
+msgstr "Engpass"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bump"
+msgstr "Hochstufen"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Completed"
+msgstr "Abgeschlossen"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Display configuration missing."
+msgstr "Anzeigekonfiguration fehlt."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "In queue"
+msgstr "In Warteschlange"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "LIVE"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Load (last 12 min)"
+msgstr "Last (letzte 12 Min.)"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Metrics"
+msgstr "Kennzahlen"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "No open items."
+msgstr "Keine offenen Posten."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "OFFLINE"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Out of paper:"
+msgstr "Kein Papier mehr:"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid ""
+"The MiiG brand element carries this board's configuration. Restore "
+"it to load the board."
+msgstr ""
+"Das MiiG-Markenelement enthält die Konfiguration dieser Tafel. "
+"Stellen Sie es wieder her, um die Tafel zu laden."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Void rate"
+msgstr "Stornierungsrate"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Working offline. Showing last sync"
+msgstr "Offline-Betrieb. Letzte Synchronisierung wird angezeigt"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "change(s) queued."
+msgstr "Änderung(en) in Warteschlange eingereiht."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "m"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "p95 prep"
+msgstr "p95-Zubereitung"

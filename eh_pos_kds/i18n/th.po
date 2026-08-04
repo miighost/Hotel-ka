@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "All day"
+msgstr "ทั้งวัน"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Allergen"
+msgstr "สารก่อภูมิแพ้"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Avg prep"
+msgstr "เวลาเตรียมเฉลี่ย"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bottleneck"
+msgstr "คอขวด"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bump"
+msgstr "เลื่อนขึ้น"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Completed"
+msgstr "เสร็จสิ้น"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Display configuration missing."
+msgstr "ไม่พบการกำหนดค่าการแสดงผล"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "In queue"
+msgstr "อยู่ในคิว"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "LIVE"
+msgstr "ถ่ายทอดสด"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Load (last 12 min)"
+msgstr "โหลด (12 นาทีล่าสุด)"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Metrics"
+msgstr "เมตริก"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "No open items."
+msgstr "ไม่มีรายการค้าง"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "OFFLINE"
+msgstr "ออฟไลน์"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Out of paper:"
+msgstr "กระดาษหมด:"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid ""
+"The MiiG brand element carries this board's configuration. Restore "
+"it to load the board."
+msgstr ""
+"องค์ประกอบแบรนด์ MiiG มีการกำหนดค่าของบอร์ดนี้ กู้คืนเพื่อโหลดบอร์ด"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Void rate"
+msgstr "อัตราการยกเลิก"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Working offline. Showing last sync"
+msgstr "ทำงานแบบออฟไลน์ กำลังแสดงการซิงค์ครั้งล่าสุด"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "change(s) queued."
+msgstr "จัดคิวการเปลี่ยนแปลงแล้ว"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "m"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "p95 prep"
+msgstr "เวลาเตรียม p95"

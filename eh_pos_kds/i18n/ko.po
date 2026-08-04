@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Korean\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "All day"
+msgstr "종일"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Allergen"
+msgstr "알레르겐"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Avg prep"
+msgstr "평균 준비"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bottleneck"
+msgstr "병목"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bump"
+msgstr "올리기"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Completed"
+msgstr "완료됨"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Display configuration missing."
+msgstr "표시 구성이 없습니다."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "In queue"
+msgstr "대기열에 있음"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "LIVE"
+msgstr "실시간"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Load (last 12 min)"
+msgstr "부하 (최근 12분)"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Metrics"
+msgstr "지표"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "No open items."
+msgstr "미결제 항목이 없습니다."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "OFFLINE"
+msgstr "오프라인"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Out of paper:"
+msgstr "용지 없음:"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid ""
+"The MiiG brand element carries this board's configuration. Restore "
+"it to load the board."
+msgstr "MiiG 브랜드 요소에 이 보드의 구성이 포함되어 있습니다. 보드를 로드하려면 복원하세요."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Void rate"
+msgstr "무효화율"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Working offline. Showing last sync"
+msgstr "오프라인 작업 중. 마지막 동기화 표시"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "change(s) queued."
+msgstr "변경 사항이 대기열에 추가되었습니다."
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "m"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "p95 prep"
+msgstr "p95 준비 시간"

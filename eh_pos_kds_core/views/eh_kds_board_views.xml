@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_eh_kds_board_list" model="ir.ui.view">
+        <field name="name">eh.kds.board.list</field>
+        <field name="model">eh.kds.board</field>
+        <field name="arch" type="xml">
+            <list string="Kitchen Boards">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="layout_mode"/>
+                <field name="is_expo"/>
+                <field name="pos_config_ids" widget="many2many_tags"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_eh_kds_board_form" model="ir.ui.view">
+        <field name="name">eh.kds.board.form</field>
+        <field name="model">eh.kds.board</field>
+        <field name="arch" type="xml">
+            <form string="Kitchen Board">
+                <header>
+                    <button name="action_open_board" type="object" string="Open Kitchen Board" class="btn-primary"/>
+                    <button name="action_open_status" type="object" string="Open Status Screen"/>
+                    <button name="action_load_sample" type="object" string="Load Sample Data"
+                            help="Add a few sample tickets so you can try the board."/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Grill Station"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="layout_mode"/>
+                            <field name="data_scope"/>
+                            <field name="is_expo"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="auto_clear"/>
+                            <field name="clear_time_interval" invisible="not auto_clear"/>
+                            <field name="notify_on_ready"/>
+                            <field name="notify_sms_on_ready"/>
+                            <field name="notify_webhook_url" placeholder="https://..."/>
+                            <field name="access_token" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lanes" name="lanes">
+                            <field name="lane_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="color" widget="color"/>
+                                    <field name="sla_minutes"/>
+                                    <field name="alert_sound"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Routing" name="routing">
+                            <field name="route_rule_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="pos_config_id"/>
+                                    <field name="category_id"/>
+                                    <field name="attribute_value_id"/>
+                                    <field name="target_lane_id"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Serves" name="serves">
+                            <group>
+                                <field name="pos_config_ids" widget="many2many_tags"/>
+                                <field name="category_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_eh_kds_board" model="ir.actions.act_window">
+        <field name="name">Kitchen Boards</field>
+        <field name="res_model">eh.kds.board</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

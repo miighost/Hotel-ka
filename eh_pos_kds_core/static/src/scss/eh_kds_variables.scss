@@ -1,0 +1,60 @@
+// MiiG KDS design tokens. Shared by the board and the status screen.
+// Dark premium aesthetic, mint accent, DM Sans body, DM Mono numerals.
+:root {
+    --eh-kds-bg: #080C0A;
+    --eh-kds-surface: #101814;
+    --eh-kds-surface-2: #16211B;
+    --eh-kds-text: #F5F5F5;
+    --eh-kds-text-muted: #9AA8A0;
+    --eh-kds-accent-mint: #7BCEA0;
+    --eh-kds-ok: #34D399;
+    --eh-kds-warn: #F5B547;
+    --eh-kds-coral: #FB8A6B;
+    --eh-kds-danger: #EF5B5B;
+    --eh-kds-border: #233029;
+    --eh-kds-font: "DM Sans", system-ui, -apple-system, sans-serif;
+    --eh-kds-font-mono: "DM Mono", ui-monospace, monospace;
+}
+
+// Shared base used by both the kitchen board and the order status screen so the
+// brand mark and page chrome render the same on either page.
+.o_eh_kds_page {
+    margin: 0;
+    background: var(--eh-kds-bg);
+    color: var(--eh-kds-text);
+    font-family: var(--eh-kds-font);
+    min-height: 100vh;
+}
+
+.o_eh_kds_brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--eh-kds-surface);
+    border-bottom: 1px solid var(--eh-kds-border);
+
+    .o_eh_kds_brand_logo { height: 26px; width: auto; }
+    .o_eh_kds_brand_name { font-weight: 700; letter-spacing: 0.3px; }
+}
+
+.o_eh_kds_empty { color: var(--eh-kds-text-muted); font-size: 13px; margin: 0; }
+
+// Sanctioned brand relocation (Pro add-on writes the brand position). Default
+// "bar" keeps the standard full-width mark; "corner" floats a compact mark. The
+// mark always shows, per the licence.
+.o_eh_kds_brand--corner {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    z-index: 50;
+    border: 1px solid var(--eh-kds-border);
+    border-radius: 999px;
+    padding: 6px 12px;
+    background: var(--eh-kds-surface);
+    opacity: 0.92;
+
+    .o_eh_kds_brand_logo { height: 18px; }
+    .o_eh_kds_brand_name { font-size: 12px; }
+}
+

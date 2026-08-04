@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Chinese (Traditional)\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "All day"
+msgstr "全天"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Allergen"
+msgstr "過敏原"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Avg prep"
+msgstr "平均備餐"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bottleneck"
+msgstr "瓶頸"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Bump"
+msgstr "提升"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Completed"
+msgstr "已完成"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Display configuration missing."
+msgstr "缺少顯示設定。"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "In queue"
+msgstr "在佇列中"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "LIVE"
+msgstr "線上"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Load (last 12 min)"
+msgstr "負載（最近 12 分鐘）"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Metrics"
+msgstr "指標"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "No open items."
+msgstr "沒有未結項目。"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "OFFLINE"
+msgstr "離線"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Out of paper:"
+msgstr "缺紙："
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid ""
+"The MiiG brand element carries this board's configuration. Restore "
+"it to load the board."
+msgstr "MiiG 品牌元素承載此看板的設定。請還原它以載入看板。"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Void rate"
+msgstr "作廢率"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "Working offline. Showing last sync"
+msgstr "離線工作。顯示上次同步"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "change(s) queued."
+msgstr "已將變更加入佇列。"
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "m"
+msgstr ""
+
+#. module: eh_pos_kds
+#. odoo-javascript
+#: code:addons/eh_pos_kds/static/src/app/kds_board.xml:0
+msgid "p95 prep"
+msgstr "p95 備餐時間"

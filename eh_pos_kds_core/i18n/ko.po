@@ -1,0 +1,695 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Korean\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid ""
+"<p>Hello %(name)s,</p><p>Your order <strong>%(ref)s</strong> is ready for "
+"collection.</p>"
+msgstr ""
+"<p>%(name)s 님, 안녕하세요.</p><p>주문 <strong>%(ref)s</strong> 이(가) 수령 준비되었습니다.</p>"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__access_token
+msgid "Access Token"
+msgstr "사용 권한 토큰"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__active
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__active
+msgid "Active"
+msgstr "활성화"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__actor_id
+msgid "Actor"
+msgstr "행위자"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Add a few sample tickets so you can try the board."
+msgstr "보드를 사용해 볼 수 있도록 샘플 티켓을 몇 개 추가하세요."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__alert_sound
+msgid "Alert Sound"
+msgstr "알림 소리"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Allergen Flag"
+msgstr "알레르기 유발 물질 플래그"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "An expo board aggregates items across every open ticket."
+msgstr "expo 보드는 모든 열린 티켓의 항목을 집계합니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__attribute_value_ids
+msgid "Attribute Value"
+msgstr "속성 값"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Auto Clear"
+msgstr "자동 지우기"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__clear_time_interval
+msgid "Auto clear interval (minutes)"
+msgstr "자동 지우기 간격 (분)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__bell
+msgid "Bell"
+msgstr "벨"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__board_id
+msgid "Board"
+msgstr "대시보드"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_board
+msgid "Boards"
+msgstr "보드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__bump_event_ids
+msgid "Bump Events"
+msgstr "올리기 이벤트"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__bumped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__bumped
+msgid "Bumped"
+msgstr "올려짐"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Cancelled"
+msgstr "취소됨"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__card_id
+msgid "Card"
+msgstr "카드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__card_ids
+msgid "Cards"
+msgstr "카드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "Cards older than this in this lane escalate. Zero disables the alert."
+msgstr "이 레인에서 이 값보다 오래된 카드는 에스컬레이션됩니다. 0으로 설정하면 알림이 비활성화됩니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Category"
+msgstr "카테고리"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__chime
+msgid "Chime"
+msgstr "차임"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__color
+msgid "Color"
+msgstr "색상"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__child_ids
+msgid "Combo Items"
+msgstr "콤보 항목"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__parent_id
+msgid "Combo Parent"
+msgstr "상위 콤보"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__company_id
+msgid "Company"
+msgstr "회사"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__comped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__comped
+msgid "Comped"
+msgstr "무료 제공"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Completion time (minutes)"
+msgstr "완료 시간(분)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_uid
+msgid "Created by"
+msgstr "작성자"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_date
+msgid "Created on"
+msgstr "작성일자"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__status
+msgid "Current status"
+msgstr "현재 상태"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__customer_note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__customer_note
+msgid "Customer Note"
+msgstr "고객 관련 메모"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Derived from the bump event log when the ticket is fully completed."
+msgstr "티켓이 완전히 완료되면 범프 이벤트 로그에서 파생됩니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__dietary_tag_ids
+msgid "Dietary Tags"
+msgstr "식이 태그"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__display_name
+msgid "Display Name"
+msgstr "표시명"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_board
+msgid "MiiG KDS Board"
+msgstr "MiiG KDS 보드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bump_event
+msgid "MiiG KDS Bump Event"
+msgstr "MiiG KDS 범프 이벤트"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bus_mixin
+msgid "MiiG KDS Bus Mixin"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_card
+msgid "MiiG KDS Card"
+msgstr "MiiG KDS 카드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_lane
+msgid "MiiG KDS Lane"
+msgstr "MiiG KDS 레인"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_route_rule
+msgid "MiiG KDS Routing Rule"
+msgstr "MiiG KDS 라우팅 규칙"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket
+msgid "MiiG KDS Ticket"
+msgstr "MiiG KDS 티켓"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket_item
+msgid "MiiG KDS Ticket Item"
+msgstr "MiiG KDS 티켓 항목"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid "Email customer when ready"
+msgstr "준비되면 고객에게 이메일 발송"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "Expo / All day board"
+msgstr "Expo / 종일 보드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Force placement on this lane. Empty uses the first lane."
+msgstr "이 레인에 배치를 강제합니다. 비워 두면 첫 번째 레인이 사용됩니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__quad
+msgid "Four columns"
+msgstr "4열"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Free text reason, used for voids and comps."
+msgstr "무효화 및 무료 제공에 사용되는 자유 텍스트 사유."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__from_lane_id
+msgid "From Lane"
+msgstr "출발 레인"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Highlighted in the board when set, for kitchen attention."
+msgstr "설정하면 주방의 주의를 끌기 위해 보드에서 강조 표시됩니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__id
+msgid "ID"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__internal_note
+msgid "Internal Note"
+msgstr "내부 노트"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__item_id
+msgid "Item"
+msgstr "항목"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__item_ids
+msgid "Items"
+msgstr "항목"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.server,name:eh_pos_kds_core.ir_cron_eh_kds_gc_ir_actions_server
+msgid "KDS: clean up completed tickets"
+msgstr "KDS: 완료된 티켓 정리"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__kind
+msgid "Kind"
+msgstr "종류"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Kitchen Board"
+msgstr "주방 보드"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.act_window,name:eh_pos_kds_core.action_eh_kds_board
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_list
+msgid "Kitchen Boards"
+msgstr "주방 보드"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_root
+msgid "Kitchen Display"
+msgstr "주방 디스플레이"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__lane_id
+msgid "Lane"
+msgstr "노선"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__lane_ids
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Lanes"
+msgstr "노선"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__last_event_id
+msgid "Last Event"
+msgstr "마지막 이벤트"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_uid
+msgid "Last Updated by"
+msgstr "최근 갱신한 사람"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_date
+msgid "Last Updated on"
+msgstr "최근 갱신 일자"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__layout_mode
+msgid "Layout Mode"
+msgstr "레이아웃 모드"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Limit to a product category. Empty matches any."
+msgstr "제품 카테고리로 제한합니다. 비워 두면 모두 일치합니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Limit to one POS. Empty matches any."
+msgstr "하나의 POS로 제한합니다. 비워 두면 모두 일치합니다."
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Load Sample Data"
+msgstr "샘플 데이터 불러오기"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__name
+msgid "Name"
+msgstr "이름"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__normal
+msgid "Normal"
+msgstr "일반"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__note
+msgid "Note"
+msgstr "노트"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Kitchen Board"
+msgstr "주방 보드 열기"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Status Screen"
+msgstr "상태 화면 열기"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+msgid "Optional attribute match, for example a spicy variant."
+msgstr "선택적 속성 일치입니다. 예를 들어 매운맛 변형입니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid ""
+"Optional. When an order is ready, POST a small JSON payload to this URL. "
+"Bring your own SMS, push or messaging provider behind it."
+msgstr ""
+"선택 사항. 주문이 준비되면 이 URL로 작은 JSON 페이로드를 POST합니다. 그 뒤에 자체 SMS, 푸시 또는 메시징 공급자를 "
+"연결하십시오."
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Order %s is ready"
+msgstr "주문 %s이(가) 준비되었습니다"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__placed
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__placed
+msgid "Placed"
+msgstr "배치됨"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "점포판매시스템 주문"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__pos_config_ids
+msgid "Points of Sale"
+msgstr "점포판매시스템"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Pos Config"
+msgstr "POS 구성"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__pos_order_id
+msgid "Pos Order"
+msgstr "Pos 주문"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_id
+msgid "Pos Order Line"
+msgstr "POS 주문 명세"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Pos Order Line Uuid"
+msgstr "Pos 주문 명세 Uuid"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__priority
+msgid "Priority"
+msgstr "우선 순위"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__product_id
+msgid "Product"
+msgstr "품목"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__category_ids
+msgid "Product Categories"
+msgstr "품목 카테고리"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_product_product
+msgid "Product Variant"
+msgstr "품목 세부선택"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__quantity
+msgid "Quantity"
+msgstr "수량"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Quantity voided. Never deleted, kept for audit."
+msgstr "무효 처리된 수량입니다. 삭제되지 않고 감사를 위해 보관됩니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid "Ready webhook URL"
+msgstr "준비 완료 webhook URL"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Reason"
+msgstr "사유"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__recalled
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__recalled
+msgid "Recalled"
+msgstr "회수됨"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Reference"
+msgstr "참조"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Remove ready tickets from the order status screen after the interval."
+msgstr "간격이 지난 후 주문 상태 화면에서 준비 완료된 티켓을 제거합니다."
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Routing"
+msgstr "절차"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__route_rule_ids
+msgid "Routing Rules"
+msgstr "라우팅 규칙"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__rush
+msgid "Rush"
+msgstr "긴급"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "SLA target (minutes)"
+msgstr "SLA 목표(분)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid "SMS customer when ready"
+msgstr "준비되면 고객에게 SMS 발송"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid ""
+"Send a short email to the order customer when the order is ready, if the "
+"customer has an email address."
+msgstr "주문이 준비되면 고객에게 이메일 주소가 있는 경우 주문 고객에게 짧은 이메일을 보냅니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid ""
+"Send an SMS to the order customer when ready, if the customer has a mobile "
+"number and the Odoo SMS app is installed. Uses your own SMS credits or "
+"gateway."
+msgstr ""
+"준비되면 고객에게 휴대폰 번호가 있고 Odoo SMS 앱이 설치된 경우 주문 고객에게 SMS를 보냅니다. 자체 SMS 크레딧 또는 "
+"게이트웨이를 사용합니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__sequence
+msgid "Sequence"
+msgstr "순서"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Serves"
+msgstr "인분"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__none
+msgid "Silent"
+msgstr "무음"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__single
+msgid "Single column"
+msgstr "단일 열"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Stable key used to match re adds without duplicating."
+msgstr "중복 없이 재추가 항목을 매칭하는 데 사용되는 안정적인 키입니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__started
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__started
+msgid "Started"
+msgstr "시작"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Target Lane"
+msgstr "대상 레인"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_board.py:0
+msgid "The auto clear interval must be a positive number of minutes."
+msgstr "자동 지우기 간격은 양수의 분 단위여야 합니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__ticket_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__ticket_id
+msgid "Ticket"
+msgstr "티켓"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__to_lane_id
+msgid "To Lane"
+msgstr "레인으로"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Tracking number or order name shown to staff and customers."
+msgstr "직원과 고객에게 표시되는 추적 번호 또는 주문 이름입니다."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__dual
+msgid "Two columns"
+msgstr "두 개의 열"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__urgent
+msgid "Urgent"
+msgstr "긴급"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__vip
+msgid "VIP"
+msgstr "귀빈"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__voided
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__voided
+msgid "Voided"
+msgstr "무효화됨"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__tv
+msgid "Wall display"
+msgstr "벽면 디스플레이"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Your order %s is ready for collection."
+msgstr "주문 %s을(를) 수령하실 수 있습니다."
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "e.g. Grill Station"
+msgstr "예: 그릴 스테이션"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "https://..."
+msgstr ""

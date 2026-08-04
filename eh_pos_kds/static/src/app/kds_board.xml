@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="eh_pos_kds.KdsBoard">
+        <div t-if="state.configMissing" class="o_eh_kds_config_missing">
+            <p>Display configuration missing.</p>
+            <p class="o_eh_kds_config_hint">The MiiG brand element carries this board's configuration. Restore it to load the board.</p>
+        </div>
+        <div t-elif="state.mode === 'status'" class="o_eh_kds_status_screen">
+            <header class="o_eh_kds_topbar">
+                <div class="o_eh_kds_title_wrap">
+                    <span class="o_eh_kds_title" t-esc="state.board.name"/>
+                    <span t-if="state.board and state.board.data_scope" class="o_eh_kds_scope_badge" t-esc="dataScopeLabel()"/>
+                </div>
+                <div class="o_eh_kds_actions">
+                    <button class="o_eh_kds_btn"
+                            t-att-class="{ 'is-active': state.statusView === 'both' }"
+                            t-on-click="() => this.setStatusView('both')">
+                        Dual View
+                    </button>
+                    <button class="o_eh_kds_btn"
+                            t-att-class="{ 'is-active': state.statusView === 'preparing' }"
+                            t-on-click="() => this.setStatusView('preparing')">
+                        Preparing Only
+                    </button>
+                    <button class="o_eh_kds_btn"
+                            t-att-class="{ 'is-active': state.statusView === 'ready' }"
+                            t-on-click="() => this.setStatusView('ready')">
+                        Ready Only
+                    </button>
+                    <span class="o_eh_kds_live" t-att-class="{ 'is-live': state.connected and !state.offline, 'is-offline': state.offline }">
+                        <t t-if="state.offline">OFFLINE</t>
+                        <t t-else="">LIVE</t>
+                    </span>
+                </div>
+            </header>
+
+            <div t-if="state.statusData and state.statusData.now_serving" class="o_eh_kds_now_serving_banner">
+                <span class="o_eh_kds_serving_lbl">NOW SERVING</span>
+                <span class="o_eh_kds_serving_ref">
+                    <t t-set="spref" t-value="formatRef(state.statusData.now_serving)"/>
+                    <span t-if="spref.table" class="o_eh_kds_table_badge" t-esc="spref.table"/>
+                    <span class="o_eh_kds_ref_num" t-esc="spref.number"/>
+                </span>
+            </div>
+
+            <div class="o_eh_kds_status_columns" t-att-data-mode="state.statusView">
+                <div t-if="state.statusView === 'both' or state.statusView === 'preparing'"
+                     class="o_eh_kds_status_col o_eh_kds_status_col--preparing">
+                    <h2 class="o_eh_kds_status_col_title">
+                        Preparing
+                        <span class="o_eh_kds_status_count" t-esc="(state.statusData and state.statusData.preparing || []).length"/>
+                    </h2>
+                    <div class="o_eh_kds_status_grid">
+                        <t t-if="state.statusData and state.statusData.preparing">
+                            <t t-foreach="state.statusData.preparing" t-as="item" t-key="item.ticket_id">
+                                <div class="o_eh_kds_status_card o_eh_kds_status_card--prep">
+                                    <span class="o_eh_kds_status_card_ref">
+                                        <t t-set="pref" t-value="formatRef(item.ref)"/>
+                                        <span t-if="pref.table" class="o_eh_kds_table_badge" t-esc="pref.table"/>
+                                        <span class="o_eh_kds_ref_num" t-esc="pref.number"/>
+                                    </span>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+
+                <div t-if="state.statusView === 'both' or state.statusView === 'ready'"
+                     class="o_eh_kds_status_col o_eh_kds_status_col--ready">
+                    <h2 class="o_eh_kds_status_col_title">
+                        Ready for Pickup
+                        <span class="o_eh_kds_status_count" t-esc="(state.statusData and state.statusData.ready || []).length"/>
+                    </h2>
+                    <div class="o_eh_kds_status_grid">
+                        <t t-if="state.statusData and state.statusData.ready">
+                            <t t-foreach="state.statusData.ready" t-as="item" t-key="item.ticket_id">
+                                <div class="o_eh_kds_status_card o_eh_kds_status_card--ready">
+                                    <span class="o_eh_kds_status_card_ref">
+                                        <t t-set="pref" t-value="formatRef(item.ref)"/>
+                                        <span t-if="pref.table" class="o_eh_kds_table_badge" t-esc="pref.table"/>
+                                        <span class="o_eh_kds_ref_num" t-esc="pref.number"/>
+                                    </span>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div t-else="" class="o_eh_kds_board" t-att-data-layout="state.board.layout_mode">
+            <header class="o_eh_kds_topbar">
+                <div class="o_eh_kds_title_wrap">
+                    <span class="o_eh_kds_title" t-esc="state.board.name"/>
+                    <span t-if="state.board and state.board.data_scope" class="o_eh_kds_scope_badge" t-esc="dataScopeLabel()"/>
+                </div>
+                <div class="o_eh_kds_actions">
+                    <div class="o_eh_kds_lane_filter_group">
+                        <button class="o_eh_kds_btn"
+                                t-att-class="{ 'is-active': state.selectedLaneFilter === 'all' }"
+                                t-on-click="() => this.setLaneFilter('all')">
+                            All Lanes
+                        </button>
+                        <t t-foreach="state.board.lanes" t-as="lane" t-key="lane.id">
+                            <button class="o_eh_kds_btn"
+                                    t-att-class="{ 'is-active': isLaneFilterActive(lane.id) }"
+                                    t-on-click="() => this.setLaneFilter(lane.id)">
+                                <t t-esc="lane.name"/>
+                            </button>
+                        </t>
+                    </div>
+                    <button class="o_eh_kds_btn"
+                            t-att-class="{ 'is-active': state.view === 'allday' }"
+                            t-on-click="() => this.state.view = (state.view === 'allday' ? 'lanes' : 'allday')">
+                        All day
+                    </button>
+                    <button class="o_eh_kds_btn"
+                            t-att-class="{ 'is-active': state.showMetrics }"
+                            t-on-click="() => this.toggleMetrics()">
+                        Metrics
+                    </button>
+                    <span class="o_eh_kds_live"
+                          t-att-class="{ 'is-live': state.connected and !state.offline, 'is-offline': state.offline }">
+                        <t t-if="state.offline">OFFLINE</t>
+                        <t t-else="">LIVE</t>
+                    </span>
+                </div>
+            </header>
+
+            <div t-if="state.offline" class="o_eh_kds_offline_bar">
+                Working offline. Showing last sync <t t-esc="lastSyncLabel()"/>.
+                <t t-if="state.queued"> <t t-esc="state.queued"/> change(s) queued.</t>
+            </div>
+
+            <div t-if="state.paperOut.length" class="o_eh_kds_paper_bar">
+                Out of paper: <t t-esc="state.paperOut.join(', ')"/>.
+            </div>
+
+            <div t-if="state.showMetrics and state.stats" class="o_eh_kds_metrics">
+                <div class="o_eh_kds_kpi"><span class="o_eh_kds_kpi_val" t-esc="state.stats.queue_depth"/><span class="o_eh_kds_kpi_lbl">In queue</span></div>
+                <div class="o_eh_kds_kpi"><span class="o_eh_kds_kpi_val" t-esc="state.stats.completed"/><span class="o_eh_kds_kpi_lbl">Completed</span></div>
+                <div class="o_eh_kds_kpi">
+                    <span class="o_eh_kds_kpi_val"><t t-esc="state.stats.avg_minutes"/>m</span>
+                    <span class="o_eh_kds_kpi_lbl">Avg prep</span>
+                </div>
+                <div class="o_eh_kds_kpi">
+                    <span class="o_eh_kds_kpi_val"><t t-esc="state.stats.p95_minutes"/>m</span>
+                    <span class="o_eh_kds_kpi_lbl">p95 prep</span>
+                </div>
+                <div class="o_eh_kds_kpi"><span class="o_eh_kds_kpi_val" t-esc="state.stats.void_rate + '%'"/><span class="o_eh_kds_kpi_lbl">Void rate</span></div>
+                <div class="o_eh_kds_kpi o_eh_kds_kpi--wide">
+                    <span class="o_eh_kds_kpi_val" t-esc="state.stats.bottleneck"/><span class="o_eh_kds_kpi_lbl">Bottleneck</span>
+                </div>
+            </div>
+
+            <t t-if="state.view === 'allday'">
+                <div class="o_eh_kds_heatmap" t-if="heatmap.length">
+                    <div class="o_eh_kds_heatmap_header">
+                        <span class="o_eh_kds_heatmap_lbl">⚡ Order Inflow Rate (Last 12 Minutes)</span>
+                        <span class="o_eh_kds_heatmap_sub">Kitchen Rush Heatmap</span>
+                    </div>
+                    <div class="o_eh_kds_heatmap_chart">
+                        <div class="o_eh_kds_heatmap_bars">
+                            <t t-foreach="heatmap" t-as="b" t-key="b.index">
+                                <div class="o_eh_kds_heatmap_col">
+                                    <span class="o_eh_kds_heatmap_val"><t t-if="b.count > 0"><t t-esc="b.count"/></t></span>
+                                    <div class="o_eh_kds_heatmap_bar_track">
+                                        <span class="o_eh_kds_heatmap_bar"
+                                              t-attf-style="height: {{ b.h }}%"
+                                              t-att-class="{ 'has-items': b.count > 0 }"
+                                              t-att-title="b.count + ' items placed ' + b.label"/>
+                                    </div>
+                                    <span class="o_eh_kds_heatmap_axis" t-esc="b.label"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="o_eh_kds_allday">
+                    <t t-if="!allDay.length">
+                        <p class="o_eh_kds_empty_msg">No open items.</p>
+                    </t>
+                    <t t-foreach="allDay" t-as="row" t-key="row.product">
+                        <div class="o_eh_kds_allday_row">
+                            <span class="o_eh_kds_allday_qty" t-esc="row.qty"/>
+                            <span class="o_eh_kds_allday_name" t-esc="row.product"/>
+                        </div>
+                    </t>
+                </div>
+            </t>
+
+            <t t-else="">
+                <div class="o_eh_kds_lanes" t-att-data-single="visibleLanes().length === 1">
+                    <t t-foreach="visibleLanes()" t-as="lane" t-key="lane.id">
+                        <section class="o_eh_kds_lane">
+                            <h2 class="o_eh_kds_lane_head" t-attf-style="border-color: {{ lane.color }}">
+                                <span class="o_eh_kds_lane_head_title">
+                                    <span t-esc="lane.name"/>
+                                    <button t-if="state.board.lanes and state.board.lanes.length and lane.id === state.board.lanes[0].id"
+                                            class="o_eh_kds_print_btn"
+                                            title="Print latest order ticket in this stage"
+                                            t-on-click.stop="() => this.printLatestInStage(lane.id)">
+                                        🖨️
+                                    </button>
+                                </span>
+                                <span class="o_eh_kds_lane_count" t-esc="cardsInLane(lane.id).length"/>
+                            </h2>
+                            <div class="o_eh_kds_lane_body">
+                                <t t-foreach="cardsInLane(lane.id)" t-as="card" t-key="card.id">
+                                    <div class="o_eh_kds_card"
+                                         t-att-class="{
+                                            ['o_eh_kds_card--' + slaClass(card)]: slaClass(card),
+                                            'is-selected': card.id === state.selectedId,
+                                            'is-rush': card.priority === 'rush',
+                                            'is-vip': card.priority === 'vip',
+                                         }"
+                                         t-on-click="() => this.select(card.id)">
+                                        <div class="o_eh_kds_card_top">
+                                            <span class="o_eh_kds_card_ref">
+                                                <t t-set="bpref" t-value="formatRef(card.ticket_ref)"/>
+                                                <span t-if="bpref.table" class="o_eh_kds_table_badge" t-esc="bpref.table"/>
+                                                <span class="o_eh_kds_ref_num" t-esc="bpref.number"/>
+                                            </span>
+                                            <span class="o_eh_kds_card_age" t-esc="ageLabel(card)"/>
+                                        </div>
+                                        <div class="o_eh_kds_card_line">
+                                            <span class="o_eh_kds_card_qty" t-esc="card.qty"/>
+                                            <span class="o_eh_kds_card_name" t-esc="card.product"/>
+                                            <span t-if="card.allergen" class="o_eh_kds_allergen" title="Allergen">!</span>
+                                        </div>
+                                        <div t-if="card.note" class="o_eh_kds_card_note" t-esc="card.note"/>
+                                        <div class="o_eh_kds_card_ops">
+                                            <button class="o_eh_kds_op" title="Recall to previous stage" t-on-click.stop="() => this.recall(card)">‹</button>
+                                            <button t-if="state.board.lanes and state.board.lanes.length and lane.id === state.board.lanes[0].id" class="o_eh_kds_op o_eh_kds_op--print" title="Print KOT Ticket" t-on-click.stop="() => this.printCard(card, false)">🖨️</button>
+                                            <button class="o_eh_kds_op o_eh_kds_op--bump" t-on-click.stop="() => this.bump(card)">Bump</button>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </section>
+                    </t>
+                </div>
+            </t>
+        </div>
+
+        <!-- Printable KOT Receipt Container -->
+        <div class="o_eh_kds_print_container">
+            <t t-foreach="state.printTickets" t-as="pcard" t-key="pcard.id">
+                <div class="o_eh_kds_kot_receipt">
+                    <div class="o_eh_kds_kot_header">
+                        <div class="o_eh_kds_kot_title">KITCHEN ORDER TICKET (KOT)</div>
+                        <div class="o_eh_kds_kot_board" t-esc="state.board.name"/>
+                        <div class="o_eh_kds_kot_ref">
+                            <t t-set="kref" t-value="formatRef(pcard.ticket_ref)"/>
+                            <t t-if="kref.table">Table: <t t-esc="kref.table"/> | </t>
+                            Order Ref: <t t-esc="kref.number"/>
+                        </div>
+                    </div>
+                    <div class="o_eh_kds_kot_body">
+                        <div class="o_eh_kds_kot_item">
+                            <span class="o_eh_kds_kot_qty" t-esc="pcard.qty + 'x'"/>
+                            <span class="o_eh_kds_kot_name" t-esc="pcard.product"/>
+                        </div>
+                        <div t-if="pcard.note" class="o_eh_kds_kot_note">
+                            Note: <t t-esc="pcard.note"/>
+                        </div>
+                    </div>
+                    <div class="o_eh_kds_kot_footer">
+                        --- MiiG KDS ---
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

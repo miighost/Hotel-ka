@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_eh_kds_root"
+              name="Kitchen Display"
+              parent="point_of_sale.menu_point_root"
+              sequence="80"/>
+
+    <menuitem id="menu_eh_kds_board"
+              name="Boards"
+              parent="menu_eh_kds_root"
+              action="action_eh_kds_board"
+              sequence="10"/>
+</odoo>

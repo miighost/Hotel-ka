@@ -1,0 +1,703 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Hindi\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid ""
+"<p>Hello %(name)s,</p><p>Your order <strong>%(ref)s</strong> is ready for "
+"collection.</p>"
+msgstr ""
+"<p>नमस्ते %(name)s,</p><p>आपका ऑर्डर <strong>%(ref)s</strong> संग्रह के लिए "
+"तैयार है।</p>"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__access_token
+msgid "Access Token"
+msgstr "ऐक्सेस टोकन"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__active
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__active
+msgid "Active"
+msgstr "ऐक्टिव"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__actor_id
+msgid "Actor"
+msgstr "कर्ता"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Add a few sample tickets so you can try the board."
+msgstr "बोर्ड आज़माने के लिए कुछ नमूना टिकट जोड़ें।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__alert_sound
+msgid "Alert Sound"
+msgstr "अलर्ट ध्वनि"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Allergen Flag"
+msgstr "एलर्जेन फ़्लैग"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "An expo board aggregates items across every open ticket."
+msgstr "एक एक्सपो बोर्ड हर खुले टिकट के आइटम को एकत्रित करता है।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__attribute_value_ids
+msgid "Attribute Value"
+msgstr "विशेषता मान"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Auto Clear"
+msgstr "स्वतः साफ़ करें"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__clear_time_interval
+msgid "Auto clear interval (minutes)"
+msgstr "स्वतः साफ़ करने का अंतराल (मिनट)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__bell
+msgid "Bell"
+msgstr "घंटी"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__board_id
+msgid "Board"
+msgstr "बोर्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_board
+msgid "Boards"
+msgstr "बोर्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__bump_event_ids
+msgid "Bump Events"
+msgstr "बढ़ाने की घटनाएं"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__bumped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__bumped
+msgid "Bumped"
+msgstr "बढ़ाया गया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Cancelled"
+msgstr "रद्द किया गया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__card_id
+msgid "Card"
+msgstr "कार्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__card_ids
+msgid "Cards"
+msgstr "कार्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "Cards older than this in this lane escalate. Zero disables the alert."
+msgstr ""
+"इस लेन में इससे पुराने कार्ड एस्केलेट होते हैं। शून्य अलर्ट को अक्षम कर देता"
+" है।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Category"
+msgstr "वर्ग"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__chime
+msgid "Chime"
+msgstr "चाइम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__color
+msgid "Color"
+msgstr "कलर"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__child_ids
+msgid "Combo Items"
+msgstr "कॉम्बो आइटम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__parent_id
+msgid "Combo Parent"
+msgstr "कॉम्बो पैरेंट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__company_id
+msgid "Company"
+msgstr "कंपनी"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__comped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__comped
+msgid "Comped"
+msgstr "निःशुल्क प्रदान"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Completion time (minutes)"
+msgstr "पूर्णता समय (मिनट)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_uid
+msgid "Created by"
+msgstr "इन्होंने बनाया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_date
+msgid "Created on"
+msgstr "इस तारीख को बनाया गया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__status
+msgid "Current status"
+msgstr "वर्तमान स्थिति"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__customer_note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__customer_note
+msgid "Customer Note"
+msgstr "ग्राहक टिप्पणी"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Derived from the bump event log when the ticket is fully completed."
+msgstr "जब टिकट पूरी तरह से पूर्ण हो जाता है तो बंप इवेंट लॉग से व्युत्पन्न।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__dietary_tag_ids
+msgid "Dietary Tags"
+msgstr "आहार टैग"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__display_name
+msgid "Display Name"
+msgstr "डिस्प्ले का नाम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_board
+msgid "MiiG KDS Board"
+msgstr "MiiG KDS बोर्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bump_event
+msgid "MiiG KDS Bump Event"
+msgstr "MiiG KDS बम्प इवेंट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bus_mixin
+msgid "MiiG KDS Bus Mixin"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_card
+msgid "MiiG KDS Card"
+msgstr "MiiG KDS कार्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_lane
+msgid "MiiG KDS Lane"
+msgstr "MiiG KDS लेन"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_route_rule
+msgid "MiiG KDS Routing Rule"
+msgstr "MiiG KDS रूटिंग नियम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket
+msgid "MiiG KDS Ticket"
+msgstr "MiiG KDS टिकट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket_item
+msgid "MiiG KDS Ticket Item"
+msgstr "MiiG KDS टिकट आइटम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid "Email customer when ready"
+msgstr "तैयार होने पर ग्राहक को ईमेल करें"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "Expo / All day board"
+msgstr "Expo / पूरे दिन का बोर्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Force placement on this lane. Empty uses the first lane."
+msgstr ""
+"इस लेन पर नियुक्ति बाध्य करें. खाली छोड़ने पर पहली लेन का उपयोग होता है."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__quad
+msgid "Four columns"
+msgstr "चार स्तंभ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Free text reason, used for voids and comps."
+msgstr "मुक्त-पाठ कारण, वॉइड्स और कॉम्प्स के लिए उपयोग किया जाता है।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__from_lane_id
+msgid "From Lane"
+msgstr "प्रस्थान लेन से"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Highlighted in the board when set, for kitchen attention."
+msgstr "सेट होने पर बोर्ड में हाइलाइट किया जाता है, रसोई के ध्यान के लिए।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__id
+msgid "ID"
+msgstr "आईडी"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__internal_note
+msgid "Internal Note"
+msgstr "इंटरनल नोट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__item_id
+msgid "Item"
+msgstr "मद"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__item_ids
+msgid "Items"
+msgstr "आइटम"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.server,name:eh_pos_kds_core.ir_cron_eh_kds_gc_ir_actions_server
+msgid "KDS: clean up completed tickets"
+msgstr "KDS: पूर्ण किए गए टिकट साफ़ करें"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__kind
+msgid "Kind"
+msgstr "प्रकार"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Kitchen Board"
+msgstr "किचन बोर्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.act_window,name:eh_pos_kds_core.action_eh_kds_board
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_list
+msgid "Kitchen Boards"
+msgstr "किचन बोर्ड"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_root
+msgid "Kitchen Display"
+msgstr "किचन डिस्प्ले"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__lane_id
+msgid "Lane"
+msgstr "मार्ग"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__lane_ids
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Lanes"
+msgstr "मार्ग"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__last_event_id
+msgid "Last Event"
+msgstr "अंतिम इवेंट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_uid
+msgid "Last Updated by"
+msgstr "इन्होंने आखिरी बार अपडेट किया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_date
+msgid "Last Updated on"
+msgstr "आखिरी बार अपडेट हुआ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__layout_mode
+msgid "Layout Mode"
+msgstr "लेआउट मोड"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Limit to a product category. Empty matches any."
+msgstr "किसी उत्पाद श्रेणी तक सीमित करें। खाली किसी से भी मेल खाता है।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Limit to one POS. Empty matches any."
+msgstr "एक POS तक सीमित करें। खाली किसी से भी मेल खाता है।"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Load Sample Data"
+msgstr "नमूना डेटा लोड करें"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__name
+msgid "Name"
+msgstr "नाम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__normal
+msgid "Normal"
+msgstr "सामान्य"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__note
+msgid "Note"
+msgstr "ध्यान दें"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Kitchen Board"
+msgstr "किचन बोर्ड खोलें"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Status Screen"
+msgstr "स्थिति स्क्रीन खोलें"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+msgid "Optional attribute match, for example a spicy variant."
+msgstr "वैकल्पिक विशेषता मिलान, उदाहरण के लिए एक तीखा वेरिएंट।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid ""
+"Optional. When an order is ready, POST a small JSON payload to this URL. "
+"Bring your own SMS, push or messaging provider behind it."
+msgstr ""
+"वैकल्पिक। जब कोई ऑर्डर तैयार हो, तो इस URL पर एक छोटा JSON payload POST "
+"करें। इसके पीछे अपना स्वयं का SMS, push या मैसेजिंग प्रदाता लगाएँ।"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Order %s is ready"
+msgstr "ऑर्डर %s तैयार है"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__placed
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__placed
+msgid "Placed"
+msgstr "दर्ज किया गया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "पॉइंट ऑफ़ सेल ऑर्डर"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__pos_config_ids
+msgid "Points of Sale"
+msgstr "पॉइंट ऑफ़ सेल"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Pos Config"
+msgstr "POS कॉन्फ़िगरेशन"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__pos_order_id
+msgid "Pos Order"
+msgstr "POS ऑर्डर"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_id
+msgid "Pos Order Line"
+msgstr "POS ऑर्डर लाइन"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Pos Order Line Uuid"
+msgstr "POS ऑर्डर लाइन UUID"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__priority
+msgid "Priority"
+msgstr "प्रॉयरिटी"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__product_id
+msgid "Product"
+msgstr "प्रॉडक्ट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__category_ids
+msgid "Product Categories"
+msgstr "प्रॉडक्ट कैटगरी"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_product_product
+msgid "Product Variant"
+msgstr "उत्पाद प्रकार"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__quantity
+msgid "Quantity"
+msgstr "मात्रा"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Quantity voided. Never deleted, kept for audit."
+msgstr "रद्द की गई मात्रा। कभी हटाई नहीं जाती, ऑडिट के लिए रखी जाती है।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid "Ready webhook URL"
+msgstr "रेडी webhook URL"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Reason"
+msgstr "ठीक है"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__recalled
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__recalled
+msgid "Recalled"
+msgstr "वापस बुलाया गया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Reference"
+msgstr "रेफ़रंस"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Remove ready tickets from the order status screen after the interval."
+msgstr "अंतराल के बाद ऑर्डर स्थिति स्क्रीन से तैयार टिकट हटाएं।"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Routing"
+msgstr "रूटिंग"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__route_rule_ids
+msgid "Routing Rules"
+msgstr "रूटिंग नियम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__rush
+msgid "Rush"
+msgstr "अत्यावश्यक"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "SLA target (minutes)"
+msgstr "SLA लक्ष्य (मिनट)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid "SMS customer when ready"
+msgstr "तैयार होने पर ग्राहक को SMS भेजें"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid ""
+"Send a short email to the order customer when the order is ready, if the "
+"customer has an email address."
+msgstr ""
+"जब ऑर्डर तैयार हो जाए, तो ऑर्डर ग्राहक को एक संक्षिप्त ईमेल भेजें, यदि "
+"ग्राहक के पास ईमेल पता हो।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid ""
+"Send an SMS to the order customer when ready, if the customer has a mobile "
+"number and the Odoo SMS app is installed. Uses your own SMS credits or "
+"gateway."
+msgstr ""
+"तैयार होने पर ऑर्डर ग्राहक को एक SMS भेजें, यदि ग्राहक के पास मोबाइल नंबर हो"
+" और Odoo SMS ऐप इंस्टॉल हो। आपके अपने SMS क्रेडिट या गेटवे का उपयोग करता है।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__sequence
+msgid "Sequence"
+msgstr "सीक्वेंस"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Serves"
+msgstr "सर्विंग्स"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__none
+msgid "Silent"
+msgstr "मौन"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__single
+msgid "Single column"
+msgstr "एकल स्तंभ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Stable key used to match re adds without duplicating."
+msgstr ""
+"बिना डुप्लिकेट किए पुनः जोड़ों का मिलान करने के लिए उपयोग की जाने वाली स्थिर"
+" कुंजी।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__started
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__started
+msgid "Started"
+msgstr "प्रारंभ हुआ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Target Lane"
+msgstr "लक्ष्य लेन"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_board.py:0
+msgid "The auto clear interval must be a positive number of minutes."
+msgstr "स्वतः साफ़ करने का अंतराल मिनटों की एक धनात्मक संख्या होनी चाहिए।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__ticket_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__ticket_id
+msgid "Ticket"
+msgstr "टिकट"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__to_lane_id
+msgid "To Lane"
+msgstr "लेन तक"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Tracking number or order name shown to staff and customers."
+msgstr "स्टाफ और ग्राहकों को दिखाया गया ट्रैकिंग नंबर या ऑर्डर नाम।"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__dual
+msgid "Two columns"
+msgstr "दो कॉलम"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__urgent
+msgid "Urgent"
+msgstr "तत्काल"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__vip
+msgid "VIP"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__voided
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__voided
+msgid "Voided"
+msgstr "रद्द किया गया"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__tv
+msgid "Wall display"
+msgstr "दीवार डिस्प्ले"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Your order %s is ready for collection."
+msgstr "आपका ऑर्डर %s संग्रह के लिए तैयार है।"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "e.g. Grill Station"
+msgstr "उदा. ग्रिल स्टेशन"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "https://..."
+msgstr ""

@@ -1,0 +1,700 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid ""
+"<p>Hello %(name)s,</p><p>Your order <strong>%(ref)s</strong> is ready for "
+"collection.</p>"
+msgstr ""
+"<p>สวัสดี %(name)s,</p><p>คำสั่งซื้อ <strong>%(ref)s</strong> "
+"ของคุณพร้อมให้มารับแล้ว</p>"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__access_token
+msgid "Access Token"
+msgstr "โทเค็นการเข้าถึง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__active
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__active
+msgid "Active"
+msgstr "เปิดใช้งาน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__actor_id
+msgid "Actor"
+msgstr "ผู้กระทำ"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Add a few sample tickets so you can try the board."
+msgstr "เพิ่มตั๋วตัวอย่างสองสามใบเพื่อให้คุณลองใช้บอร์ดได้"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__alert_sound
+msgid "Alert Sound"
+msgstr "เสียงแจ้งเตือน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Allergen Flag"
+msgstr "ธงสารก่อภูมิแพ้"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "An expo board aggregates items across every open ticket."
+msgstr "บอร์ด expo รวมรายการจากทุกตั๋วที่เปิดอยู่"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__attribute_value_ids
+msgid "Attribute Value"
+msgstr "ค่าคุณลักษณะ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Auto Clear"
+msgstr "ล้างอัตโนมัติ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__clear_time_interval
+msgid "Auto clear interval (minutes)"
+msgstr "ช่วงเวลาล้างอัตโนมัติ (นาที)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__bell
+msgid "Bell"
+msgstr "กระดิ่ง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__board_id
+msgid "Board"
+msgstr "กระดาน"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_board
+msgid "Boards"
+msgstr "บอร์ด"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__bump_event_ids
+msgid "Bump Events"
+msgstr "เหตุการณ์การเลื่อนขึ้น"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__bumped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__bumped
+msgid "Bumped"
+msgstr "เลื่อนขึ้นแล้ว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Cancelled"
+msgstr "ยกเลิก"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__card_id
+msgid "Card"
+msgstr "การ์ด"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__card_ids
+msgid "Cards"
+msgstr "การ์ด"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "Cards older than this in this lane escalate. Zero disables the alert."
+msgstr ""
+"การ์ดในเลนนี้ที่เก่ากว่าค่านี้จะถูกยกระดับ ตั้งเป็นศูนย์เพื่อปิดการแจ้งเตือน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Category"
+msgstr "หมวดหมู่"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__chime
+msgid "Chime"
+msgstr "เสียงกระดิ่ง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__color
+msgid "Color"
+msgstr "สี"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__child_ids
+msgid "Combo Items"
+msgstr "รายการชุดรวม"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__parent_id
+msgid "Combo Parent"
+msgstr "คอมโบหลัก"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__company_id
+msgid "Company"
+msgstr "บริษัท"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__comped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__comped
+msgid "Comped"
+msgstr "ให้ฟรี"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Completion time (minutes)"
+msgstr "เวลาที่ใช้จนเสร็จสมบูรณ์ (นาที)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_uid
+msgid "Created by"
+msgstr "สร้างโดย"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_date
+msgid "Created on"
+msgstr "สร้างเมื่อ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__status
+msgid "Current status"
+msgstr "สถานะปัจจุบัน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__customer_note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__customer_note
+msgid "Customer Note"
+msgstr "หมายเหตุลูกค้า"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Derived from the bump event log when the ticket is fully completed."
+msgstr "ได้มาจากบันทึกเหตุการณ์ bump เมื่อทิกเก็ตเสร็จสมบูรณ์ทั้งหมด"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__dietary_tag_ids
+msgid "Dietary Tags"
+msgstr "แท็กด้านอาหาร"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__display_name
+msgid "Display Name"
+msgstr "แสดงชื่อ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_board
+msgid "MiiG KDS Board"
+msgstr "บอร์ด KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bump_event
+msgid "MiiG KDS Bump Event"
+msgstr "เหตุการณ์ Bump KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bus_mixin
+msgid "MiiG KDS Bus Mixin"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_card
+msgid "MiiG KDS Card"
+msgstr "การ์ด KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_lane
+msgid "MiiG KDS Lane"
+msgstr "เลน KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_route_rule
+msgid "MiiG KDS Routing Rule"
+msgstr "กฎการกำหนดเส้นทาง KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket
+msgid "MiiG KDS Ticket"
+msgstr "ตั๋ว KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket_item
+msgid "MiiG KDS Ticket Item"
+msgstr "รายการตั๋ว KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid "Email customer when ready"
+msgstr "ส่งอีเมลถึงลูกค้าเมื่อพร้อม"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "Expo / All day board"
+msgstr "Expo / บอร์ดทั้งวัน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Force placement on this lane. Empty uses the first lane."
+msgstr "บังคับการวางบนเลนนี้ หากเว้นว่างจะใช้เลนแรก"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__quad
+msgid "Four columns"
+msgstr "สี่คอลัมน์"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Free text reason, used for voids and comps."
+msgstr "เหตุผลแบบข้อความอิสระ ใช้สำหรับการยกเลิกและการให้ฟรี"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__from_lane_id
+msgid "From Lane"
+msgstr "จากเส้นทาง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Highlighted in the board when set, for kitchen attention."
+msgstr "จะถูกไฮไลต์บนบอร์ดเมื่อตั้งค่า เพื่อดึงความสนใจของครัว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__id
+msgid "ID"
+msgstr "ไอดี"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__internal_note
+msgid "Internal Note"
+msgstr "บันทึกย่อภายใน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__item_id
+msgid "Item"
+msgstr "รายการ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__item_ids
+msgid "Items"
+msgstr "รายการ"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.server,name:eh_pos_kds_core.ir_cron_eh_kds_gc_ir_actions_server
+msgid "KDS: clean up completed tickets"
+msgstr "KDS: ล้างตั๋วที่เสร็จสมบูรณ์"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__kind
+msgid "Kind"
+msgstr "ชนิด"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Kitchen Board"
+msgstr "บอร์ดครัว"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.act_window,name:eh_pos_kds_core.action_eh_kds_board
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_list
+msgid "Kitchen Boards"
+msgstr "บอร์ดครัว"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_root
+msgid "Kitchen Display"
+msgstr "หน้าจอห้องครัว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__lane_id
+msgid "Lane"
+msgstr "เส้นทาง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__lane_ids
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Lanes"
+msgstr "เส้นทาง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__last_event_id
+msgid "Last Event"
+msgstr "เหตุการณ์ล่าสุด"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_uid
+msgid "Last Updated by"
+msgstr "อัปเดตครั้งล่าสุดโดย"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_date
+msgid "Last Updated on"
+msgstr "อัปเดตครั้งล่าสุดเมื่อ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__layout_mode
+msgid "Layout Mode"
+msgstr "โหมดเลย์เอาต์"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Limit to a product category. Empty matches any."
+msgstr "จำกัดเฉพาะหมวดหมู่ผลิตภัณฑ์ ว่างเปล่าจะตรงกับทุกหมวดหมู่"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Limit to one POS. Empty matches any."
+msgstr "จำกัดเฉพาะ POS หนึ่งจุด ว่างเปล่าจะตรงกับทุกจุด"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Load Sample Data"
+msgstr "โหลดข้อมูลตัวอย่าง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__name
+msgid "Name"
+msgstr "ชื่อ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__normal
+msgid "Normal"
+msgstr "ปกติ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__note
+msgid "Note"
+msgstr "โน้ต"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Kitchen Board"
+msgstr "เปิดบอร์ดครัว"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Status Screen"
+msgstr "เปิดหน้าจอสถานะ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+msgid "Optional attribute match, for example a spicy variant."
+msgstr "การจับคู่แอตทริบิวต์เพิ่มเติม (ไม่บังคับ) เช่น รสเผ็ด"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid ""
+"Optional. When an order is ready, POST a small JSON payload to this URL. "
+"Bring your own SMS, push or messaging provider behind it."
+msgstr ""
+"ไม่บังคับ เมื่อคำสั่งพร้อมแล้ว ให้ POST เพย์โหลด JSON ขนาดเล็กไปยัง URL นี้ "
+"นำผู้ให้บริการ SMS พุช หรือข้อความของคุณเองมาต่อไว้ด้านหลัง"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Order %s is ready"
+msgstr "คำสั่ง %s พร้อมแล้ว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__placed
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__placed
+msgid "Placed"
+msgstr "สั่งไว้แล้ว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "คำสั่งซื้อการขายหน้าร้าน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__pos_config_ids
+msgid "Points of Sale"
+msgstr "การขายหน้าร้าน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Pos Config"
+msgstr "การกำหนดค่า Pos"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__pos_order_id
+msgid "Pos Order"
+msgstr "คำสั่ง Pos"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_id
+msgid "Pos Order Line"
+msgstr "รายการคำสั่งซื้อ Pos"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Pos Order Line Uuid"
+msgstr "UUID รายการคำสั่งซื้อ POS"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__priority
+msgid "Priority"
+msgstr "ระดับความสำคัญ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__product_id
+msgid "Product"
+msgstr "สินค้า"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__category_ids
+msgid "Product Categories"
+msgstr "หมวดหมู่สินค้า"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_product_product
+msgid "Product Variant"
+msgstr "ตัวแปรสินค้า"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__quantity
+msgid "Quantity"
+msgstr "ปริมาณ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Quantity voided. Never deleted, kept for audit."
+msgstr "จำนวนที่ถูกยกเลิก ไม่มีการลบ เก็บไว้เพื่อการตรวจสอบ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid "Ready webhook URL"
+msgstr "URL webhook พร้อมใช้งาน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Reason"
+msgstr "เหตุผล"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__recalled
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__recalled
+msgid "Recalled"
+msgstr "เรียกคืนแล้ว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Reference"
+msgstr "การอ้างอิง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Remove ready tickets from the order status screen after the interval."
+msgstr "ลบตั๋วที่พร้อมออกจากหน้าจอสถานะคำสั่งซื้อหลังจากช่วงเวลาที่กำหนด"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Routing"
+msgstr "เส้นทาง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__route_rule_ids
+msgid "Routing Rules"
+msgstr "กฎการกำหนดเส้นทาง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__rush
+msgid "Rush"
+msgstr "เร่งด่วน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "SLA target (minutes)"
+msgstr "เป้าหมาย SLA (นาที)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid "SMS customer when ready"
+msgstr "ส่ง SMS ถึงลูกค้าเมื่อพร้อม"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid ""
+"Send a short email to the order customer when the order is ready, if the "
+"customer has an email address."
+msgstr ""
+"ส่งอีเมลสั้นๆ ไปยังลูกค้าของคำสั่งซื้อเมื่อคำสั่งซื้อพร้อม "
+"หากลูกค้ามีที่อยู่อีเมล"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid ""
+"Send an SMS to the order customer when ready, if the customer has a mobile "
+"number and the Odoo SMS app is installed. Uses your own SMS credits or "
+"gateway."
+msgstr ""
+"ส่ง SMS ไปยังลูกค้าของคำสั่งซื้อเมื่อพร้อม "
+"หากลูกค้ามีหมายเลขโทรศัพท์มือถือและติดตั้งแอป SMS ของ Odoo แล้ว โดยใช้เครดิต"
+" SMS หรือเกตเวย์ของคุณเอง"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__sequence
+msgid "Sequence"
+msgstr "ลำดับ"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Serves"
+msgstr "จำนวนที่เสิร์ฟ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__none
+msgid "Silent"
+msgstr "เงียบ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__single
+msgid "Single column"
+msgstr "คอลัมน์เดียว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Stable key used to match re adds without duplicating."
+msgstr "คีย์คงที่ที่ใช้จับคู่การเพิ่มซ้ำโดยไม่ทำซ้ำ"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__started
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__started
+msgid "Started"
+msgstr "เริ่มต้นแล้ว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Target Lane"
+msgstr "เลนเป้าหมาย"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_board.py:0
+msgid "The auto clear interval must be a positive number of minutes."
+msgstr "ช่วงเวลาล้างอัตโนมัติต้องเป็นจำนวนนาทีที่เป็นบวก"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__ticket_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__ticket_id
+msgid "Ticket"
+msgstr "ทิกเก็ต"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__to_lane_id
+msgid "To Lane"
+msgstr "ไปยังเลน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Tracking number or order name shown to staff and customers."
+msgstr "หมายเลขติดตามหรือชื่อคำสั่งซื้อที่แสดงต่อพนักงานและลูกค้า"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__dual
+msgid "Two columns"
+msgstr "สองคอลัมน์"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__urgent
+msgid "Urgent"
+msgstr "เร่งด่วน"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__vip
+msgid "VIP"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__voided
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__voided
+msgid "Voided"
+msgstr "ยกเลิกแล้ว"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__tv
+msgid "Wall display"
+msgstr "จอแสดงผลติดผนัง"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Your order %s is ready for collection."
+msgstr "คำสั่งซื้อ %s ของคุณพร้อมให้รับแล้ว"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "e.g. Grill Station"
+msgstr "เช่น สถานีย่าง"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "https://..."
+msgstr ""

@@ -1,0 +1,712 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds_core
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == 0) ? 1 : 2);\n"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid ""
+"<p>Hello %(name)s,</p><p>Your order <strong>%(ref)s</strong> is ready for "
+"collection.</p>"
+msgstr ""
+"<p>Hola %(name)s,</p><p>Su pedido <strong>%(ref)s</strong> está listo para "
+"su recogida.</p>"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__access_token
+msgid "Access Token"
+msgstr "Token de acceso"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__active
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__actor_id
+msgid "Actor"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Add a few sample tickets so you can try the board."
+msgstr "Agregue algunos tickets de ejemplo para probar el tablero."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__alert_sound
+msgid "Alert Sound"
+msgstr "Sonido de alerta"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Allergen Flag"
+msgstr "Indicador de alérgeno"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "An expo board aggregates items across every open ticket."
+msgstr "Un tablero expo agrega los artículos de todos los tickets abiertos."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__attribute_value_ids
+msgid "Attribute Value"
+msgstr "Valor del Atributo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Auto Clear"
+msgstr "Borrado automático"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__clear_time_interval
+msgid "Auto clear interval (minutes)"
+msgstr "Intervalo de borrado automático (minutos)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__bell
+msgid "Bell"
+msgstr "Campana"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__board_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__board_id
+msgid "Board"
+msgstr "Tablero"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_board
+msgid "Boards"
+msgstr "Tableros"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__bump_event_ids
+msgid "Bump Events"
+msgstr "Eventos de elevación"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__bumped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__bumped
+msgid "Bumped"
+msgstr "Elevado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__card_id
+msgid "Card"
+msgstr "Tarjeta"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__card_ids
+msgid "Cards"
+msgstr "Tarjetas"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "Cards older than this in this lane escalate. Zero disables the alert."
+msgstr ""
+"Las tarjetas más antiguas que esto en este carril se escalan. Cero desactiva"
+" la alerta."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Category"
+msgstr "Categoría"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__chime
+msgid "Chime"
+msgstr "Campanilla"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__color
+msgid "Color"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__child_ids
+msgid "Combo Items"
+msgstr "Artículos de combinación"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__parent_id
+msgid "Combo Parent"
+msgstr "Padre de la combinación"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__comped
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__comped
+msgid "Comped"
+msgstr "De cortesía"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Completion time (minutes)"
+msgstr "Tiempo de finalización (minutos)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__create_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__status
+msgid "Current status"
+msgstr "Estado actual"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__customer_note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__customer_note
+msgid "Customer Note"
+msgstr "Nota de cliente"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__completion_time
+msgid "Derived from the bump event log when the ticket is fully completed."
+msgstr ""
+"Derivado del registro de eventos de bump cuando el ticket se completa por "
+"completo."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__dietary_tag_ids
+msgid "Dietary Tags"
+msgstr "Etiquetas dietéticas"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_board
+msgid "MiiG KDS Board"
+msgstr "Tablero KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bump_event
+msgid "MiiG KDS Bump Event"
+msgstr "Evento de avance KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_bus_mixin
+msgid "MiiG KDS Bus Mixin"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_card
+msgid "MiiG KDS Card"
+msgstr "Tarjeta KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_lane
+msgid "MiiG KDS Lane"
+msgstr "Carril KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_route_rule
+msgid "MiiG KDS Routing Rule"
+msgstr "Regla de enrutamiento KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket
+msgid "MiiG KDS Ticket"
+msgstr "Ticket KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_eh_kds_ticket_item
+msgid "MiiG KDS Ticket Item"
+msgstr "Elemento de ticket KDS MiiG"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid "Email customer when ready"
+msgstr "Enviar correo al cliente cuando esté listo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__is_expo
+msgid "Expo / All day board"
+msgstr "Expo / Tablero de todo el día"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Force placement on this lane. Empty uses the first lane."
+msgstr "Forzar la colocación en este carril. Vacío usa el primer carril."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__quad
+msgid "Four columns"
+msgstr "Cuatro columnas"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Free text reason, used for voids and comps."
+msgstr "Motivo en texto libre, utilizado para anulaciones e invitaciones."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__from_lane_id
+msgid "From Lane"
+msgstr "Desde la ruta"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__allergen_flag
+msgid "Highlighted in the board when set, for kitchen attention."
+msgstr ""
+"Resaltado en el tablero cuando se establece, para llamar la atención de la "
+"cocina."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bus_mixin__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_pos_order__id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_product_product__id
+msgid "ID"
+msgstr "Identificador"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__internal_note
+msgid "Internal Note"
+msgstr "Nota interna"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__item_id
+msgid "Item"
+msgstr "Tema"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__item_ids
+msgid "Items"
+msgstr "Elementos"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.server,name:eh_pos_kds_core.ir_cron_eh_kds_gc_ir_actions_server
+msgid "KDS: clean up completed tickets"
+msgstr "KDS: limpiar tickets completados"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__kind
+msgid "Kind"
+msgstr "Tipo"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Kitchen Board"
+msgstr "Tablero de cocina"
+
+#. module: eh_pos_kds_core
+#: model:ir.actions.act_window,name:eh_pos_kds_core.action_eh_kds_board
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_list
+msgid "Kitchen Boards"
+msgstr "Tableros de cocina"
+
+#. module: eh_pos_kds_core
+#: model:ir.ui.menu,name:eh_pos_kds_core.menu_eh_kds_root
+msgid "Kitchen Display"
+msgstr "Pantalla de cocina"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__lane_id
+msgid "Lane"
+msgstr "Ruta"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__lane_ids
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Lanes"
+msgstr "Rutas"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__last_event_id
+msgid "Last Event"
+msgstr "Último evento"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_uid
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__write_date
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__layout_mode
+msgid "Layout Mode"
+msgstr "Modo de diseño"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__category_id
+msgid "Limit to a product category. Empty matches any."
+msgstr "Limitar a una categoría de producto. Vacío coincide con cualquiera."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Limit to one POS. Empty matches any."
+msgstr "Limitar a un solo POS. Vacío coincide con cualquiera."
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Load Sample Data"
+msgstr "Cargar datos de muestra"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__name
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__normal
+msgid "Normal"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__note
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Kitchen Board"
+msgstr "Abrir panel de cocina"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Open Status Screen"
+msgstr "Abrir pantalla de estado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_route_rule__attribute_value_id
+msgid "Optional attribute match, for example a spicy variant."
+msgstr "Coincidencia de atributo opcional, por ejemplo una variante picante."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid ""
+"Optional. When an order is ready, POST a small JSON payload to this URL. "
+"Bring your own SMS, push or messaging provider behind it."
+msgstr ""
+"Opcional. Cuando un pedido esté listo, envíe mediante POST una pequeña carga"
+" útil JSON a este URL. Conecte detrás su propio proveedor de SMS, push o "
+"mensajería."
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Order %s is ready"
+msgstr "El pedido %s está listo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__placed
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__placed
+msgid "Placed"
+msgstr "Realizado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos del TPV"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__pos_config_ids
+msgid "Points of Sale"
+msgstr "Puntos de venta"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__pos_config_id
+msgid "Pos Config"
+msgstr "Configuración del TPV"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__pos_order_id
+msgid "Pos Order"
+msgstr "Pedido de TPV"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_id
+msgid "Pos Order Line"
+msgstr "Línea de pedido de TPV"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Pos Order Line Uuid"
+msgstr "UUID de la línea de pedido de TPV"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__priority
+msgid "Priority"
+msgstr "Prioridad"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__category_ids
+msgid "Product Categories"
+msgstr "Categorías de producto"
+
+#. module: eh_pos_kds_core
+#: model:ir.model,name:eh_pos_kds_core.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__cancelled
+msgid "Quantity voided. Never deleted, kept for audit."
+msgstr "Cantidad anulada. Nunca se elimina, se conserva para auditoría."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_webhook_url
+msgid "Ready webhook URL"
+msgstr "URL de webhook listo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__reason
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__recalled
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__recalled
+msgid "Recalled"
+msgstr "Retirado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__auto_clear
+msgid "Remove ready tickets from the order status screen after the interval."
+msgstr ""
+"Eliminar los tickets listos de la pantalla de estado del pedido tras el "
+"intervalo."
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Routing"
+msgstr "Enrutamiento"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__route_rule_ids
+msgid "Routing Rules"
+msgstr "Reglas de enrutamiento"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__rush
+msgid "Rush"
+msgstr "Urgente"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sla_minutes
+msgid "SLA target (minutes)"
+msgstr "Objetivo de SLA (minutos)"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid "SMS customer when ready"
+msgstr "Enviar SMS al cliente cuando esté listo"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_on_ready
+msgid ""
+"Send a short email to the order customer when the order is ready, if the "
+"customer has an email address."
+msgstr ""
+"Envía un correo electrónico breve al cliente del pedido cuando el pedido "
+"esté listo, si el cliente tiene una dirección de correo electrónico."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_board__notify_sms_on_ready
+msgid ""
+"Send an SMS to the order customer when ready, if the customer has a mobile "
+"number and the Odoo SMS app is installed. Uses your own SMS credits or "
+"gateway."
+msgstr ""
+"Envía un SMS al cliente del pedido cuando esté listo, si el cliente tiene un"
+" número de móvil y la aplicación SMS de Odoo está instalada. Usa tus propios"
+" créditos de SMS o tu pasarela."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_board__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_lane__sequence
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "Serves"
+msgstr "Porciones"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__none
+msgid "Silent"
+msgstr "Silencioso"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__single
+msgid "Single column"
+msgstr "Columna única"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket_item__pos_order_line_uuid
+msgid "Stable key used to match re adds without duplicating."
+msgstr ""
+"Clave estable utilizada para hacer coincidir las readiciones sin duplicar."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__started
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__started
+msgid "Started"
+msgstr "Iniciado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_route_rule__target_lane_id
+msgid "Target Lane"
+msgstr "Carril de destino"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_board.py:0
+msgid "The auto clear interval must be a positive number of minutes."
+msgstr ""
+"El intervalo de borrado automático debe ser un número positivo de minutos."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_card__ticket_id
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_ticket_item__ticket_id
+msgid "Ticket"
+msgstr "Entrada"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,field_description:eh_pos_kds_core.field_eh_kds_bump_event__to_lane_id
+msgid "To Lane"
+msgstr "A la vía"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields,help:eh_pos_kds_core.field_eh_kds_ticket__ticket_ref
+msgid "Tracking number or order name shown to staff and customers."
+msgstr ""
+"Número de seguimiento o nombre del pedido que se muestra al personal y a los"
+" clientes."
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__dual
+msgid "Two columns"
+msgstr "Dos columnas"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_lane__alert_sound__urgent
+msgid "Urgent"
+msgstr "Urgente"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_ticket__priority__vip
+msgid "VIP"
+msgstr ""
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_bump_event__kind__voided
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_card__status__voided
+msgid "Voided"
+msgstr "Anulado"
+
+#. module: eh_pos_kds_core
+#: model:ir.model.fields.selection,name:eh_pos_kds_core.selection__eh_kds_board__layout_mode__tv
+msgid "Wall display"
+msgstr "Pantalla de pared"
+
+#. module: eh_pos_kds_core
+#. odoo-python
+#: code:addons/eh_pos_kds_core/models/eh_kds_ticket.py:0
+msgid "Your order %s is ready for collection."
+msgstr "Su pedido %s está listo para su recogida."
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "e.g. Grill Station"
+msgstr "p. ej. Estación de parrilla"
+
+#. module: eh_pos_kds_core
+#: model_terms:ir.ui.view,arch_db:eh_pos_kds_core.view_eh_kds_board_form
+msgid "https://..."
+msgstr ""

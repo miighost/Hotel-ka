@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_eh_kds_board_user,eh.kds.board.user,model_eh_kds_board,base.group_user,1,0,0,0
+access_eh_kds_board_manager,eh.kds.board.manager,model_eh_kds_board,point_of_sale.group_pos_manager,1,1,1,1
+access_eh_kds_lane_user,eh.kds.lane.user,model_eh_kds_lane,base.group_user,1,0,0,0
+access_eh_kds_lane_manager,eh.kds.lane.manager,model_eh_kds_lane,point_of_sale.group_pos_manager,1,1,1,1
+access_eh_kds_ticket_user,eh.kds.ticket.user,model_eh_kds_ticket,base.group_user,1,1,1,0
+access_eh_kds_ticket_manager,eh.kds.ticket.manager,model_eh_kds_ticket,point_of_sale.group_pos_manager,1,1,1,1
+access_eh_kds_ticket_item_user,eh.kds.ticket.item.user,model_eh_kds_ticket_item,base.group_user,1,1,1,0
+access_eh_kds_ticket_item_manager,eh.kds.ticket.item.manager,model_eh_kds_ticket_item,point_of_sale.group_pos_manager,1,1,1,1
+access_eh_kds_card_user,eh.kds.card.user,model_eh_kds_card,base.group_user,1,1,1,0
+access_eh_kds_card_manager,eh.kds.card.manager,model_eh_kds_card,point_of_sale.group_pos_manager,1,1,1,1
+access_eh_kds_bump_event_user,eh.kds.bump.event.user,model_eh_kds_bump_event,base.group_user,1,1,1,0
+access_eh_kds_bump_event_manager,eh.kds.bump.event.manager,model_eh_kds_bump_event,point_of_sale.group_pos_manager,1,1,1,1
+access_eh_kds_route_rule_user,eh.kds.route.rule.user,model_eh_kds_route_rule,base.group_user,1,0,0,0
+access_eh_kds_route_rule_manager,eh.kds.route.rule.manager,model_eh_kds_route_rule,point_of_sale.group_pos_manager,1,1,1,1

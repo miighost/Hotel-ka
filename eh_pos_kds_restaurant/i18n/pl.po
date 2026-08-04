@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* eh_pos_kds_restaurant
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-01 04:34+0000\n"
+"PO-Revision-Date: 2026-07-01 04:34+0000\n"
+"Last-Translator: MiiG <info@erpheritage.com.au>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket_item__eh_course_id
+msgid "Course"
+msgstr "Kurs"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket_item__eh_course_index
+msgid "Course index"
+msgstr "Nr dania"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_card__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket_item__display_name
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_pos_order__display_name
+msgid "Display Name"
+msgstr "Nazwa wyświetlana"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model,name:eh_pos_kds_restaurant.model_eh_kds_card
+msgid "MiiG KDS Card"
+msgstr "Karta KDS MiiG"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model,name:eh_pos_kds_restaurant.model_eh_kds_ticket
+msgid "MiiG KDS Ticket"
+msgstr "Zgłoszenie KDS MiiG"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model,name:eh_pos_kds_restaurant.model_eh_kds_ticket_item
+msgid "MiiG KDS Ticket Item"
+msgstr "Pozycja zgłoszenia KDS MiiG"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_card__id
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket__id
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket_item__id
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_pos_order__id
+msgid "ID"
+msgstr ""
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model,name:eh_pos_kds_restaurant.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Zamówienia Punktu Sprzedaży"
+
+#. module: eh_pos_kds_restaurant
+#: model:ir.model.fields,field_description:eh_pos_kds_restaurant.field_eh_kds_ticket__eh_table_id
+msgid "Table"
+msgstr "Stół"

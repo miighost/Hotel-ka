@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="board_index" name="MiiG Kitchen Board">
+        &lt;!DOCTYPE html&gt;
+        <html>
+            <head>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+                <meta http-equiv="content-type" content="text/html, charset=utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+                <meta name="apple-mobile-web-app-capable" content="yes"/>
+                <meta name="mobile-web-app-capable" content="yes"/>
+                <title>Kitchen Display</title>
+                <script type="text/javascript">
+                    var odoo = <t t-out="odoo_json"/>;
+                </script>
+                <t t-call-assets="eh_pos_kds.board_assets"/>
+            </head>
+            <body class="o_eh_kds_page">
+                <div t-attf-class="o_eh_kds_brand o_eh_kds_brand--{{ brand_pos }}" t-att-data-brand-owner="brand['owner']" t-att-data-eh-boot="boot">
+                    <img class="o_eh_kds_brand_logo" t-att-src="brand['logo']" alt="MiiG"/>
+                    <span class="o_eh_kds_brand_name" t-esc="brand['company']"/>
+                </div>
+                <div class="o_eh_kds_root"/>
+            </body>
+        </html>
+    </template>
+</odoo>
