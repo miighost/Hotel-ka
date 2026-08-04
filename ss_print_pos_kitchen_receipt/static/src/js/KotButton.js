@@ -174,7 +174,13 @@ async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
         }
     }
 
-    // 3. Return to FloorScreen / Tables map (/pos/ui/<config_id>/floor)
+    // 3. Reset active table & Return to FloorScreen / Tables map (/pos/ui/<config_id>/floor)
+    if (typeof pos.set_table === "function") {
+        try { pos.set_table(null); } catch (_e) {}
+    } else if (typeof pos.setTable === "function") {
+        try { pos.setTable(null); } catch (_e) {}
+    }
+
     let navigated = false;
     if (pos.router && typeof pos.router.navigate === "function") {
         try {
@@ -191,14 +197,21 @@ async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
     if (!navigated && pos.showScreen) {
         try {
             pos.showScreen("floor");
+            navigated = true;
         } catch (_e) {}
     }
-    if (typeof pos.set_table === "function") {
+
+    // Direct browser URL path fallback to ensure URL transitions to /pos/ui/<config_id>/floor
+    if (window.location.pathname && window.location.pathname.includes("/product/")) {
         try {
-            pos.set_table(null);
+            const newPath = window.location.pathname.replace(/\/product\/[^\?#]*/, "/floor");
+            if (newPath !== window.location.pathname) {
+                window.location.pathname = newPath;
+            }
         } catch (_e) {}
     }
 }
+
 
 
 async function doForceBrowserPrintDialog(posStore, currentOrder) {
