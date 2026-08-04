@@ -19,6 +19,8 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
+from openpyxl.worksheet import related
+
 from odoo import api, fields, models, tools
 from odoo.exceptions import ValidationError
 
@@ -44,36 +46,26 @@ class RoomBookingLine(models.Model):
                                     help="You can choose the date,"
                                          " Otherwise sets to current Date",
                                     required=True)
-    room_id = fields.Many2one('hotel.room', string="Room",
+    room_id = fields.Many2one('product.template', string="Room",
+                              domain=[('status', '=', 'available')],
                               help="Indicates the Room",
-                              required=True, ondelete='cascade')
+                              required=True)
     uom_qty = fields.Float(string="Duration",
                            help="The quantity converted into the UoM used by "
-                                "the product")
+                                "the product", readonly=True)
     uom_id = fields.Many2one('uom.uom',
                              default=_set_default_uom_id,
                              string="Unit of Measure",
                              help="This will set the unit of measure used",
                              readonly=True)
-    price_unit = fields.Float(string='Rent',
-                              digits='Product Price',
+    price_unit = fields.Float(string='Rent', digits='Product Price',
+                              compute='_compute_price_unit', store=True,
+                              readonly=False, precompute=True,
                               help="The rent price of the selected room.")
-
-    @api.onchange('room_id')
-    def _onchange_room_id(self):
-        if self.room_id and not self.price_unit:
-            self.price_unit = self.room_id.list_price
-        if self.booking_id:
-            if self.booking_id.checkin_date:
-                self.checkin_date = self.booking_id.checkin_date
-            if self.booking_id.checkout_date:
-                self.checkout_date = self.booking_id.checkout_date
-            if self.checkin_date and self.checkout_date:
-                self._onchange_checkin_date()
     tax_ids = fields.Many2many('account.tax',
                                'hotel_room_order_line_taxes_rel',
                                'room_id', 'tax_id',
-                               related='room_id.taxes_ids',
+                               related='room_id.taxes_id',
                                string='Taxes',
                                help="Default taxes used when selling the room."
                                , domain=[('type_tax_use', '=', 'sale')])
@@ -100,6 +92,21 @@ class RoomBookingLine(models.Model):
                                           string="Booking Line Visible",
                                           help="If True, then Booking Line "
                                                "will be visible")
+
+    @api.depends('room_id', 'booking_id.pricelist_id', 'uom_qty')
+    def _compute_price_unit(self):
+        """Compute the rent using the booking's pricelist, falling back to
+        the room's list price when there is no pricelist."""
+        for line in self:
+            if not line.room_id or not line.room_id.exists():
+                line.price_unit = 0
+                continue
+            pricelist = line.booking_id.pricelist_id
+            if pricelist:
+                line.price_unit = pricelist._get_product_price(
+                    line.room_id, line.uom_qty or 1.0)
+            else:
+                line.price_unit = line.room_id.list_price
 
     @api.onchange("checkin_date", "checkout_date")
     def _onchange_checkin_date(self):
@@ -133,37 +140,6 @@ class RoomBookingLine(models.Model):
                 line.tax_ids.invalidate_recordset(
                     ['invoice_repartition_line_ids'])
 
-    def _auto_init(self):
-        res = super()._auto_init()
-        self.env.cr.execute("""
-            ALTER TABLE room_booking_line DROP CONSTRAINT IF EXISTS room_booking_line_room_id_fkey;
-            ALTER TABLE room_booking_line ADD CONSTRAINT room_booking_line_room_id_fkey 
-                FOREIGN KEY (room_id) REFERENCES hotel_room(id) ON DELETE CASCADE;
-        """)
-        return res
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if 'booking_id' in vals and vals['booking_id']:
-                booking = self.env['room.booking'].browse(vals['booking_id'])
-                if 'checkin_date' not in vals or not vals['checkin_date']:
-                    vals['checkin_date'] = booking.checkin_date
-                if 'checkout_date' not in vals or not vals['checkout_date']:
-                    vals['checkout_date'] = booking.checkout_date
-            if 'room_id' in vals and ('price_unit' not in vals or not vals['price_unit']):
-                room = self.env['hotel.room'].browse(vals['room_id'])
-                vals['price_unit'] = room.list_price
-        lines = super().create(vals_list)
-        for line in lines:
-            if line.checkin_date and line.checkout_date:
-                diffdate = line.checkout_date - line.checkin_date
-                qty = diffdate.days
-                if diffdate.total_seconds() > 0:
-                    qty += 1
-                line.uom_qty = qty
-        return lines
-
     def _prepare_base_line_for_taxes_computation(self):
         """ Convert the current record to a dictionary in order to use the generic taxes computation method
         defined on account.tax.
@@ -175,33 +151,9 @@ class RoomBookingLine(models.Model):
             self,
             **{
                 'tax_ids': self.tax_ids,
-                'price_unit': self.price_unit,
                 'quantity': self.uom_qty,
                 'partner_id': self.booking_id.partner_id,
                 'currency_id': self.currency_id or self.env.company.currency_id,
             },
         )
-
-    @api.constrains('room_id', 'checkin_date', 'checkout_date', 'state')
-    def _check_room_booking_overlap(self):
-        """Prevent double booking the same room for overlapping date ranges."""
-        for line in self:
-            if not line.room_id or not line.checkin_date or not line.checkout_date:
-                continue
-            if line.booking_id and line.booking_id.state in ['cancel']:
-                continue
-            domain = [
-                ('id', '!=', line.id),
-                ('room_id', '=', line.room_id.id),
-                ('booking_id.state', 'in', ['reserved', 'check_in']),
-                ('checkin_date', '<', line.checkout_date),
-                ('checkout_date', '>', line.checkin_date),
-            ]
-            overlapping = self.search(domain, limit=1)
-            if overlapping:
-                raise ValidationError(
-                    f"Room '{line.room_id.name}' is already booked for the date range "
-                    f"{overlapping.checkin_date.strftime('%d/%m/%Y')} to {overlapping.checkout_date.strftime('%d/%m/%Y')} "
-                    f"(Booking Ref: {overlapping.booking_id.name}). Please select a different room or date range."
-                )
 

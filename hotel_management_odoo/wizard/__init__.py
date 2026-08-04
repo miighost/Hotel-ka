@@ -22,5 +22,5 @@
 from . import room_booking_detail
 from . import sale_order_detail
 from . import compute_bill
-from . import statement_account_wizard
-from . import change_room_type_wizard
+from . import restro_report_detail
+

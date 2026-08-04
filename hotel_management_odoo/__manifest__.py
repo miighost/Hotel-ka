@@ -21,7 +21,7 @@
 #############################################################################
 {
     'name': 'Hotel Management',
-    'version': '19.0.1.0.1',
+    'version': '19.0.1.0.3',
     'category': 'Industries',
     'summary': """A complete Hotel Management System that cover all areas of 
      Hotel services""" ,
@@ -40,10 +40,10 @@
         'data/ir_data_sequence.xml',
         'views/account_move_views.xml',
         'views/hotel_menu_views.xml',
+        'views/product_template.xml',
         'views/hotel_amenity_views.xml',
         'views/hotel_service_views.xml',
         'views/hotel_floor_views.xml',
-        'views/hotel_room_views.xml',
         'views/lunch_product_views.xml',
         'views/fleet_vehicle_model_views.xml',
         'views/room_booking_views.xml',
@@ -55,18 +55,13 @@
         'views/dashboard_view.xml',
         'wizard/room_booking_detail_views.xml',
         'wizard/sale_order_detail_views.xml',
+        'wizard/restro_report_detail_views.xml',
         'wizard/compute_bill_views.xml',
-        'wizard/statement_account_wizard_views.xml',
-        'wizard/change_room_type_wizard_views.xml',
+        'views/reporting_views.xml',
         'report/room_booking_reports.xml',
         'report/sale_order_reports.xml',
+        'report/restro_reports.xml',
         'report/combined_bill_report.xml',
-        'report/in_house_guest_report.xml',
-        'report/room_status_report.xml',
-        'report/room_details_report.xml',
-        'report/statement_account_report.xml',
-        'report/reservation_acknowledgement_report.xml',
-        'views/reporting_views.xml',
     ],
     'assets': {
         'web.assets_backend': [

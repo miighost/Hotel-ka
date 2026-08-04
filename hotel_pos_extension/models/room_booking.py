@@ -28,7 +28,6 @@ class RoomBooking(models.Model):
     pos_order_line_ids = fields.One2many('hotel.pos.line', 'booking_id', string='POS Orders')
     amount_total_pos = fields.Monetary(string="Total POS Amount", compute='_compute_amount_total_pos', store=False)
 
-
     @api.depends('pos_order_line_ids')
     def _compute_has_pos_orders(self):
         """Compute if booking has linked POS orders."""

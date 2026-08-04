@@ -1,0 +1,68 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<odoo>
+    <!--    In-House Guest report action-->
+    <record id="action_report_restro_report" model="ir.actions.report">
+        <field name="name">In-House Guest Report</field>
+        <field name="model">room.booking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hotel_management_odoo.report_restro_report</field>
+        <field name="report_file">hotel_management_odoo.report_restro_report</field>
+        <field name="binding_model_id" ref="model_room_booking"/>
+        <field name="binding_type">report</field>
+    </record>
+    <!--    In-House Guest report template-->
+    <template id="report_restro_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2 class="text-center" style="font-weight: bold; margin-bottom: 20px;">In-House Guest Report</h2>
+                    <br/>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr style="background-color: #f2f2f2; text-align: center;">
+                                <th>SN</th>
+                                <th>Guest Name</th>
+                                <th>Company</th>
+                                <th>Room No</th>
+                                <th>Board Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="i" t-value="0"/>
+                            <t t-if="docs">
+                                <t t-foreach="docs" t-as="doc">
+                                    <t t-set="i" t-value="i+1"/>
+                                    <t t-set="board_dict" t-value="{'ro': 'Room Only (RO)', 'bb': 'Bed &amp; Breakfast (BB)', 'hb': 'Half Board (HB)', 'fb': 'Full Board (FB)'}"/>
+                                    <t t-set="state_dict" t-value="{'draft': 'Draft', 'reserved': 'Reserved', 'check_in': 'Check In', 'check_out': 'Check Out', 'cancel': 'Cancelled', 'done': 'Done'}"/>
+                                    <t t-set="p_comp" t-value="doc.partner_id.parent_id.name or doc.partner_id.company_name if doc.partner_id else False"/>
+                                    <tr>
+                                        <td class="text-center"><t t-esc="i"/></td>
+                                        <td><t t-esc="doc.partner_id.name if doc.partner_id else ''"/></td>
+                                        <td><t t-esc="p_comp or 'None'"/></td>
+                                        <td class="text-center"><t t-esc="doc.room_number or ''"/></td>
+                                        <td class="text-center"><t t-esc="board_dict.get(doc.board_type, doc.board_type or 'Room Only (RO)')"/></td>
+                                        <td class="text-center"><t t-esc="state_dict.get(doc.state, doc.state or 'Check In')"/></td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <t t-elif="booking">
+                                <t t-foreach="booking" t-as="line">
+                                    <t t-set="i" t-value="i+1"/>
+                                    <tr>
+                                        <td class="text-center"><t t-esc="i"/></td>
+                                        <td><t t-esc="line['guest_name']"/></td>
+                                        <td><t t-esc="line['company_name']"/></td>
+                                        <td class="text-center"><t t-esc="line['room']"/></td>
+                                        <td class="text-center"><t t-esc="line['board_type']"/></td>
+                                        <td class="text-center"><t t-esc="line['state']"/></td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
