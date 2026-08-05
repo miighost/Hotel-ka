@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Render primary Order button on ActionPad next to Payment when new changes exist -->
+    <t t-name="ss_print_pos_kitchen_receipt.ActionpadWidget" t-inherit="point_of_sale.ActionpadWidget" t-inherit-mode="extension">
+        <xpath expr="//div[1]" position="inside">
+            <t t-if="this.hasChangesToOrder">
+                <button class="button btn btn-primary btn-lg w-100 py-3 mt-1 order-kitchen-button"
+                        style="background-color: #28a745 !important; border-color: #28a745 !important; color: #ffffff !important; font-weight: bold; font-size: 18px; cursor: pointer; min-height: 52px; display: flex; align-items: center; justify-content: center;"
+                        t-on-click="() => (this.onClickOrderButton ? this.onClickOrderButton() : (this.pos &amp;&amp; this.pos.sendOrderAndReturnToTables &amp;&amp; this.pos.sendOrderAndReturnToTables()))">
+                    <i class="fa fa-paper-plane me-2"/> Order
+                    <t t-if="this.changeSummary">
+                        <span class="ms-2 badge bg-dark text-white" style="font-size: 13px; font-weight: normal; padding: 4px 8px; border-radius: 4px;">
+                            <t t-esc="this.changeSummary"/>
+                        </span>
+                    </t>
+                </button>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
+
+
+
+
+
+
+
+
+
+

@@ -40,6 +40,8 @@
             "itp_pos_qr_scan/static/src/js/Screens/ProductScreen/ControlButtons/QRButton.js",
             "itp_pos_qr_scan/static/src/xml/Popups/QRScanPopup.xml",
             "itp_pos_qr_scan/static/src/xml/Screens/ProductScreen/ControlButtons/QRButton.xml",
+            "itp_pos_qr_scan/static/src/xml/control_buttons_inherit.xml",
+
 
         ],
         "point_of_sale.assets": [
@@ -66,6 +68,8 @@
             "itp_pos_qr_scan/static/src/js/Screens/ProductScreen/ControlButtons/QRButton.js",
             "itp_pos_qr_scan/static/src/xml/Popups/QRScanPopup.xml",
             "itp_pos_qr_scan/static/src/xml/Screens/ProductScreen/ControlButtons/QRButton.xml",
+            "itp_pos_qr_scan/static/src/xml/control_buttons_inherit.xml",
+
 
         ],
         "point_of_sale.assets_pos": [
@@ -92,6 +96,8 @@
             "itp_pos_qr_scan/static/src/js/Screens/ProductScreen/ControlButtons/QRButton.js",
             "itp_pos_qr_scan/static/src/xml/Popups/QRScanPopup.xml",
             "itp_pos_qr_scan/static/src/xml/Screens/ProductScreen/ControlButtons/QRButton.xml",
+            "itp_pos_qr_scan/static/src/xml/control_buttons_inherit.xml",
+
 
         ],
         "point_of_sale._assets_pos": [
@@ -118,6 +124,8 @@
             "itp_pos_qr_scan/static/src/js/Screens/ProductScreen/ControlButtons/QRButton.js",
             "itp_pos_qr_scan/static/src/xml/Popups/QRScanPopup.xml",
             "itp_pos_qr_scan/static/src/xml/Screens/ProductScreen/ControlButtons/QRButton.xml",
+            "itp_pos_qr_scan/static/src/xml/control_buttons_inherit.xml",
+
 
         ],
     },
