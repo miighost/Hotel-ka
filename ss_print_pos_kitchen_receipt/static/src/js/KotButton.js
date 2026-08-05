@@ -174,23 +174,9 @@ async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
         }
     }
 
-    // 3. Reset active table & Return to FloorScreen / Tables map (/pos/ui/<config_id>/floor)
-    if (typeof pos.set_table === "function") {
-        try { pos.set_table(null); } catch (_e) {}
-    } else if (typeof pos.setTable === "function") {
-        try { pos.setTable(null); } catch (_e) {}
-    }
-
-    if (pos.router && typeof pos.router.navigate === "function") {
-        try {
-            pos.router.navigate("floor");
-        } catch (_e) {}
-    } else if (pos.showScreen) {
-        try {
-            pos.showScreen("FloorScreen");
-        } catch (_e) {}
-    }
+    // 3. Stay on current order screen. Order button will auto-hide since lines are marked as printed.
 }
+
 
 
 

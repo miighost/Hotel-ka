@@ -16,9 +16,19 @@ export async function openQRScanPopup(pos, env) {
         }
     }
 
-    const popupService = (env && env.services && env.services.popup) || (pos && pos.env && pos.env.services && pos.env.services.popup);
-    if (popupComp && popupService) {
-        await popupService.add(popupComp, {});
+    if (!popupComp) return;
+
+    const popupService = (env && env.services && env.services.popup) || (pos && pos.popup) || (pos && pos.env && pos.env.services && pos.env.services.popup);
+    const dialogService = (env && env.services && env.services.dialog) || (pos && pos.env && pos.env.services && pos.env.services.dialog);
+
+    if (popupService && typeof popupService.add === "function") {
+        try { await popupService.add(popupComp, {}); return; } catch (_e) {}
+    }
+    if (dialogService && typeof dialogService.add === "function") {
+        try { await dialogService.add(popupComp, {}); return; } catch (_e) {}
+    }
+    if (pos && typeof pos.showPopup === "function") {
+        try { await pos.showPopup("QRScanPopup"); return; } catch (_e) {}
     }
 }
 
