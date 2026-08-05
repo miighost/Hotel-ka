@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
+    <!-- Inherit ControlButtons container to render standard POS QR Scan button -->
     <t t-name="itp_pos_qr_scan.ControlButtonsInherit" t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension">
         <xpath expr="//div[hasclass('control-buttons')]" position="inside">
-            <QRButton />
-        </xpath>
-    </t>
-    <t t-name="itp_pos_qr_scan.ProductScreenInherit" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension">
-        <xpath expr="//div[hasclass('control-buttons')]" position="inside">
-            <QRButton />
+            <button class="control-button btn btn-light rounded-0 fw-bold border-end d-flex align-items-center justify-content-center py-2 px-3 me-1"
+                    style="font-size: 15px; font-weight: bold; cursor: pointer;"
+                    t-on-click="() => (this.onClickQRScan ? this.onClickQRScan() : (this.pos &amp;&amp; this.pos.openQRScanPopup &amp;&amp; this.pos.openQRScanPopup()))">
+                <i class="fa fa-qrcode me-1 text-primary"/> QR Scan
+            </button>
         </xpath>
     </t>
 </templates>
