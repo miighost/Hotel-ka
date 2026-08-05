@@ -8,8 +8,22 @@ export class QRScanPopup extends Component {
 
     setup() {
         super.setup();
-        this.popup = useService("popup");
-        this.pos = useService("pos");
+        try {
+            this.popup = useService("popup");
+        } catch (_e) {
+            try {
+                this.popup = useService("dialog");
+            } catch (_e2) {
+                this.popup = null;
+            }
+        }
+
+        try {
+            this.pos = useService("pos");
+        } catch (_e) {
+            this.pos = (this.env && this.env.services && this.env.services.pos) || null;
+        }
+
 
         this.state = useState({
             loading: true,
