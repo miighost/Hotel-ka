@@ -23,7 +23,7 @@ export class QRScanPopup extends Component {
         this.canvas = useRef("canvas");
         this.fileInput = useRef("fileInput");
 
-        this.captureTimeout = 700;
+        this.captureTimeout = 500;
         this.stream = null;
         this.gCtx = null;
 
@@ -47,7 +47,9 @@ export class QRScanPopup extends Component {
     stopCamera() {
         this.state.active_camera = false;
         if (this.stream) {
-            this.stream.getTracks().forEach((track) => track.stop());
+            try {
+                this.stream.getTracks().forEach((track) => track.stop());
+            } catch (_e) {}
             this.stream = null;
         }
     }
@@ -103,7 +105,7 @@ export class QRScanPopup extends Component {
         if (!this.isBrowserSupported) {
             this.state.loading = false;
             this.state.permissionState = "error";
-            this.state.permissionError = "Camera API is not supported by your browser or requires an HTTPS connection.";
+            this.state.permissionError = "Camera API is not supported by your browser or requires an HTTPS / localhost connection.";
             return;
         }
 
@@ -111,8 +113,9 @@ export class QRScanPopup extends Component {
         this.state.permissionError = "";
 
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
-            stream.getTracks().forEach((track) => track.stop());
+            // First prompt browser for camera permission
+            const tempStream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
+            tempStream.getTracks().forEach((track) => track.stop());
 
             this.state.permissionState = "granted";
             const devices = await navigator.mediaDevices.enumerateDevices();
@@ -136,9 +139,7 @@ export class QRScanPopup extends Component {
             }
 
             this.state.loading = false;
-            if (deviceId) {
-                this.startWebCam(deviceId, facingMode);
-            }
+            await this.startWebCam(deviceId, facingMode);
         } catch (error) {
             console.error("Camera permission error:", error);
             this.state.loading = false;
@@ -148,13 +149,14 @@ export class QRScanPopup extends Component {
             } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
                 this.state.permissionError = "No camera device was found on this system. You can upload a QR image file below.";
             } else {
-                this.state.permissionError = error.message || "Could not access camera device. You can upload a QR image file below.";
+                // Try starting webcam directly as fallback
+                await this.startWebCam(false, false);
             }
         }
     }
 
     async onClickCameraButton(deviceId) {
-        this.startWebCam(deviceId);
+        await this.startWebCam(deviceId, false);
         if (this.pos && this.pos.db) {
             this.pos.db.save("active_camera_id", deviceId);
         }
@@ -175,38 +177,58 @@ export class QRScanPopup extends Component {
         }
     }
 
-    startWebCam(deviceId, facingMode) {
-        const options = { deviceId: { exact: deviceId } };
-        if (facingMode) {
-            options.facingMode = facingMode;
-        }
+    async startWebCam(deviceId, facingMode) {
+        this.stopCamera();
         this.state.loading = false;
-        this.state.active_camera = deviceId;
         this.initCanvas(800, 600);
 
         if (typeof window.qrcode !== "undefined") {
             window.qrcode.callback = (value) => this.read(value);
         }
 
-        navigator.mediaDevices
-            .getUserMedia({ video: options, audio: false })
-            .then((stream) => {
-                this.stream = stream;
-                this.success(stream);
-            })
-            .catch((error) => {
-                console.error("Camera start error:", error);
-                this.state.permissionState = "error";
-                this.state.permissionError = error.message || "Failed to start camera feed.";
-            });
+        let stream = null;
+        let lastError = null;
 
-        setTimeout(() => this.captureToCanvas(), this.captureTimeout);
+        const constraintsList = [];
+        if (deviceId) {
+            constraintsList.push({ video: { deviceId: { ideal: deviceId } }, audio: false });
+        }
+        if (facingMode) {
+            constraintsList.push({ video: { facingMode: facingMode }, audio: false });
+        }
+        constraintsList.push({ video: { facingMode: "environment" }, audio: false });
+        constraintsList.push({ video: true, audio: false }); // Universal fallback for PC, tablet & mobile integrated cameras
+
+        for (const constraint of constraintsList) {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia(constraint);
+                if (stream) break;
+            } catch (err) {
+                lastError = err;
+            }
+        }
+
+        if (stream) {
+            this.stream = stream;
+            this.state.permissionState = "granted";
+            this.state.active_camera = deviceId || true;
+            this.success(stream);
+            setTimeout(() => this.captureToCanvas(), this.captureTimeout);
+        } else {
+            console.error("Camera start error:", lastError);
+            this.state.permissionState = "error";
+            this.state.permissionError = (lastError && lastError.message)
+                ? lastError.message
+                : "Could not start camera feed. Please allow camera access in your browser location bar or upload a QR image.";
+        }
     }
 
     success(stream) {
         if (this.videoElement && this.videoElement.el) {
             this.videoElement.el.srcObject = stream;
-            this.videoElement.el.play();
+            try {
+                this.videoElement.el.play();
+            } catch (_e) {}
         }
     }
 
@@ -215,13 +237,13 @@ export class QRScanPopup extends Component {
 
         try {
             if (this.gCtx && this.videoElement && this.videoElement.el) {
-                this.gCtx.drawImage(this.videoElement.el, 0, 0);
+                this.gCtx.drawImage(this.videoElement.el, 0, 0, 800, 600);
                 if (typeof window.qrcode !== "undefined") {
                     window.qrcode.decode();
                 }
             }
         } catch (e) {
-            console.log(e);
+            // ignore frame decode error
         }
         if (this.state.active_camera) {
             setTimeout(() => this.captureToCanvas(), this.captureTimeout);
@@ -240,6 +262,3 @@ export class QRScanPopup extends Component {
         this.gCtx = gCtx;
     }
 }
-
-
-
