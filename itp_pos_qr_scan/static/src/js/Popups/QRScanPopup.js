@@ -24,7 +24,6 @@ export class QRScanPopup extends Component {
             this.pos = (this.env && this.env.services && this.env.services.pos) || null;
         }
 
-
         this.state = useState({
             loading: true,
             active_camera: null,
@@ -37,9 +36,10 @@ export class QRScanPopup extends Component {
         this.canvas = useRef("canvas");
         this.fileInput = useRef("fileInput");
 
-        this.captureTimeout = 500;
+        this.captureTimeout = 250; // Fast scan interval for responsive detection
         this.stream = null;
         this.gCtx = null;
+        this.isScanning = false;
 
         onMounted(() => {
             this.requestCameraPermission();
@@ -60,6 +60,7 @@ export class QRScanPopup extends Component {
 
     stopCamera() {
         this.state.active_camera = false;
+        this.isScanning = false;
         if (this.stream) {
             try {
                 this.stream.getTracks().forEach((track) => track.stop());
@@ -90,22 +91,28 @@ export class QRScanPopup extends Component {
         const reader = new FileReader();
         reader.onload = (e) => {
             const img = new Image();
-            img.onload = () => {
+            img.onload = async () => {
                 this.initCanvas(800, 600);
                 if (this.gCtx) {
                     this.gCtx.drawImage(img, 0, 0, 800, 600);
+                    // Try native BarcodeDetector first
+                    if ("BarcodeDetector" in window) {
+                        try {
+                            const detector = new window.BarcodeDetector();
+                            const barcodes = await detector.detect(img);
+                            if (barcodes && barcodes.length > 0 && barcodes[0].rawValue) {
+                                await this.read(barcodes[0].rawValue);
+                                return;
+                            }
+                        } catch (_err) {}
+                    }
+                    // Fallback to jsqrcode
                     if (typeof window.qrcode !== "undefined") {
                         try {
                             window.qrcode.callback = (value) => this.read(value);
                             window.qrcode.decode();
                         } catch (err) {
                             console.error(err);
-                            if (this.popup) {
-                                this.popup.add("ErrorPopup", {
-                                    title: "QR Decode Error",
-                                    body: "Could not decode QR code from the uploaded image. Please ensure the QR code is clearly visible.",
-                                });
-                            }
                         }
                     }
                 }
@@ -127,7 +134,6 @@ export class QRScanPopup extends Component {
         this.state.permissionError = "";
 
         try {
-            // First prompt browser for camera permission
             const tempStream = await navigator.mediaDevices.getUserMedia({ audio: false, video: true });
             tempStream.getTracks().forEach((track) => track.stop());
 
@@ -163,7 +169,6 @@ export class QRScanPopup extends Component {
             } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
                 this.state.permissionError = "No camera device was found on this system. You can upload a QR image file below.";
             } else {
-                // Try starting webcam directly as fallback
                 await this.startWebCam(false, false);
             }
         }
@@ -176,14 +181,35 @@ export class QRScanPopup extends Component {
         }
     }
 
-    read(result) {
-        if (this.pos && this.pos.debug) {
-            console.log("QR scanned", result);
-        }
-        if (this.env && this.env.bus) {
-            this.env.bus.trigger("qr_scanned", result);
-        }
+    async read(result) {
+        if (!result) return;
         this.stopCamera();
+
+        const pos = this.pos || window.posmodel || (this.env && this.env.services && this.env.services.pos);
+        if (pos && typeof pos.handle_scanned_barcode === "function") {
+            await pos.handle_scanned_barcode(result);
+        } else if (pos) {
+            const order = typeof pos.get_order === "function" ? pos.get_order() : null;
+            if (order && pos.db) {
+                let partner = pos.db.get_partner_by_barcode ? pos.db.get_partner_by_barcode(result) : null;
+                if (!partner && pos.db.get_partners_list) {
+                    const partners = pos.db.get_partners_list() || [];
+                    partner = partners.find((p) => (p.barcode && p.barcode === result) || (p.ref && p.ref === result));
+                }
+                if (partner) {
+                    if (typeof order.set_partner === "function") order.set_partner(partner);
+                    else if (typeof order.setPartner === "function") order.setPartner(partner);
+                    else order.partner = partner;
+                }
+            }
+        }
+
+        if (this.env && this.env.bus) {
+            try {
+                this.env.bus.trigger("qr_scanned", result);
+            } catch (_e) {}
+        }
+
         if (this.props && typeof this.props.confirm === "function") {
             this.props.confirm({ confirmed: true, payload: result });
         } else if (this.props && typeof this.props.close === "function") {
@@ -211,7 +237,7 @@ export class QRScanPopup extends Component {
             constraintsList.push({ video: { facingMode: facingMode }, audio: false });
         }
         constraintsList.push({ video: { facingMode: "environment" }, audio: false });
-        constraintsList.push({ video: true, audio: false }); // Universal fallback for PC, tablet & mobile integrated cameras
+        constraintsList.push({ video: true, audio: false });
 
         for (const constraint of constraintsList) {
             try {
@@ -226,6 +252,7 @@ export class QRScanPopup extends Component {
             this.stream = stream;
             this.state.permissionState = "granted";
             this.state.active_camera = deviceId || true;
+            this.isScanning = true;
             this.success(stream);
             setTimeout(() => this.captureToCanvas(), this.captureTimeout);
         } else {
@@ -246,20 +273,38 @@ export class QRScanPopup extends Component {
         }
     }
 
-    captureToCanvas() {
-        if (!this.state.active_camera) return;
+    async captureToCanvas() {
+        if (!this.state.active_camera || !this.isScanning) return;
 
         try {
-            if (this.gCtx && this.videoElement && this.videoElement.el) {
-                this.gCtx.drawImage(this.videoElement.el, 0, 0, 800, 600);
-                if (typeof window.qrcode !== "undefined") {
-                    window.qrcode.decode();
+            const videoEl = this.videoElement && this.videoElement.el;
+            if (videoEl && videoEl.readyState === videoEl.HAVE_ENOUGH_DATA) {
+                // 1. Hardware accelerated BarcodeDetector API (Supports EAN-13, Code 128, Code 39, UPC, QR)
+                if ("BarcodeDetector" in window) {
+                    try {
+                        const formats = ["qr_code", "ean_13", "ean_8", "code_128", "code_39", "upc_a", "upc_e", "data_matrix"];
+                        const detector = new window.BarcodeDetector({ formats });
+                        const barcodes = await detector.detect(videoEl);
+                        if (barcodes && barcodes.length > 0 && barcodes[0].rawValue) {
+                            await this.read(barcodes[0].rawValue);
+                            return;
+                        }
+                    } catch (_err) {}
+                }
+
+                // 2. Legacy Canvas + jsqrcode fallback
+                if (this.gCtx) {
+                    this.gCtx.drawImage(videoEl, 0, 0, 800, 600);
+                    if (typeof window.qrcode !== "undefined") {
+                        window.qrcode.decode();
+                    }
                 }
             }
         } catch (e) {
             // ignore frame decode error
         }
-        if (this.state.active_camera) {
+
+        if (this.state.active_camera && this.isScanning) {
             setTimeout(() => this.captureToCanvas(), this.captureTimeout);
         }
     }
@@ -271,8 +316,10 @@ export class QRScanPopup extends Component {
         gCanvas.style.height = h + "px";
         gCanvas.width = w;
         gCanvas.height = h;
-        const gCtx = gCanvas.getContext("2d");
-        gCtx.clearRect(0, 0, w, h);
-        this.gCtx = gCtx;
+        const gCtx = gCanvas.getContext("2d", { willReadFrequently: true });
+        if (gCtx) {
+            gCtx.clearRect(0, 0, w, h);
+            this.gCtx = gCtx;
+        }
     }
 }
