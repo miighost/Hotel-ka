@@ -23,7 +23,7 @@ async function sendToLanPrinter(ip, ticketData) {
     if (!ip) return false;
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const timeoutId = setTimeout(() => controller.abort(), 1500);
         const response = await fetch(`http://${ip}:8008/cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000`, {
             method: "POST",
             headers: { "Content-Type": "text/xml; charset=utf-8" },
@@ -66,40 +66,15 @@ async function doPrintKitchenReceipt(posStore, currentOrder) {
 
     if (categoriesToPrint.length === 0) return;
 
-    let directSuccess = false;
-
-    // 1. Silent direct LAN ePOS printing to 192.168.13.40 (Kitchen) & 192.168.13.50 (Bar)
+    // 1. Non-blocking background LAN print to 192.168.13.40 (Kitchen) & 192.168.13.50 (Bar)
     for (const item of categoriesToPrint) {
         if (item.ip) {
-            const lanOk = await sendToLanPrinter(item.ip, item);
-            if (lanOk) directSuccess = true;
+            sendToLanPrinter(item.ip, item).catch(() => {});
         }
     }
 
-    if (!directSuccess && pos.hardware_proxy && pos.hardware_proxy.printer) {
-        for (const item of categoriesToPrint) {
-            item.data.category_title = item.title;
-            try {
-                const res = await pos.hardware_proxy.printer.print_receipt(
-                    KitchenReceiptComponent,
-                    { data: item.data }
-                );
-                if (res && res.result) directSuccess = true;
-            } catch (_e) {}
-        }
-    }
-
-    if (!directSuccess && pos.sendOrderInPreparation) {
-        try {
-            const res = await pos.sendOrderInPreparation(order);
-            if (res !== false && (!res || res.successful !== false)) {
-                directSuccess = true;
-            }
-        } catch (_e) {}
-    }
-
-    // 2. Automatic Fallback: If direct LAN printing is offline, open browser print dialog so waiters can manually print
-    if (!directSuccess && pos.printer && typeof pos.printer.print === "function") {
+    // 2. Direct web/hardware printer dialog
+    if (pos.printer && typeof pos.printer.print === "function") {
         try {
             await pos.printer.print(
                 KitchenReceiptComponent,
@@ -107,9 +82,22 @@ async function doPrintKitchenReceipt(posStore, currentOrder) {
                 { webPrintFallback: true }
             );
         } catch (_e) {}
+    } else if (pos.hardware_proxy && pos.hardware_proxy.printer) {
+        try {
+            await pos.hardware_proxy.printer.print_receipt(
+                KitchenReceiptComponent,
+                { data: categoriesToPrint[0].data }
+            );
+        } catch (_e) {}
     }
 
-    // Mark lines as printed
+    if (pos.sendOrderInPreparation) {
+        try {
+            await pos.sendOrderInPreparation(order);
+        } catch (_e) {}
+    }
+
+    // 3. Mark lines as printed so Order button hides immediately
     for (const line of lines) {
         const qtyNum = line.get_quantity ? line.get_quantity() : (line.quantity || line.qty || 1);
         line.printed_qty = qtyNum;
