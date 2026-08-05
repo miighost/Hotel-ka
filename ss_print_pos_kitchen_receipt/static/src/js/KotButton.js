@@ -181,36 +181,17 @@ async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
         try { pos.setTable(null); } catch (_e) {}
     }
 
-    let navigated = false;
     if (pos.router && typeof pos.router.navigate === "function") {
         try {
             pos.router.navigate("floor");
-            navigated = true;
         } catch (_e) {}
-    }
-    if (!navigated && pos.showScreen) {
+    } else if (pos.showScreen) {
         try {
             pos.showScreen("FloorScreen");
-            navigated = true;
-        } catch (_e) {}
-    }
-    if (!navigated && pos.showScreen) {
-        try {
-            pos.showScreen("floor");
-            navigated = true;
-        } catch (_e) {}
-    }
-
-    // Direct browser URL path fallback to ensure URL transitions to /pos/ui/<config_id>/floor
-    if (window.location.pathname && window.location.pathname.includes("/product/")) {
-        try {
-            const newPath = window.location.pathname.replace(/\/product\/[^\?#]*/, "/floor");
-            if (newPath !== window.location.pathname) {
-                window.location.pathname = newPath;
-            }
         } catch (_e) {}
     }
 }
+
 
 
 

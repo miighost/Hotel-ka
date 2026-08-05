@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="itp_pos_qr_scan.QRButton">
+        <div class="control-button" t-on-click="onClick">
+            <i class="fa fa-qrcode" />
+            <span>QR Scan</span>
+        </div>
+    </t>
+</templates>
+

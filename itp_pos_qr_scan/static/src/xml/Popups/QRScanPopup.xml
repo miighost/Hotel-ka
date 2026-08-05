@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="itp_pos_qr_scan.QRScanPopup">
+        <div class="modal-dialog">
+            <div class="popup popup-qr_scan">
+                <div id="preview-container">
+                    <video
+                        t-ref="preview"
+                        class="video_preview"
+                        autoplay="true"
+                        t-on-click="onClickCancel"
+                    />
+                    <t t-if="state.permissionState === 'denied' or state.permissionState === 'error'">
+                        <div class="permission-error-overlay p-4 text-center text-white" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10;">
+                            <i class="fa fa-camera-retro fa-3x mb-3 text-warning"/>
+                            <h5>Camera Access Required</h5>
+                            <p class="small mb-3" t-esc="state.permissionError || 'Please allow camera access in your browser or upload a QR image file.'" />
+                            <div class="d-flex gap-2">
+                                <button class="button btn-primary btn-sm" t-on-click="requestCameraPermission">
+                                    <i class="fa fa-refresh me-1"/> Enable / Retry Camera
+                                </button>
+                                <button class="button btn-secondary btn-sm" t-on-click="onTriggerFileInput">
+                                    <i class="fa fa-upload me-1"/> Upload Image
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+                <div class="transparent_sidebar">
+                    <div class="title">
+                        <p>QR Scanning</p>
+                    </div>
+                    <div class="body">
+                        <div class="upload-section mb-3">
+                            <input
+                                t-ref="fileInput"
+                                type="file"
+                                accept="image/*"
+                                style="display: none;"
+                                t-on-change="onFileSelected"
+                            />
+                            <div
+                                class="button qr-content btn-upload"
+                                t-on-click="onTriggerFileInput"
+                            >
+                                <i class="fa fa-upload me-1" />
+                                <span>Upload QR Image</span>
+                            </div>
+                        </div>
+                        <p>
+                            Cameras:
+                            <span t-if="state.loading">Loading...</span>
+                        </p>
+                        <p />
+                        <t t-if="!state.loading">
+                            <t t-foreach="state.videoDevices" t-as="device" t-key="device.deviceId">
+                                <div
+                                    class="button qr-content"
+                                    t-esc="device.label || ('Camera (' + device.deviceId.substring(0, 6) + '...)')"
+                                    t-on-click="() => this.onClickCameraButton(device.deviceId)"
+                                />
+                            </t>
+                        </t>
+                    </div>
+                </div>
+                <div class="note">
+                    <p>Tap video to close | Or click Upload QR Image</p>
+                </div>
+            </div>
+            <canvas
+                t-ref="canvas"
+                id="qr-canvas"
+                width="800"
+                height="600"
+                style="width: 800px; height: 600px; display: none;"
+            />
+        </div>
+    </t>
+</templates>
+
+
