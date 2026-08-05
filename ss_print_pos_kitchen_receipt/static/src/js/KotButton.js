@@ -7,98 +7,98 @@ import { ControlButtons } from "@point_of_sale/app/screens/product_screen/contro
 import { KitchenReceiptComponent } from "./KitchenReceiptComponent";
 import { exportForKitchenPrinting } from "./utils";
 
+const LAN_PRINTER_IPS = {
+    KITCHEN: "192.168.13.40",
+    BAR: "192.168.13.50",
+};
+
 function getOrderLines(order) {
-    if (!order) {
-        return [];
+    if (!order) return [];
+    if (typeof order.get_orderlines === "function") return order.get_orderlines() || [];
+    if (typeof order.get_order_lines === "function") return order.get_order_lines() || [];
+    return order.orderlines || [];
+}
+
+async function sendToLanPrinter(ip, ticketData) {
+    if (!ip) return false;
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const response = await fetch(`http://${ip}:8008/cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000`, {
+            method: "POST",
+            headers: { "Content-Type": "text/xml; charset=utf-8" },
+            body: `<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print"><text align="center">${ticketData.title || "KOT"}&#10;</text></epos-print>`,
+            signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+        return response.ok;
+    } catch (_e) {
+        return false;
     }
-    if (typeof order.get_orderlines === "function") {
-        return order.get_orderlines() || [];
-    }
-    if (typeof order.get_order_lines === "function") {
-        return order.get_order_lines() || [];
-    }
-    if (Array.isArray(order.orderlines)) {
-        return order.orderlines;
-    }
-    if (Array.isArray(order.lines)) {
-        return order.lines;
-    }
-    return [];
 }
 
 async function doPrintKitchenReceipt(posStore, currentOrder) {
     const pos = posStore;
-    if (!pos) {
-        return;
-    }
+    if (!pos) return;
     const order = currentOrder || (pos.get_order ? pos.get_order() : false);
-    if (!order) {
-        return;
-    }
-    const lines = getOrderLines(order);
-    if (lines.length === 0 && !order.was_kot_printed) {
-        return;
-    }
+    if (!order) return;
 
+    const lines = getOrderLines(order);
+    if (lines.length === 0 && !order.was_kot_printed) return;
 
     const categoriesToPrint = [];
     const foodData = exportForKitchenPrinting(pos, order, "Food");
     if (foodData && (foodData.has_new_items || !order.was_kot_printed) && foodData.orderlines.length > 0) {
-        categoriesToPrint.push({ title: "KITCHEN", data: foodData });
+        categoriesToPrint.push({ title: "KITCHEN", data: foodData, ip: LAN_PRINTER_IPS.KITCHEN });
     }
 
     const drinksData = exportForKitchenPrinting(pos, order, "Drinks");
     if (drinksData && (drinksData.has_new_items || !order.was_kot_printed) && drinksData.orderlines.length > 0) {
-        categoriesToPrint.push({ title: "BAR", data: drinksData });
+        categoriesToPrint.push({ title: "BAR", data: drinksData, ip: LAN_PRINTER_IPS.BAR });
     }
 
     if (categoriesToPrint.length === 0) {
         const fullData = exportForKitchenPrinting(pos, order);
         if (fullData && (fullData.has_new_items || !order.was_kot_printed) && fullData.orderlines.length > 0) {
-            categoriesToPrint.push({ title: "KITCHEN", data: fullData });
+            categoriesToPrint.push({ title: "KITCHEN", data: fullData, ip: LAN_PRINTER_IPS.KITCHEN });
         }
     }
 
-
-    const hasDirectPrinters = Boolean(
-        (pos.config && (pos.config.is_order_printer || pos.config.module_pos_restaurant)) ||
-        (pos.printers && pos.printers.length > 0) ||
-        (pos.unregistered_printers && pos.unregistered_printers.length > 0) ||
-        (pos.hardware_proxy && pos.hardware_proxy.printer)
-    );
+    if (categoriesToPrint.length === 0) return;
 
     let directSuccess = false;
 
-    if (hasDirectPrinters) {
-        // 1. Silent direct LAN ePOS printing to Jiko & Bar1
-        if (pos.hardware_proxy && pos.hardware_proxy.printer) {
-            for (const item of categoriesToPrint) {
-                item.data.category_title = item.title;
-                try {
-                    const res = await pos.hardware_proxy.printer.print_receipt(
-                        KitchenReceiptComponent,
-                        { data: item.data }
-                    );
-                    if (res && res.result) {
-                        directSuccess = true;
-                    }
-                } catch (_e) {}
-            }
-        }
-        if (pos.sendOrderInPreparation) {
-            try {
-                const res = await pos.sendOrderInPreparation(order);
-                if (res !== false && (!res || res.successful !== false)) {
-                    directSuccess = true;
-                }
-            } catch (_e) {
-                directSuccess = false;
-            }
+    // 1. Silent direct LAN ePOS printing to 192.168.13.40 (Kitchen) & 192.168.13.50 (Bar)
+    for (const item of categoriesToPrint) {
+        if (item.ip) {
+            const lanOk = await sendToLanPrinter(item.ip, item);
+            if (lanOk) directSuccess = true;
         }
     }
 
+    if (!directSuccess && pos.hardware_proxy && pos.hardware_proxy.printer) {
+        for (const item of categoriesToPrint) {
+            item.data.category_title = item.title;
+            try {
+                const res = await pos.hardware_proxy.printer.print_receipt(
+                    KitchenReceiptComponent,
+                    { data: item.data }
+                );
+                if (res && res.result) directSuccess = true;
+            } catch (_e) {}
+        }
+    }
 
-    // 2. Automatic Manual Fallback: If LAN printers fail or are offline, open browser print dialog
+    if (!directSuccess && pos.sendOrderInPreparation) {
+        try {
+            const res = await pos.sendOrderInPreparation(order);
+            if (res !== false && (!res || res.successful !== false)) {
+                directSuccess = true;
+            }
+        } catch (_e) {}
+    }
+
+    // 2. Automatic Fallback: If direct LAN printing is offline, open browser print dialog so waiters can manually print
     if (!directSuccess && pos.printer && typeof pos.printer.print === "function") {
         try {
             await pos.printer.print(
@@ -109,77 +109,29 @@ async function doPrintKitchenReceipt(posStore, currentOrder) {
         } catch (_e) {}
     }
 
-
-    if (categoriesToPrint.length > 0) {
-        for (const line of lines) {
-            const qtyNum = line.get_quantity ? line.get_quantity() : (line.quantity || line.qty || 1);
-            line.printed_qty = qtyNum;
-            line.saved_printed_qty = qtyNum;
-            line.was_printed = true;
-        }
-        order.was_kot_printed = true;
+    // Mark lines as printed
+    for (const line of lines) {
+        const qtyNum = line.get_quantity ? line.get_quantity() : (line.quantity || line.qty || 1);
+        line.printed_qty = qtyNum;
+        line.saved_printed_qty = qtyNum;
+        line.was_printed = true;
     }
+    order.was_kot_printed = true;
 }
-
-
 
 async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
     const pos = posStore;
-    if (!pos) {
-        return;
-    }
+    if (!pos) return;
     const order = currentOrder || (pos.get_order ? pos.get_order() : false);
-    if (!order) {
-        return;
-    }
-    const lines = getOrderLines(order);
-    if (lines.length === 0 && !order.was_kot_printed) {
-        // Empty order: Navigate back to floor screen directly
-        if (pos.router && typeof pos.router.navigate === "function") {
-            try { pos.router.navigate("floor"); return; } catch (_e) {}
-        }
-        if (pos.showScreen) {
-            try { pos.showScreen("FloorScreen"); return; } catch (_e) {}
-        }
-        return;
-    }
+    if (!order) return;
 
-
-
-    // 1. Auto print separate KOT tickets for Food vs Drinks (no duplicates)
+    // 1. Print / Send KOT
     try {
         await doPrintKitchenReceipt(pos, order);
-    } catch (_e) {
-        // ignore
-    }
+    } catch (_e) {}
 
-    // 2. Send/sync to preparation printers & KDS backend
-    if (typeof pos.sendOrderInPreparation === "function") {
-        try {
-            await pos.sendOrderInPreparation(order);
-        } catch (_e) {
-            // ignore
-        }
-    } else if (typeof pos.push_single_order === "function") {
-        try {
-            await pos.push_single_order(order);
-        } catch (_e) {
-            // ignore
-        }
-    } else if (typeof pos.sync_orders === "function") {
-        try {
-            await pos.sync_orders();
-        } catch (_e) {
-            // ignore
-        }
-    }
-
-    // 3. Stay on current order screen. Order button will auto-hide since lines are marked as printed.
+    // 2. Stay on current order screen. Green Order button automatically hides as lines are marked as printed.
 }
-
-
-
-
 
 async function doForceBrowserPrintDialog(posStore, currentOrder) {
     const pos = posStore;
@@ -218,7 +170,6 @@ async function doForceBrowserPrintDialog(posStore, currentOrder) {
     }
 }
 
-
 const commonMethods = {
     async printKitchenReceipt() {
         const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
@@ -256,7 +207,6 @@ patch(ProductScreen.prototype, {
     ...commonMethods,
 });
 
-
 if (ActionpadWidget && ActionpadWidget.prototype) {
     patch(ActionpadWidget.prototype, {
         get hasOrderItems() {
@@ -267,7 +217,6 @@ if (ActionpadWidget && ActionpadWidget.prototype) {
         },
 
         get hasChangesToOrder() {
-
             const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
             if (!order) return false;
             const food = exportForKitchenPrinting(this.pos, order, "Food");
@@ -309,9 +258,3 @@ if (ActionpadWidget && ActionpadWidget.prototype) {
 if (ControlButtons && ControlButtons.prototype) {
     patch(ControlButtons.prototype, commonMethods);
 }
-
-
-
-
-
-
