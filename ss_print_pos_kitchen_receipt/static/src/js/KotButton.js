@@ -115,7 +115,6 @@ async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
     const order = currentOrder || (pos.get_order ? pos.get_order() : false);
     if (!order) return;
 
-    // 1. Print / Send KOT
     try {
         await doPrintKitchenReceipt(pos, order);
     } catch (_e) {}
