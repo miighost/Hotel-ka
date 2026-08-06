@@ -118,11 +118,18 @@
                             t-on-click="() => this.toggleMetrics()">
                         Metrics
                     </button>
+                    <button class="o_eh_kds_btn"
+                            t-att-class="{ 'is-active': state.autoPrint }"
+                            t-on-click="() => this.toggleAutoPrint()"
+                            title="Toggle automatic printing when new tickets arrive in stage 1">
+                        🖨️ Auto-Print: <t t-if="state.autoPrint">ON</t><t t-else="">OFF</t>
+                    </button>
                     <span class="o_eh_kds_live"
                           t-att-class="{ 'is-live': state.connected and !state.offline, 'is-offline': state.offline }">
                         <t t-if="state.offline">OFFLINE</t>
                         <t t-else="">LIVE</t>
                     </span>
+
                 </div>
             </header>
 

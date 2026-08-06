@@ -24,12 +24,14 @@ export class KdsBoard extends Component {
         this.mode = boot ? (boot.mode || "board") : "board";
         const savedStatusView = this.token ? (localStorage.getItem("eh_kds_status_view_" + this.token) || "both") : "both";
         const savedLaneFilter = this.token ? (localStorage.getItem("eh_kds_lane_filter_" + this.token) || "all") : "all";
+        const savedAutoPrint = this.token ? (localStorage.getItem("eh_kds_auto_print_" + this.token) !== "false") : true;
         this.bus = useService("bus_service");
         this.offline = new OfflineStore(this.token);
         this.state = useState({
             mode: this.mode,
             statusView: savedStatusView,
             selectedLaneFilter: savedLaneFilter,
+            autoPrint: savedAutoPrint,
             printTickets: [],
             board: { name: boot ? boot.name : "Kitchen", lanes: [] },
             configMissing: !boot,
@@ -45,6 +47,7 @@ export class KdsBoard extends Component {
             showMetrics: false,
             stats: null,
         });
+
         this.tick = useState({ now: this._clientNow() });
         this.serverOffset = 0;
         this.alerted = new Set();
@@ -143,6 +146,8 @@ export class KdsBoard extends Component {
     onCardEvent(payload) {
         const cards = this.state.cards;
         const idx = cards.findIndex((c) => c.id === payload.id);
+        const isNewArrival = idx < 0 && payload.lane_index === 0;
+
         if (idx >= 0 && cards[idx].event_id > payload.event_id) {
             return; // stale echo, a newer event already applied
         }
@@ -157,7 +162,13 @@ export class KdsBoard extends Component {
         } else {
             cards.push(payload);
         }
+
+        // Auto-print ticket when arriving in 1st Stage ("New") if Auto-Print toggle is ON
+        if (isNewArrival && this.state.autoPrint) {
+            this.printCard(payload, false);
+        }
     }
+
 
     // -- ops (optimistic, offline aware) -------------------------------------
 
@@ -267,15 +278,45 @@ export class KdsBoard extends Component {
         return "ALL ORDERS";
     }
 
+    toggleAutoPrint() {
+        this.state.autoPrint = !this.state.autoPrint;
+        if (this.token) {
+            localStorage.setItem("eh_kds_auto_print_" + this.token, this.state.autoPrint);
+        }
+    }
+
+    async sendKdsLanPrint(card) {
+        if (!card) return;
+        const ips = ["192.168.13.40", "192.168.13.50", "192.168.13.60"];
+        for (const ip of ips) {
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 1200);
+                fetch(`http://${ip}:8008/cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000`, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/xml; charset=utf-8" },
+                    body: `<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print"><text align="center">KDS KOT ${card.ticket_ref || ""}&#10;</text></epos-print>`,
+                    signal: controller.signal,
+                }).catch(() => {});
+                clearTimeout(timeoutId);
+            } catch (_e) {}
+        }
+    }
+
     printCard(card, bumpAfter = false) {
+        if (!card) return;
+        this.sendKdsLanPrint(card);
         this.state.printTickets = [card];
         setTimeout(() => {
-            window.print();
+            try {
+                window.print();
+            } catch (_e) {}
             if (bumpAfter) {
                 this.bump(card);
             }
         }, 100);
     }
+
 
     isFirstLane(laneId) {
         const lanes = this.state.board.lanes || [];
