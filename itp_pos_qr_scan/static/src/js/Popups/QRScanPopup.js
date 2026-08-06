@@ -5,6 +5,16 @@ import { useService } from "@web/core/utils/hooks";
 
 export class QRScanPopup extends Component {
     static template = "itp_pos_qr_scan.QRScanPopup";
+    static props = {
+        close: { type: Function, optional: true },
+        confirm: { type: Function, optional: true },
+        cancel: { type: Function, optional: true },
+        getPayload: { type: Function, optional: true },
+        resolve: { type: Function, optional: true },
+        reject: { type: Function, optional: true },
+        "*": true,
+    };
+
 
     setup() {
         super.setup();

@@ -3,27 +3,18 @@
 import { patch } from "@web/core/utils/patch";
 import { ProductScreen } from "@point_of_sale/app/screens/product_screen/product_screen";
 import { ControlButtons } from "@point_of_sale/app/screens/product_screen/control_buttons/control_buttons";
+import { QRScanPopup } from "../../Popups/QRScanPopup";
 
 export async function openQRScanPopup(pos, env) {
-    let popupComp = null;
-    if (window.odoo && window.odoo.loader && window.odoo.loader.modules) {
-        for (const [name, mod] of window.odoo.loader.modules) {
-            if (name.includes("QRScanPopup") && mod && mod.QRScanPopup) {
-                popupComp = mod.QRScanPopup;
-                break;
-            }
-        }
-    }
-
     const popupService = (env && env.services && env.services.popup) || (pos && pos.popup) || (pos && pos.env && pos.env.services && pos.env.services.popup);
     const dialogService = (env && env.services && env.services.dialog) || (pos && pos.env && pos.env.services && pos.env.services.dialog);
 
-    if (popupComp) {
+    if (QRScanPopup) {
         if (popupService && typeof popupService.add === "function") {
-            try { await popupService.add(popupComp, {}); return; } catch (_e) {}
+            try { await popupService.add(QRScanPopup, {}); return; } catch (_e) {}
         }
         if (dialogService && typeof dialogService.add === "function") {
-            try { await dialogService.add(popupComp, {}); return; } catch (_e) {}
+            try { await dialogService.add(QRScanPopup, {}); return; } catch (_e) {}
         }
     }
 
