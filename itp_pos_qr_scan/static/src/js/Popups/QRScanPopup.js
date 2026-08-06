@@ -36,7 +36,7 @@ export class QRScanPopup extends Component {
         this.canvas = useRef("canvas");
         this.fileInput = useRef("fileInput");
 
-        this.captureTimeout = 250; // Fast scan interval for responsive detection
+        this.captureTimeout = 200; // Fast 200ms scan interval for instant detection
         this.stream = null;
         this.gCtx = null;
         this.isScanning = false;
@@ -92,13 +92,15 @@ export class QRScanPopup extends Component {
         reader.onload = (e) => {
             const img = new Image();
             img.onload = async () => {
-                this.initCanvas(800, 600);
+                const w = img.width || 800;
+                const h = img.height || 600;
+                this.initCanvas(w, h);
                 if (this.gCtx) {
-                    this.gCtx.drawImage(img, 0, 0, 800, 600);
-                    // Try native BarcodeDetector first
+                    this.gCtx.drawImage(img, 0, 0, w, h);
                     if ("BarcodeDetector" in window) {
                         try {
-                            const detector = new window.BarcodeDetector();
+                            const formats = ["qr_code", "ean_13", "ean_8", "code_128", "code_39", "upc_a", "upc_e", "data_matrix"];
+                            const detector = new window.BarcodeDetector({ formats });
                             const barcodes = await detector.detect(img);
                             if (barcodes && barcodes.length > 0 && barcodes[0].rawValue) {
                                 await this.read(barcodes[0].rawValue);
@@ -106,7 +108,6 @@ export class QRScanPopup extends Component {
                             }
                         } catch (_err) {}
                     }
-                    // Fallback to jsqrcode
                     if (typeof window.qrcode !== "undefined") {
                         try {
                             window.qrcode.callback = (value) => this.read(value);
@@ -185,16 +186,24 @@ export class QRScanPopup extends Component {
         if (!result) return;
         this.stopCamera();
 
+        const cleanCode = String(result).trim();
         const pos = this.pos || window.posmodel || (this.env && this.env.services && this.env.services.pos);
+
         if (pos && typeof pos.handle_scanned_barcode === "function") {
-            await pos.handle_scanned_barcode(result);
+            await pos.handle_scanned_barcode(cleanCode);
         } else if (pos) {
             const order = typeof pos.get_order === "function" ? pos.get_order() : null;
             if (order && pos.db) {
-                let partner = pos.db.get_partner_by_barcode ? pos.db.get_partner_by_barcode(result) : null;
+                let partner = pos.db.get_partner_by_barcode ? pos.db.get_partner_by_barcode(cleanCode) : null;
                 if (!partner && pos.db.get_partners_list) {
                     const partners = pos.db.get_partners_list() || [];
-                    partner = partners.find((p) => (p.barcode && p.barcode === result) || (p.ref && p.ref === result));
+                    partner = partners.find(
+                        (p) =>
+                            (p.barcode && String(p.barcode).trim() === cleanCode) ||
+                            (p.ref && String(p.ref).trim() === cleanCode) ||
+                            (p.phone && String(p.phone).trim() === cleanCode) ||
+                            (p.id && String(p.id) === cleanCode)
+                    );
                 }
                 if (partner) {
                     if (typeof order.set_partner === "function") order.set_partner(partner);
@@ -206,12 +215,12 @@ export class QRScanPopup extends Component {
 
         if (this.env && this.env.bus) {
             try {
-                this.env.bus.trigger("qr_scanned", result);
+                this.env.bus.trigger("qr_scanned", cleanCode);
             } catch (_e) {}
         }
 
         if (this.props && typeof this.props.confirm === "function") {
-            this.props.confirm({ confirmed: true, payload: result });
+            this.props.confirm({ confirmed: true, payload: cleanCode });
         } else if (this.props && typeof this.props.close === "function") {
             this.props.close();
         }
@@ -220,7 +229,6 @@ export class QRScanPopup extends Component {
     async startWebCam(deviceId, facingMode) {
         this.stopCamera();
         this.state.loading = false;
-        this.initCanvas(800, 600);
 
         if (typeof window.qrcode !== "undefined") {
             window.qrcode.callback = (value) => this.read(value);
@@ -279,6 +287,10 @@ export class QRScanPopup extends Component {
         try {
             const videoEl = this.videoElement && this.videoElement.el;
             if (videoEl && videoEl.readyState === videoEl.HAVE_ENOUGH_DATA) {
+                const w = videoEl.videoWidth || 800;
+                const h = videoEl.videoHeight || 600;
+                this.initCanvas(w, h);
+
                 // 1. Hardware accelerated BarcodeDetector API (Supports EAN-13, Code 128, Code 39, UPC, QR)
                 if ("BarcodeDetector" in window) {
                     try {
@@ -292,9 +304,9 @@ export class QRScanPopup extends Component {
                     } catch (_err) {}
                 }
 
-                // 2. Legacy Canvas + jsqrcode fallback
+                // 2. Native un-distorted Canvas + jsqrcode fallback
                 if (this.gCtx) {
-                    this.gCtx.drawImage(videoEl, 0, 0, 800, 600);
+                    this.gCtx.drawImage(videoEl, 0, 0, w, h);
                     if (typeof window.qrcode !== "undefined") {
                         window.qrcode.decode();
                     }
@@ -312,13 +324,14 @@ export class QRScanPopup extends Component {
     initCanvas(w, h) {
         if (!this.canvas || !this.canvas.el) return;
         const gCanvas = this.canvas.el;
-        gCanvas.style.width = w + "px";
-        gCanvas.style.height = h + "px";
-        gCanvas.width = w;
-        gCanvas.height = h;
+        if (gCanvas.width !== w || gCanvas.height !== h) {
+            gCanvas.style.width = w + "px";
+            gCanvas.style.height = h + "px";
+            gCanvas.width = w;
+            gCanvas.height = h;
+        }
         const gCtx = gCanvas.getContext("2d", { willReadFrequently: true });
         if (gCtx) {
-            gCtx.clearRect(0, 0, w, h);
             this.gCtx = gCtx;
         }
     }
