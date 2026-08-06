@@ -15,9 +15,7 @@
         'views/eh_kds_board_views.xml',
         'views/eh_kds_menus.xml',
     ],
-    'assets': {
-        'web.assets_backend': ['eh_pos_kds_core/static/src/scss/eh_kds_variables.scss'],
-    },
+    'assets': {},
     'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': False,
