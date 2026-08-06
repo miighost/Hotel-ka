@@ -36,15 +36,17 @@ export class QRScanPopup extends Component {
         this.state = useState({
             loading: true,
             active_camera: null,
+            active_camera_label: "",
             videoDevices: [],
             permissionState: "pending", // 'pending' | 'granted' | 'denied' | 'error'
             permissionError: "",
+            scannedSuccess: false,
         });
 
         this.videoElement = useRef("preview");
         this.canvas = useRef("canvas");
 
-        this.captureTimeout = 200; // Fast 200ms scan interval for instant detection
+        this.captureTimeout = 80; // Ultra-fast 80ms scan interval (12+ FPS) for instant sub-100ms detection
         this.stream = null;
         this.gCtx = null;
         this.isScanning = false;
@@ -64,6 +66,45 @@ export class QRScanPopup extends Component {
             navigator.mediaDevices.enumerateDevices &&
             navigator.mediaDevices.getUserMedia
         );
+    }
+
+    get activeCameraLabel() {
+        if (!this.state.active_camera_label) return "Camera";
+        const lbl = this.state.active_camera_label.toLowerCase();
+        if (lbl.includes("back") || lbl.includes("rear") || lbl.includes("environment")) return "📷 Back Camera";
+        if (lbl.includes("front") || lbl.includes("user") || lbl.includes("selfie")) return "📷 Front Camera";
+        return `📷 ${this.state.active_camera_label.substring(0, 18)}`;
+    }
+
+    get isBackCamera() {
+        const lbl = (this.state.active_camera_label || "").toLowerCase();
+        return lbl.includes("back") || lbl.includes("rear") || lbl.includes("environment");
+    }
+
+    playBeepSound() {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            const ctx = new AudioCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(850, ctx.currentTime); // 850Hz POS barcode beep tone
+            gain.gain.setValueAtTime(0.35, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.16);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.16);
+        } catch (_e) {}
+    }
+
+    vibrateDevice() {
+        if (navigator.vibrate) {
+            try {
+                navigator.vibrate([150]); // 150ms haptic feedback pulse
+            } catch (_e) {}
+        }
     }
 
     stopCamera() {
@@ -138,7 +179,19 @@ export class QRScanPopup extends Component {
         }
     }
 
+    async toggleCameraFacing() {
+        if (!this.state.videoDevices || this.state.videoDevices.length <= 1) return;
+        const currentIdx = this.state.videoDevices.findIndex(d => d.deviceId === this.state.active_camera);
+        const nextIdx = (currentIdx + 1) % this.state.videoDevices.length;
+        const nextDevice = this.state.videoDevices[nextIdx];
+        if (nextDevice) {
+            await this.onClickCameraButton(nextDevice.deviceId);
+        }
+    }
+
     async onClickCameraButton(deviceId) {
+        const device = this.state.videoDevices.find(d => d.deviceId === deviceId);
+        this.state.active_camera_label = device ? (device.label || "Camera") : "Camera";
         await this.startWebCam(deviceId, false);
         if (this.pos && this.pos.db) {
             this.pos.db.save("active_camera_id", deviceId);
@@ -147,6 +200,12 @@ export class QRScanPopup extends Component {
 
     async read(result) {
         if (!result) return;
+
+        // 1. Audio Beep + Mobile Haptic Vibration + Visual Success Flash
+        this.playBeepSound();
+        this.vibrateDevice();
+        this.state.scannedSuccess = true;
+
         this.stopCamera();
 
         const cleanCode = String(result).trim();
@@ -223,6 +282,15 @@ export class QRScanPopup extends Component {
             this.stream = stream;
             this.state.permissionState = "granted";
             this.state.active_camera = deviceId || true;
+
+            const videoTrack = stream.getVideoTracks()[0];
+            if (videoTrack && videoTrack.label) {
+                this.state.active_camera_label = videoTrack.label;
+            } else if (this.state.videoDevices.length > 0) {
+                const found = this.state.videoDevices.find(d => d.deviceId === deviceId);
+                this.state.active_camera_label = found ? (found.label || "Camera") : "Camera";
+            }
+
             this.isScanning = true;
             this.success(stream);
             setTimeout(() => this.captureToCanvas(), this.captureTimeout);

@@ -11,6 +11,26 @@
                         playsinline="true"
                         t-on-click="onClickCancel"
                     />
+
+                    <!-- Camera Type Badge (Front / Back Camera Indicator) -->
+                    <div class="camera-status-badge">
+                        <span class="badge bg-dark text-white shadow-sm p-2 fs-6 border border-secondary" t-on-click="toggleCameraFacing">
+                            <t t-esc="this.activeCameraLabel"/>
+                            <t t-if="state.videoDevices &amp;&amp; state.videoDevices.length > 1">
+                                <i class="fa fa-sync ms-2 text-warning" title="Tap to switch camera"/>
+                            </t>
+                        </span>
+                    </div>
+
+                    <!-- Centered Target Scanning Reticle Overlay -->
+                    <div t-attf-class="scan-target-reticle #{state.scannedSuccess ? 'scan-success-flash' : ''}">
+                        <div class="target-corner top-left"/>
+                        <div class="target-corner top-right"/>
+                        <div class="target-corner bottom-left"/>
+                        <div class="target-corner bottom-right"/>
+                        <div class="laser-line"/>
+                    </div>
+
                     <t t-if="state.permissionState === 'denied' or state.permissionState === 'error'">
                         <div class="permission-error-overlay">
                             <i class="fa fa-camera fa-3x mb-3 text-warning"/>
@@ -27,24 +47,24 @@
                         </div>
                     </t>
                 </div>
+
                 <div class="transparent_sidebar" t-if="state.videoDevices &amp;&amp; state.videoDevices.length > 1">
                     <div class="title">
-                        <p class="mb-0">Cameras</p>
+                        <p class="mb-0">Switch Camera</p>
                     </div>
-                    <div class="body">
-                        <div class="mt-2">
-                            <t t-foreach="state.videoDevices" t-as="device" t-key="device.deviceId">
-                                <button
-                                    class="btn btn-sm btn-outline-secondary me-1 mb-1"
-                                    t-esc="device.label || ('Camera ' + (device_index + 1))"
-                                    t-on-click="() => this.onClickCameraButton(device.deviceId)"
-                                />
-                            </t>
-                        </div>
+                    <div class="body mt-2">
+                        <t t-foreach="state.videoDevices" t-as="device" t-key="device.deviceId">
+                            <button
+                                t-attf-class="btn btn-sm me-1 mb-1 #{state.active_camera === device.deviceId ? 'btn-primary' : 'btn-outline-secondary'}"
+                                t-esc="device.label || ('Camera ' + (device_index + 1))"
+                                t-on-click="() => this.onClickCameraButton(device.deviceId)"
+                            />
+                        </t>
                     </div>
                 </div>
+
                 <div class="note">
-                    <p class="mb-0">Point camera at barcode or QR code | Tap video to close</p>
+                    <p class="mb-0">Center barcode inside target box | Tap video to close</p>
                 </div>
             </div>
             <canvas
