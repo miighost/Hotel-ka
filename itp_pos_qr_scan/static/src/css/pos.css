@@ -2,7 +2,8 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #000000;
 }
 
 .popup.popup-qr_scan {

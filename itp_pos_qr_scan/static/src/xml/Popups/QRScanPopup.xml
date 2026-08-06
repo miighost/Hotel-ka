@@ -9,6 +9,8 @@
                         class="video_preview"
                         autoplay="true"
                         playsinline="true"
+                        webkit-playsinline="true"
+                        muted="true"
                         t-on-click="onClickCancel"
                     />
 

@@ -261,12 +261,34 @@ export class QRScanPopup extends Component {
 
         const constraintsList = [];
         if (deviceId) {
+            constraintsList.push({
+                video: {
+                    deviceId: { exact: deviceId },
+                    width: { ideal: 1920, min: 640 },
+                    height: { ideal: 1080, min: 480 },
+                },
+                audio: false,
+            });
             constraintsList.push({ video: { deviceId: { ideal: deviceId } }, audio: false });
         }
         if (facingMode) {
-            constraintsList.push({ video: { facingMode: facingMode }, audio: false });
+            constraintsList.push({
+                video: {
+                    facingMode: facingMode,
+                    width: { ideal: 1920, min: 640 },
+                    height: { ideal: 1080, min: 480 },
+                },
+                audio: false,
+            });
         }
-        constraintsList.push({ video: { facingMode: "environment" }, audio: false });
+        constraintsList.push({
+            video: {
+                facingMode: { ideal: "environment" },
+                width: { ideal: 1920, min: 640 },
+                height: { ideal: 1080, min: 480 },
+            },
+            audio: false,
+        });
         constraintsList.push({ video: true, audio: false });
 
         for (const constraint of constraintsList) {
