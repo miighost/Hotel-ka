@@ -7,35 +7,11 @@ import { ControlButtons } from "@point_of_sale/app/screens/product_screen/contro
 import { KitchenReceiptComponent } from "./KitchenReceiptComponent";
 import { exportForKitchenPrinting } from "./utils";
 
-const LAN_PRINTER_IPS = {
-    KITCHEN: "192.168.13.40",
-    BAR1: "192.168.13.50",
-    BAR2: "192.168.13.60",
-};
-
 function getOrderLines(order) {
     if (!order) return [];
     if (typeof order.get_orderlines === "function") return order.get_orderlines() || [];
     if (typeof order.get_order_lines === "function") return order.get_order_lines() || [];
     return order.orderlines || [];
-}
-
-async function sendToLanPrinter(ip, ticketData) {
-    if (!ip) return false;
-    try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 1500);
-        const response = await fetch(`http://${ip}:8008/cgi-bin/epos/service.cgi?devid=local_printer&timeout=60000`, {
-            method: "POST",
-            headers: { "Content-Type": "text/xml; charset=utf-8" },
-            body: `<epos-print xmlns="http://www.epson-pos.com/schemas/2011/03/epos-print"><text align="center">${ticketData.title || "KOT"}&#10;</text></epos-print>`,
-            signal: controller.signal,
-        });
-        clearTimeout(timeoutId);
-        return response.ok;
-    } catch (_e) {
-        return false;
-    }
 }
 
 async function doPrintKitchenReceipt(posStore, currentOrder) {
@@ -50,56 +26,54 @@ async function doPrintKitchenReceipt(posStore, currentOrder) {
     const categoriesToPrint = [];
     const foodData = exportForKitchenPrinting(pos, order, "Food");
     if (foodData && (foodData.has_new_items || !order.was_kot_printed) && foodData.orderlines.length > 0) {
-        categoriesToPrint.push({ title: "KITCHEN", data: foodData, ips: [LAN_PRINTER_IPS.KITCHEN] });
+        categoriesToPrint.push({ title: "KITCHEN", data: foodData });
     }
 
     const drinksData = exportForKitchenPrinting(pos, order, "Drinks");
     if (drinksData && (drinksData.has_new_items || !order.was_kot_printed) && drinksData.orderlines.length > 0) {
-        categoriesToPrint.push({ title: "BAR", data: drinksData, ips: [LAN_PRINTER_IPS.BAR1, LAN_PRINTER_IPS.BAR2] });
+        categoriesToPrint.push({ title: "BAR", data: drinksData });
     }
 
     if (categoriesToPrint.length === 0) {
         const fullData = exportForKitchenPrinting(pos, order);
         if (fullData && (fullData.has_new_items || !order.was_kot_printed) && fullData.orderlines.length > 0) {
-            categoriesToPrint.push({ title: "KITCHEN", data: fullData, ips: [LAN_PRINTER_IPS.KITCHEN] });
+            categoriesToPrint.push({ title: "KITCHEN", data: fullData });
         }
     }
 
     if (categoriesToPrint.length === 0) return;
 
-    // 1. Non-blocking background LAN print to 192.168.13.40 (Kitchen), 192.168.13.50 (Bar1), 192.168.13.60 (Bar2)
-    for (const item of categoriesToPrint) {
-        const ips = item.ips || [];
-        for (const targetIp of ips) {
-            sendToLanPrinter(targetIp, item).catch(() => {});
-        }
-    }
-
-    // 2. Direct web/hardware printer dialog
+    // 1. Primary OS Driver / POS Printer / IoT Driver Dispatch
+    let printed = false;
     if (pos.printer && typeof pos.printer.print === "function") {
         try {
-            await pos.printer.print(
+            const res = await pos.printer.print(
                 KitchenReceiptComponent,
                 { tickets: categoriesToPrint, data: categoriesToPrint[0].data },
                 { webPrintFallback: true }
             );
+            printed = Boolean(res);
         } catch (_e) {}
-    } else if (pos.hardware_proxy && pos.hardware_proxy.printer) {
+    }
+
+    if (!printed && pos.hardware_proxy && pos.hardware_proxy.printer) {
         try {
             await pos.hardware_proxy.printer.print_receipt(
                 KitchenReceiptComponent,
                 { data: categoriesToPrint[0].data }
             );
+            printed = true;
         } catch (_e) {}
     }
 
+    // 2. Notify kitchen order state in POS
     if (pos.sendOrderInPreparation) {
         try {
             await pos.sendOrderInPreparation(order);
         } catch (_e) {}
     }
 
-    // 3. Mark lines as printed so Order button hides immediately
+    // 3. Mark lines as printed so green Order button hides immediately
     for (const line of lines) {
         const qtyNum = line.get_quantity ? line.get_quantity() : (line.quantity || line.qty || 1);
         line.printed_qty = qtyNum;

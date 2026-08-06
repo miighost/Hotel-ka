@@ -597,7 +597,9 @@
         top: 0;
         width: 80mm;
         padding: 0;
-        margin: 0 auto;
+        margin: 0 !important;
+        text-align: left !important;
+        direction: ltr !important;
     }
     .o_eh_kds_kot_receipt {
         page-break-after: always;
@@ -607,6 +609,8 @@
         padding: 8px;
         width: 100%;
         box-sizing: border-box;
+        text-align: left !important;
+        direction: ltr !important;
     }
     .o_eh_kds_kot_header {
         text-align: center;

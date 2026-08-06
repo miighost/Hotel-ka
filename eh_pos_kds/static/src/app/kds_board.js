@@ -318,7 +318,6 @@ export class KdsBoard extends Component {
 
     printCard(card, bumpAfter = false, isAuto = false) {
         if (!card) return;
-        this.sendKdsLanPrint(card);
         this.state.printTickets = [card];
 
         const ref = this.formatRef ? this.formatRef(card.ticket_ref) : { number: card.ticket_ref || "" };
@@ -329,7 +328,7 @@ export class KdsBoard extends Component {
                 window.print();
                 this.showToast(
                     isAuto
-                        ? `Auto-Printed Ticket ${ticketNum} (USB & LAN)`
+                        ? `Auto-Printed Ticket ${ticketNum}`
                         : `Printed Ticket ${ticketNum}`,
                     "success"
                 );
