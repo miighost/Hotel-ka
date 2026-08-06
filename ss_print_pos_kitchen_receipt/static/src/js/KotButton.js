@@ -9,7 +9,8 @@ import { exportForKitchenPrinting } from "./utils";
 
 const LAN_PRINTER_IPS = {
     KITCHEN: "192.168.13.40",
-    BAR: "192.168.13.50",
+    BAR1: "192.168.13.50",
+    BAR2: "192.168.13.60",
 };
 
 function getOrderLines(order) {
@@ -49,27 +50,28 @@ async function doPrintKitchenReceipt(posStore, currentOrder) {
     const categoriesToPrint = [];
     const foodData = exportForKitchenPrinting(pos, order, "Food");
     if (foodData && (foodData.has_new_items || !order.was_kot_printed) && foodData.orderlines.length > 0) {
-        categoriesToPrint.push({ title: "KITCHEN", data: foodData, ip: LAN_PRINTER_IPS.KITCHEN });
+        categoriesToPrint.push({ title: "KITCHEN", data: foodData, ips: [LAN_PRINTER_IPS.KITCHEN] });
     }
 
     const drinksData = exportForKitchenPrinting(pos, order, "Drinks");
     if (drinksData && (drinksData.has_new_items || !order.was_kot_printed) && drinksData.orderlines.length > 0) {
-        categoriesToPrint.push({ title: "BAR", data: drinksData, ip: LAN_PRINTER_IPS.BAR });
+        categoriesToPrint.push({ title: "BAR", data: drinksData, ips: [LAN_PRINTER_IPS.BAR1, LAN_PRINTER_IPS.BAR2] });
     }
 
     if (categoriesToPrint.length === 0) {
         const fullData = exportForKitchenPrinting(pos, order);
         if (fullData && (fullData.has_new_items || !order.was_kot_printed) && fullData.orderlines.length > 0) {
-            categoriesToPrint.push({ title: "KITCHEN", data: fullData, ip: LAN_PRINTER_IPS.KITCHEN });
+            categoriesToPrint.push({ title: "KITCHEN", data: fullData, ips: [LAN_PRINTER_IPS.KITCHEN] });
         }
     }
 
     if (categoriesToPrint.length === 0) return;
 
-    // 1. Non-blocking background LAN print to 192.168.13.40 (Kitchen) & 192.168.13.50 (Bar)
+    // 1. Non-blocking background LAN print to 192.168.13.40 (Kitchen), 192.168.13.50 (Bar1), 192.168.13.60 (Bar2)
     for (const item of categoriesToPrint) {
-        if (item.ip) {
-            sendToLanPrinter(item.ip, item).catch(() => {});
+        const ips = item.ips || [];
+        for (const targetIp of ips) {
+            sendToLanPrinter(targetIp, item).catch(() => {});
         }
     }
 
@@ -117,8 +119,6 @@ async function doSendOrderToKitchenAndReturnToTables(posStore, currentOrder) {
     try {
         await doPrintKitchenReceipt(pos, order);
     } catch (_e) {}
-
-    // 2. Stay on current order screen. Green Order button automatically hides as lines are marked as printed.
 }
 
 async function doForceBrowserPrintDialog(posStore, currentOrder) {
@@ -160,22 +160,28 @@ async function doForceBrowserPrintDialog(posStore, currentOrder) {
 
 const commonMethods = {
     async printKitchenReceipt() {
-        const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+        const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
         await doPrintKitchenReceipt(this.pos, order);
     },
 
     async onClickOrderButton() {
-        const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+        const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
         await doSendOrderToKitchenAndReturnToTables(this.pos, order);
+        if (typeof this.render === "function") {
+            this.render();
+        }
     },
 
     async sendOrderAndReturnToTables() {
-        const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+        const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
         await doSendOrderToKitchenAndReturnToTables(this.pos, order);
+        if (typeof this.render === "function") {
+            this.render();
+        }
     },
 
     async onClickManualKotButton() {
-        const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+        const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
         await doForceBrowserPrintDialog(this.pos, order);
     },
 };
@@ -198,15 +204,18 @@ patch(ProductScreen.prototype, {
 if (ActionpadWidget && ActionpadWidget.prototype) {
     patch(ActionpadWidget.prototype, {
         get hasOrderItems() {
-            const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+            const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
             if (!order) return false;
             const lines = getOrderLines(order);
             return lines && lines.length > 0;
         },
 
         get hasChangesToOrder() {
-            const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+            const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
             if (!order) return false;
+            const lines = getOrderLines(order);
+            if (!lines || lines.length === 0) return false;
+
             const food = exportForKitchenPrinting(this.pos, order, "Food");
             const drinks = exportForKitchenPrinting(this.pos, order, "Drinks");
 
@@ -215,12 +224,11 @@ if (ActionpadWidget && ActionpadWidget.prototype) {
             const newDrinks = (drinks && drinks.new_lines) ? drinks.new_lines.length : 0;
             const cancDrinks = (drinks && drinks.cancelled_lines) ? drinks.cancelled_lines.length : 0;
 
-            const nativeHasChanges = typeof order.hasChangesToPrint === "function" ? order.hasChangesToPrint() : false;
-            return (newFood > 0 || cancFood > 0 || newDrinks > 0 || cancDrinks > 0 || nativeHasChanges);
+            return (newFood > 0 || cancFood > 0 || newDrinks > 0 || cancDrinks > 0);
         },
 
         get changeSummary() {
-            const order = this.currentOrder || (this.pos && this.pos.get_order && this.pos.get_order());
+            const order = this.currentOrder || (this.props && this.props.order) || (this.pos && this.pos.get_order && this.pos.get_order());
             if (!order) return null;
             const food = exportForKitchenPrinting(this.pos, order, "Food");
             const drinks = exportForKitchenPrinting(this.pos, order, "Drinks");

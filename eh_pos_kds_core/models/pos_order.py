@@ -76,17 +76,14 @@ class PosOrder(models.Model):
             if delta > 0:
                 attr_value_ids = line.product_id.product_template_attribute_value_ids.ids if hasattr(line.product_id, "product_template_attribute_value_ids") else []
 
-                # Check if there is an existing item whose cards are ALL still in the initial lane (Queued) and status 'placed'
-                unbumped_item = False
-                for i in items:
-                    if i.card_ids and all(
-                        c.lane_id == c.board_id.lane_ids[:1] and c.status == "placed" for c in i.card_ids
-                    ):
-                        unbumped_item = i
-                        break
+                # Reuse existing active item for this line_uuid if present
+                existing_item = items[0] if items else False
 
-                if unbumped_item:
-                    unbumped_item.quantity += delta
+                if existing_item:
+                    existing_item.quantity += delta
+                    for card in existing_item.card_ids.filtered(lambda c: c.status != "voided"):
+                        card._log("updated", push=False)
+                        touched |= card.board_id
                 else:
                     item = Item.create(
                         dict(
@@ -107,6 +104,7 @@ class PosOrder(models.Model):
                         card = Card.create({"item_id": item.id, "lane_id": lane.id})
                         card._log("placed", to_lane=lane, push=False)
                         touched |= board
+
             elif delta < 0 and items:
                 remaining_to_cancel = -delta
                 for item in items.sorted("id", reverse=True):
