@@ -15,7 +15,6 @@ export class QRScanPopup extends Component {
         "*": true,
     };
 
-
     setup() {
         super.setup();
         try {
@@ -44,7 +43,6 @@ export class QRScanPopup extends Component {
 
         this.videoElement = useRef("preview");
         this.canvas = useRef("canvas");
-        this.fileInput = useRef("fileInput");
 
         this.captureTimeout = 200; // Fast 200ms scan interval for instant detection
         this.stream = null;
@@ -88,56 +86,11 @@ export class QRScanPopup extends Component {
         }
     }
 
-    onTriggerFileInput() {
-        if (this.fileInput && this.fileInput.el) {
-            this.fileInput.el.click();
-        }
-    }
-
-    onFileSelected(event) {
-        const file = event.target.files && event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const img = new Image();
-            img.onload = async () => {
-                const w = img.width || 800;
-                const h = img.height || 600;
-                this.initCanvas(w, h);
-                if (this.gCtx) {
-                    this.gCtx.drawImage(img, 0, 0, w, h);
-                    if ("BarcodeDetector" in window) {
-                        try {
-                            const formats = ["qr_code", "ean_13", "ean_8", "code_128", "code_39", "upc_a", "upc_e", "data_matrix"];
-                            const detector = new window.BarcodeDetector({ formats });
-                            const barcodes = await detector.detect(img);
-                            if (barcodes && barcodes.length > 0 && barcodes[0].rawValue) {
-                                await this.read(barcodes[0].rawValue);
-                                return;
-                            }
-                        } catch (_err) {}
-                    }
-                    if (typeof window.qrcode !== "undefined") {
-                        try {
-                            window.qrcode.callback = (value) => this.read(value);
-                            window.qrcode.decode();
-                        } catch (err) {
-                            console.error(err);
-                        }
-                    }
-                }
-            };
-            img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-
     async requestCameraPermission() {
         if (!this.isBrowserSupported) {
             this.state.loading = false;
             this.state.permissionState = "error";
-            this.state.permissionError = "Camera API is not supported by your browser or requires an HTTPS / localhost connection.";
+            this.state.permissionError = "Camera API is not accessible. Please allow camera permissions in your browser bar or access via HTTPS.";
             return;
         }
 
@@ -176,9 +129,9 @@ export class QRScanPopup extends Component {
             this.state.loading = false;
             this.state.permissionState = "denied";
             if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
-                this.state.permissionError = "Camera permission was denied. Please allow camera access in your browser location bar or upload an image file.";
+                this.state.permissionError = "Camera permission was denied. Please click 'Allow' in your browser location bar.";
             } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
-                this.state.permissionError = "No camera device was found on this system. You can upload a QR image file below.";
+                this.state.permissionError = "No camera device was found on this system.";
             } else {
                 await this.startWebCam(false, false);
             }
@@ -278,7 +231,7 @@ export class QRScanPopup extends Component {
             this.state.permissionState = "error";
             this.state.permissionError = (lastError && lastError.message)
                 ? lastError.message
-                : "Could not start camera feed. Please allow camera access in your browser location bar or upload a QR image.";
+                : "Could not start camera feed. Please allow camera access in your browser location bar.";
         }
     }
 
