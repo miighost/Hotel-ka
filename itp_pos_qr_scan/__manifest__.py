@@ -3,7 +3,7 @@
     "summary": """Scans QR codes via device's camera""",
     "category": "Point of Sale",
     "images": ["images/main.png"],
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "application": False,
     "author": "IT-Projects LLC",
     "support": "apps@it-projects.info",

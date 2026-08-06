@@ -3,7 +3,7 @@
 import { patch } from "@web/core/utils/patch";
 import { ProductScreen } from "@point_of_sale/app/screens/product_screen/product_screen";
 import { ControlButtons } from "@point_of_sale/app/screens/product_screen/control_buttons/control_buttons";
-import { QRScanPopup } from "../../Popups/QRScanPopup";
+import { QRScanPopup } from "../../../Popups/QRScanPopup";
 
 export async function openQRScanPopup(pos, env) {
     const popupService = (env && env.services && env.services.popup) || (pos && pos.popup) || (pos && pos.env && pos.env.services && pos.env.services.popup);
