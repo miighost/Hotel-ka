@@ -249,33 +249,48 @@
             </t>
         </div>
 
+        <!-- Toast Notification Bar -->
+        <div t-if="state.toast and state.toast.show"
+             class="o_eh_kds_toast"
+             t-att-class="'o_eh_kds_toast--' + state.toast.type">
+            <span class="o_eh_kds_toast_icon me-2">🖨️</span>
+            <span class="o_eh_kds_toast_text" t-esc="state.toast.message"/>
+        </div>
+
         <!-- Printable KOT Receipt Container -->
         <div class="o_eh_kds_print_container">
             <t t-foreach="state.printTickets" t-as="pcard" t-key="pcard.id">
                 <div class="o_eh_kds_kot_receipt">
                     <div class="o_eh_kds_kot_header">
-                        <div class="o_eh_kds_kot_title">KITCHEN ORDER TICKET (KOT)</div>
-                        <div class="o_eh_kds_kot_board" t-esc="state.board.name"/>
-                        <div class="o_eh_kds_kot_ref">
-                            <t t-set="kref" t-value="formatRef(pcard.ticket_ref)"/>
-                            <t t-if="kref.table">Table: <t t-esc="kref.table"/> | </t>
-                            Order Ref: <t t-esc="kref.number"/>
+                        <div class="o_eh_kds_kot_divider">========================================</div>
+                        <div class="o_eh_kds_kot_main_title">KITCHEN</div>
+                        <div class="o_eh_kds_kot_board" t-esc="state.board ? state.board.name : ''"/>
+                        <t t-set="kref" t-value="formatRef(pcard.ticket_ref)"/>
+                        <div t-if="kref.table" class="o_eh_kds_kot_table">
+                            T<t t-esc="kref.table"/>
                         </div>
+                        <div class="o_eh_kds_kot_ref_line">
+                            <span>Order: #<t t-esc="kref.number"/></span>
+                        </div>
+                        <div class="o_eh_kds_kot_divider">----------------------------------------</div>
                     </div>
                     <div class="o_eh_kds_kot_body">
-                        <div class="o_eh_kds_kot_item">
+                        <div class="o_eh_kds_kot_item_row">
                             <span class="o_eh_kds_kot_qty" t-esc="pcard.qty + 'x'"/>
                             <span class="o_eh_kds_kot_name" t-esc="pcard.product"/>
                         </div>
                         <div t-if="pcard.note" class="o_eh_kds_kot_note">
-                            Note: <t t-esc="pcard.note"/>
+                            📌 Note: <t t-esc="pcard.note"/>
                         </div>
                     </div>
                     <div class="o_eh_kds_kot_footer">
-                        --- MiiG KDS ---
+                        <div class="o_eh_kds_kot_divider">----------------------------------------</div>
+                        <div class="o_eh_kds_kot_footer_text">*** END OF KOT ***</div>
+                        <div class="o_eh_kds_kot_divider">========================================</div>
                     </div>
                 </div>
             </t>
         </div>
     </t>
 </templates>
+

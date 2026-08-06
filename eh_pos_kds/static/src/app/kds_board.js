@@ -32,6 +32,7 @@ export class KdsBoard extends Component {
             statusView: savedStatusView,
             selectedLaneFilter: savedLaneFilter,
             autoPrint: savedAutoPrint,
+            toast: { message: "", type: "info", show: false },
             printTickets: [],
             board: { name: boot ? boot.name : "Kitchen", lanes: [] },
             configMissing: !boot,
@@ -47,6 +48,7 @@ export class KdsBoard extends Component {
             showMetrics: false,
             stats: null,
         });
+
 
         this.tick = useState({ now: this._clientNow() });
         this.serverOffset = 0;
@@ -165,9 +167,10 @@ export class KdsBoard extends Component {
 
         // Auto-print ticket when arriving in 1st Stage ("New") if Auto-Print toggle is ON
         if (isNewArrival && this.state.autoPrint) {
-            this.printCard(payload, false);
+            this.printCard(payload, false, true);
         }
     }
+
 
 
     // -- ops (optimistic, offline aware) -------------------------------------
@@ -278,8 +281,18 @@ export class KdsBoard extends Component {
         return "ALL ORDERS";
     }
 
+    showToast(message, type = "info") {
+        this.state.toast = { message, type, show: true };
+        if (this.toastTimeout) clearTimeout(this.toastTimeout);
+        this.toastTimeout = setTimeout(() => {
+            this.state.toast = { message: "", type: "info", show: false };
+        }, 4500);
+    }
+
     toggleAutoPrint() {
         this.state.autoPrint = !this.state.autoPrint;
+        const status = this.state.autoPrint ? "ON" : "OFF";
+        this.showToast(`Auto-Print turned ${status}`, this.state.autoPrint ? "success" : "info");
         if (this.token) {
             localStorage.setItem("eh_kds_auto_print_" + this.token, this.state.autoPrint);
         }
@@ -303,19 +316,33 @@ export class KdsBoard extends Component {
         }
     }
 
-    printCard(card, bumpAfter = false) {
+    printCard(card, bumpAfter = false, isAuto = false) {
         if (!card) return;
         this.sendKdsLanPrint(card);
         this.state.printTickets = [card];
+
+        const ref = this.formatRef ? this.formatRef(card.ticket_ref) : { number: card.ticket_ref || "" };
+        const ticketNum = ref ? (ref.table ? `T${ref.table} #${ref.number}` : `#${ref.number}`) : "";
+
         setTimeout(() => {
             try {
                 window.print();
-            } catch (_e) {}
+                this.showToast(
+                    isAuto
+                        ? `Auto-Printed Ticket ${ticketNum} (USB & LAN)`
+                        : `Printed Ticket ${ticketNum}`,
+                    "success"
+                );
+            } catch (err) {
+                console.error("KDS Print error:", err);
+                this.showToast(`Print failed for ${ticketNum}`, "danger");
+            }
             if (bumpAfter) {
                 this.bump(card);
             }
         }, 100);
     }
+
 
 
     isFirstLane(laneId) {
